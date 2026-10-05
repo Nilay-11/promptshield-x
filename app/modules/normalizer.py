@@ -1,5 +1,5 @@
 """
-Phase 2 Input Normalization Engine for PromptShield X.
+Phase 2.5 Input Normalization Engine for PromptShield X.
 Provides systematic de-obfuscation across 8 distinct attack vectors:
 1. Unicode NFKC normalization
 2. Zero-width and invisible character stripping
@@ -10,16 +10,43 @@ Provides systematic de-obfuscation across 8 distinct attack vectors:
 7. ROT13 payload detection and decoding
 8. Permutation & fuzzy matching for canonical attack phrases
 
-All components are strictly governed by configuration flags in app.core.settings.
+Key Phase 2.5 Safeguards:
+- Preserves genuine English vocabulary (wordlist-backed): words like 'region', 'repeal', 'revel' are never rewritten.
+- Fuzzy/anagram repair is gated on suspicious attack context.
+- Leetspeak safely skips ordinals (1st, 4th), quarters (Q3), dimensions (3D), retirement/units (401k, 120ms), IDs/hashes, emails, URLs, currency ($50), and trailing punctuation (Thanks!).
+- Normalization is evidence, not a silent destruction of input: preserves original text and logs NORMALIZATION_REVEALED_PAYLOAD.
+- Non-prose skipping runs AFTER decoding.
 """
 
 import base64
 import codecs
 import re
 import unicodedata
+from pathlib import Path
 from typing import Dict, Any, List, Set, Tuple
 
 from app.core.settings import settings
+
+
+# ----------------------------------------------------------------------
+# Wordlist Initialization (for English vocabulary preservation)
+# ----------------------------------------------------------------------
+WORDS_FILE = Path(__file__).resolve().parent / "resources" / "words_alpha.txt"
+ENGLISH_WORDS: Set[str] = set()
+
+if WORDS_FILE.exists():
+    try:
+        ENGLISH_WORDS = set(WORDS_FILE.read_text(encoding="utf-8").splitlines())
+    except Exception:
+        ENGLISH_WORDS = set()
+
+# Fallback core words if file reading fails
+if not ENGLISH_WORDS:
+    ENGLISH_WORDS = {
+        "region", "regional", "repeal", "revel", "revelation", "model",
+        "guidance", "standard", "financial", "quarter", "report", "policy",
+        "compliance", "document", "service", "system", "prompt", "instructions"
+    }
 
 
 # ----------------------------------------------------------------------
@@ -87,7 +114,7 @@ def normalize_homoglyphs(text: str) -> str:
 
 
 # ----------------------------------------------------------------------
-# 4. Leetspeak Decoding
+# 4. Leetspeak Decoding (with Token-Aware False Positive Guards)
 # ----------------------------------------------------------------------
 LEET_MAP: Dict[str, str] = {
     "0": "o",
@@ -98,42 +125,79 @@ LEET_MAP: Dict[str, str] = {
     "$": "s",
     "5": "s",
     "7": "t",
-    "!": "i",
 }
 
-CANONICAL_VOCABULARY: Set[str] = {
+CANONICAL_TARGET_KEYWORDS: Set[str] = {
     "ignore", "previous", "instructions", "instruction", "disregard",
     "reveal", "system", "prompt", "bypass", "jailbreak", "override",
     "password", "secret", "unrestricted", "assistant", "rule", "rules"
 }
 
+# Regex patterns for tokens that must NEVER be decoded as leetspeak
+ORDINALS_RE = re.compile(r"^\d+(st|nd|rd|th)$", re.IGNORECASE)
+QUARTERS_RE = re.compile(r"^(Q[1-4]|FY\d{2,4}|H[12])$", re.IGNORECASE)
+DIMENSIONS_RE = re.compile(r"^[2-4]D$", re.IGNORECASE)
+RETIREMENT_RE = re.compile(r"^401\(?[kK]\)?$|^\d+[kK]$", re.IGNORECASE)
+UNITS_RE = re.compile(r"^\d+(\.\d+)?(ms|ns|us|s|min|hr|hz|khz|mhz|ghz|kb|mb|gb|tb|px|pt|em|rem|cm|mm|m|km|kg|g|mg|%|pct)$", re.IGNORECASE)
+VERSIONS_RE = re.compile(r"^v\d+(\.\d+)*(-[a-zA-Z0-9]+)?$", re.IGNORECASE)
+HEX_HASH_RE = re.compile(r"^[0-9a-fA-F]{10,}$")
+EMAIL_RE = re.compile(r"^[\w.+-]+@[\w-]+\.[\w.-]+$")
+URL_RE = re.compile(r"^https?://\S+$", re.IGNORECASE)
+CURRENCY_RE = re.compile(r"^[\$€£¥]\d+(\.\d+)?([kKmMbBtT]|million|billion)?$")
+
 
 def decode_leetspeak(text: str) -> str:
     """
-    Decodes leetspeak substitutions within words (e.g. 'syst3m', '1gnore', 'p@ssword').
-    Leaves legitimate standalone numbers, currency values ($50), or percentages intact.
+    Decodes leetspeak substitutions within words (e.g. 'syst3m', '1gnore', 'pr0mpt').
+    Strictly skips ordinals (1st, 4th), quarters (Q3), dimensions (3D), retirement (401k),
+    units (120ms), versions (v1.0), currency ($50), emails, URLs, and trailing punctuation (Thanks!).
     """
     def _decode_word(token: str) -> str:
-        # Match surrounding non-alphanumeric punctuation (except leet symbols @$!)
-        m = re.match(r"^([^a-zA-Z0-9@$!]*)([\w@$!]+)([^a-zA-Z0-9@$!]*)$", token)
+        st = token.strip()
+        # Fast exit for tokens that should never be decoded as leet
+        if (
+            ORDINALS_RE.match(st) or QUARTERS_RE.match(st) or DIMENSIONS_RE.match(st)
+            or RETIREMENT_RE.match(st) or UNITS_RE.match(st) or VERSIONS_RE.match(st)
+            or HEX_HASH_RE.match(st) or EMAIL_RE.match(st) or URL_RE.match(st)
+            or CURRENCY_RE.match(st)
+        ):
+            return token
+
+        # Separate structural punctuation (leading/trailing ! ? . , ; : etc.)
+        # Note: ! is structural punctuation, so 'Thanks!' extracts core 'Thanks' and suffix '!'
+        m = re.match(r"^([^\w@$]*)([\w@$]+)([^\w@$]*)$", token)
         if not m:
             return token
         prefix, core, suffix = m.groups()
 
+        # Check if core is protected unit/ordinal/quarter/currency
+        if (
+            ORDINALS_RE.match(core) or QUARTERS_RE.match(core) or DIMENSIONS_RE.match(core)
+            or RETIREMENT_RE.match(core) or UNITS_RE.match(core) or VERSIONS_RE.match(core)
+            or CURRENCY_RE.match(core) or CURRENCY_RE.match(f"{prefix}{core}")
+        ):
+            return token
+
         has_letters = bool(re.search(r"[a-zA-Z]", core))
-        has_leet = bool(re.search(r"[013457@$!]", core))
+        has_leet = bool(re.search(r"[013457@$]", core))
 
         if not has_leet:
             return token
 
+        # If core itself is already a legitimate English word (e.g. 'most', 'cost', 'post')
+        # and not an attack word, do not touch it
+        cl = core.lower()
+        if cl in ENGLISH_WORDS and cl not in CANONICAL_TARGET_KEYWORDS:
+            return token
+
         translated = "".join(LEET_MAP.get(c, c) for c in core)
 
-        # If token was mixed alphanumeric/symbolic (e.g. syst3m, 1gnore, $ystem, p@ssword)
+        # If token was mixed alphanumeric/symbolic (e.g. syst3m, 1gnore, $ystem, pr0mpt)
         if has_letters:
             return f"{prefix}{translated}{suffix}"
 
-        # If token was purely digits/symbols, only translate if it resolves to a known keyword
-        if translated.lower() in CANONICAL_VOCABULARY:
+        # If token was purely digits/symbols, only translate if it resolves to a recognized target keyword
+        if translated.lower() in CANONICAL_TARGET_KEYWORDS:
             return f"{prefix}{translated}{suffix}"
 
         return token
@@ -182,7 +246,7 @@ def collapse_spaced_text(text: str) -> str:
 def detect_and_decode_base64(text: str) -> Tuple[str, List[str]]:
     """
     Detects base64 encoded strings within text, decodes valid ASCII/UTF-8 payloads,
-    and appends the decoded payload to the text for downstream evaluation.
+    and returns decoded payloads.
     """
     b64_pattern = r"\b[A-Za-z0-9+/]{12,}={0,2}\b"
     matches = re.findall(b64_pattern, text)
@@ -190,22 +254,19 @@ def detect_and_decode_base64(text: str) -> Tuple[str, List[str]]:
 
     for m in matches:
         try:
-            # Must be valid length for padding
             pad_len = len(m) % 4
             candidate = m + ("=" * (4 - pad_len) if pad_len != 0 else "")
             raw_bytes = base64.b64decode(candidate, validate=True)
             decoded_str = raw_bytes.decode("utf-8")
-            # Verify decoded string is mostly printable text
             if len(decoded_str.strip()) >= 4 and all(32 <= ord(c) < 127 or c in "\r\n\t" for c in decoded_str):
                 decoded_payloads.append(decoded_str.strip())
         except Exception:
             continue
 
+    appended = text
     if decoded_payloads:
         appended = text + " " + " ".join(f"[DECODED_BASE64: {p}]" for p in decoded_payloads)
-        return appended, decoded_payloads
-
-    return text, []
+    return appended, decoded_payloads
 
 
 # ----------------------------------------------------------------------
@@ -214,12 +275,10 @@ def detect_and_decode_base64(text: str) -> Tuple[str, List[str]]:
 def detect_and_decode_rot13(text: str) -> Tuple[str, List[str]]:
     """
     Checks if applying ROT13 reveals canonical prompt injection or extraction keywords.
-    If detected, appends the decoded payload for downstream evaluation.
     """
     decoded = codecs.decode(text, "rot_13")
     dl = decoded.lower()
 
-    # Check for adversarial triggers in the ROT13 representation
     triggers = [
         "ignore previous", "disregard all", "reveal the system prompt",
         "system prompt", "instructions", "bypass safety", "jailbreak",
@@ -228,14 +287,13 @@ def detect_and_decode_rot13(text: str) -> Tuple[str, List[str]]:
 
     found = [t for t in triggers if t in dl]
     if found:
-        appended = f"{text} [DECODED_ROT13: {decoded.strip()}]"
-        return appended, [decoded.strip()]
+        return f"{text} [DECODED_ROT13: {decoded.strip()}]", [decoded.strip()]
 
     return text, []
 
 
 # ----------------------------------------------------------------------
-# 8. Permutation & Fuzzy Matching for Canonical Attack Vocabulary
+# 8. Permutation & Fuzzy Matching (Gated on Suspicious Context & Wordlist)
 # ----------------------------------------------------------------------
 def _levenshtein(s1: str, s2: str) -> int:
     """Computes Levenshtein edit distance between two strings."""
@@ -255,17 +313,50 @@ def _levenshtein(s1: str, s2: str) -> int:
     return prev[-1]
 
 
-CANONICAL_TARGET_KEYWORDS: Set[str] = {
-    "ignore", "previous", "instructions", "instruction", "disregard",
-    "reveal", "system", "prompt", "bypass", "jailbreak", "override"
+DIRECTIVE_CONTEXT_KEYWORDS: Set[str] = {
+    "instructions", "instruction", "prompt", "system", "rules", "rule",
+    "previous", "prior", "above", "bypass", "jailbreak", "override",
+    "assistant", "developer", "mode", "unrestricted", "dan", "reveal", "disregard"
 }
+
+
+def has_suspicious_context(text: str) -> bool:
+    """
+    Checks if surrounding text exhibits suspicious context:
+    1. Contains recognized directive/attack keywords, OR
+    2. Contains 2 or more non-dictionary anagram/typo attack candidates.
+    """
+    tl = text.lower()
+    # 1. Any canonical directive keyword present
+    if any(re.search(rf"\b{re.escape(k)}\b", tl) for k in DIRECTIVE_CONTEXT_KEYWORDS):
+        return True
+
+    # 2. Check for multiple suspicious non-dictionary tokens
+    words = re.findall(r"[a-zA-Z]{4,}", tl)
+    typo_count = 0
+    for w in words:
+        if w in ENGLISH_WORDS:
+            continue
+        sw = sorted(w)
+        for canon in CANONICAL_TARGET_KEYWORDS:
+            if (len(w) == len(canon) and sw == sorted(canon)) or (abs(len(w) - len(canon)) <= 1 and _levenshtein(w, canon) <= 1):
+                typo_count += 1
+                break
+    return typo_count >= 2
 
 
 def normalize_fuzzy_canonical(text: str) -> str:
     """
     Detects character transpositions / permutations (e.g. 'ignroe', 'revael', 'porpmt')
     and single-edit typos of canonical attack vocabulary, mapping them back to standard form.
+
+    Safeguards:
+    1. Only fires if text exhibits suspicious attack context.
+    2. NEVER rewrites valid English dictionary words (e.g. 'region', 'repeal', 'revel').
     """
+    if not has_suspicious_context(text):
+        return text
+
     def _map_token(token: str) -> str:
         m = re.match(r"^([^a-zA-Z]*)([a-zA-Z]+)([^a-zA-Z]*)$", token)
         if not m:
@@ -277,7 +368,11 @@ def normalize_fuzzy_canonical(text: str) -> str:
         if wl in CANONICAL_TARGET_KEYWORDS:
             return token
 
-        # 1. Exact anagram / transposition check (e.g. ignroe -> ignore, revael -> reveal)
+        # SAFEGUARD: If wl is a valid English word (e.g. 'region', 'repeal', 'revel'), NEVER rewrite!
+        if wl in ENGLISH_WORDS:
+            return token
+
+        # 1. Exact anagram / transposition check (e.g. ignroe -> ignore, revael -> reveal, porpmt -> prompt)
         sorted_wl = sorted(wl)
         for canon in CANONICAL_TARGET_KEYWORDS:
             if len(wl) == len(canon) and len(wl) >= 4 and sorted_wl == sorted(canon):
@@ -304,11 +399,11 @@ def normalize_fuzzy_canonical(text: str) -> str:
 
 
 # ----------------------------------------------------------------------
-# Master Normalization Entrypoint
+# Master Normalization Entrypoint & Evidence Tracker
 # ----------------------------------------------------------------------
 def normalize_input(text: str) -> str:
     """
-    Sequential normalizer executing enabled Phase 2 stages according to settings.
+    Sequential normalizer executing enabled Phase 2.5 stages according to settings.
     """
     if not settings.normalizer_enabled or not text:
         return text
@@ -342,7 +437,7 @@ def normalize_input(text: str) -> str:
     if settings.norm_leetspeak:
         text = decode_leetspeak(text)
 
-    # Stage 8: Permutation & fuzzy matching
+    # Stage 8: Permutation & fuzzy matching (gated on suspicious context)
     if settings.norm_fuzzy_canonical:
         text = normalize_fuzzy_canonical(text)
 
@@ -353,3 +448,40 @@ def normalize_input(text: str) -> str:
         text = f"{text} [DECODED_ROT13: {r}]"
 
     return text
+
+
+def evaluate_normalized_evidence(original_text: str) -> Dict[str, Any]:
+    """
+    Preserves original text and scores BOTH original and normalized variants.
+    Logs NORMALIZATION_REVEALED_PAYLOAD when a normalized variant triggers a rule
+    that the original text did not trigger.
+    """
+    from app.modules.pattern_scanner import scan_prompt
+
+    normalized_text = normalize_input(original_text)
+    is_modified = (normalized_text != original_text)
+
+    orig_scan = scan_prompt(original_text)
+    norm_scan = scan_prompt(normalized_text)
+
+    orig_rule_ids = {m["id"] for m in orig_scan.get("matches", [])}
+    norm_rule_ids = {m["id"] for m in norm_scan.get("matches", [])}
+
+    revealed_rules = list(norm_rule_ids - orig_rule_ids)
+    revealed_payload = len(revealed_rules) > 0
+
+    anomaly_codes = []
+    if revealed_payload:
+        anomaly_codes.append("NORMALIZATION_REVEALED_PAYLOAD")
+
+    return {
+        "original_text": original_text,
+        "normalized_text": normalized_text,
+        "is_modified": is_modified,
+        "revealed_payload": revealed_payload,
+        "revealed_rules": revealed_rules,
+        "orig_rules": list(orig_rule_ids),
+        "norm_rules": list(norm_rule_ids),
+        "anomaly_codes": anomaly_codes,
+        "max_severity": max(orig_scan.get("severity", 0), norm_scan.get("severity", 0)),
+    }
