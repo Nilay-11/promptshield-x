@@ -1,0 +1,101 @@
+[
+  {
+    "perturbation": "none",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "homoglyph",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "leetspeak",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 90.0,
+    "combined_fpr": 90.0
+  },
+  {
+    "perturbation": "typoglycemia",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "zero_width",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "spacing",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "base64",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "rot13",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "fullwidth",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "multilingual",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 100.0,
+    "combined_fpr": 100.0
+  },
+  {
+    "perturbation": "**OVERALL AVERAGE**",
+    "rules_hit_rate": 0.0,
+    "model_hit_rate": 100.0,
+    "combined_hit_rate": 100.0,
+    "rules_fpr": 0.0,
+    "model_fpr": 99.0,
+    "combined_fpr": 99.0
+  }
+]

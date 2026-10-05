@@ -1,0 +1,57 @@
+[
+  {
+    "split_N": 3,
+    "configured_window_size": 3,
+    "split_attack_detected": true,
+    "attack_trigger_signals": [
+      "model(sem=93)",
+      "model(sem=92)"
+    ],
+    "benign_multi_segment_triggered": false,
+    "attack_overall_action": "BLOCK",
+    "benign_overall_action": "REVIEW"
+  },
+  {
+    "split_N": 4,
+    "configured_window_size": 4,
+    "split_attack_detected": true,
+    "attack_trigger_signals": [
+      "model(sem=93)",
+      "model(sem=92)",
+      "model(sem=92)"
+    ],
+    "benign_multi_segment_triggered": true,
+    "attack_overall_action": "BLOCK",
+    "benign_overall_action": "BLOCK"
+  },
+  {
+    "split_N": 5,
+    "configured_window_size": 5,
+    "split_attack_detected": true,
+    "attack_trigger_signals": [
+      "model(sem=93)",
+      "model(sem=92)",
+      "model(sem=93)",
+      "model(sem=93)"
+    ],
+    "benign_multi_segment_triggered": true,
+    "attack_overall_action": "BLOCK",
+    "benign_overall_action": "BLOCK"
+  },
+  {
+    "split_N": 8,
+    "configured_window_size": 8,
+    "split_attack_detected": true,
+    "attack_trigger_signals": [
+      "model(sem=93)",
+      "model(sem=93)",
+      "model(sem=93)",
+      "model(sem=92)",
+      "model(sem=82)",
+      "model(sem=62)"
+    ],
+    "benign_multi_segment_triggered": true,
+    "attack_overall_action": "BLOCK",
+    "benign_overall_action": "BLOCK"
+  }
+]
