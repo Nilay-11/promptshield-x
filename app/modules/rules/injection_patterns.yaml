@@ -32,14 +32,15 @@
   severity: 85
 
 - id: dan-jailbreak
-  pattern: "(?i)\\bact as (an? )?(DAN|unrestricted|jailbroken) (AI|assistant)\\b"
+  pattern: "(?i)\\b(act as( an?)?|you are( now)?|from now on you are)\\b.{0,40}\\b(DAN|unrestricted|jailbroken|Do Anything Now)\\b"
   category: jailbreak
   severity: 90
 
 - id: you-are-now
-  pattern: "(?i)\\byou are now\\b.{0,40}\\b(unfiltered|unlocked|free|unrestricted)\\b"
+  pattern: "(?i)\\b(you are now|from now on you are)\\b.{0,40}\\b(unfiltered|unlocked|free|unrestricted|DAN)\\b"
   category: jailbreak
-  severity: 75
+  severity: 85
+
 
 - id: pretend-no-rules
   pattern: "(?i)pretend (you have |you're |you are )?no (rules|restrictions|guidelines|limitations)"

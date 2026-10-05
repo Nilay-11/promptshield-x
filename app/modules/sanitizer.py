@@ -72,6 +72,9 @@ def normalize_unicode(text: str) -> str:
     return text
 
 
+from app.modules.normalizer import normalize_input
+
+
 def sanitize(text: str) -> str:
     """
     Main entrypoint — call this first in the /analyze pipeline, before
@@ -80,6 +83,7 @@ def sanitize(text: str) -> str:
     text = strip_html(text)
     text = strip_markdown_artifacts(text)
     text = normalize_unicode(text)
+    text = normalize_input(text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
