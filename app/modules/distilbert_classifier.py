@@ -24,6 +24,7 @@ TAXONOMY_CONVERTER = {
     "JAILBREAK_PROMPT_LEAKAGE": "jailbreak",
     "PROMPT_EXTRACTION": "prompt_extraction",
     "AGENT_MANIPULATION": "agent_manipulation",
+    "UNKNOWN": "prompt_injection",
 }
 
 
@@ -171,15 +172,24 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
     """
     mode = settings.classifier_mode
 
-    # Guard: Non-prose skipping
+    # 0. Normalization Evidence: evaluate BOTH original and normalized variants
+    from app.modules.normalizer import evaluate_normalized_evidence
+    norm_evidence = evaluate_normalized_evidence(text)
+    normalized_text = norm_evidence["normalized_text"]
+    revealed_payload = norm_evidence["revealed_payload"]
+    anomaly_codes = list(norm_evidence["anomaly_codes"])
+
+    # Guard: Non-prose skipping runs AFTER decoding (Section B, Item 4)
     if settings.skip_non_prose_enabled:
-        is_skipped, skip_reason = is_non_prose(text)
+        is_skipped, skip_reason = is_non_prose(normalized_text)
         if is_skipped:
             return {
                 "verdict": "SKIPPED_NON_PROSE",
                 "model_p_inj": None,
                 "model_p_benign": None,
                 "rule_hits": [],
+                "revealed_rules": [],
+                "anomaly_codes": anomaly_codes,
                 "heuristic_category": None,
                 "final_score": 0,
                 "mode": mode,
@@ -188,25 +198,28 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
                 "category": "BENIGN",
                 "legacy_category": "safe",
                 "confidence": 1.0,
+                "original_text": text,
+                "normalized_text": normalized_text,
+                "revealed_payload": revealed_payload,
             }
 
-    # 1. Evaluate Rule Hits (Regex First-Pass)
+    # 1. Evaluate Rule Hits (Regex First-Pass on both original and normalized)
     rule_hits: List[str] = []
     rule_severity: int = 0
     if mode in ["combined", "rules_only"]:
-        pattern_res = scan_prompt(text)
-        rule_hits = [m["id"] for m in pattern_res.get("matches", [])]
-        rule_severity = pattern_res.get("severity", 0)
+        rule_hits = norm_evidence["norm_rules"]
+        rule_severity = norm_evidence["max_severity"]
 
-    # 2. Evaluate Neural Model (DistilBERT)
+    # 2. Evaluate Neural Model (DistilBERT on de-obfuscated text)
     model_p_inj: Optional[float] = None
     model_p_benign: Optional[float] = None
     tokenizer, model = _get_distilbert()
+    eval_text = normalized_text if normalized_text else text
 
     if mode in ["combined", "model_only", "semantic_only"] and tokenizer is not None and model is not None:
         try:
             import torch
-            inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
+            inputs = tokenizer(eval_text, return_tensors="pt", truncation=True, max_length=512)
             with torch.no_grad():
                 outputs = model(**inputs)
                 probs = torch.softmax(outputs.logits, dim=-1)[0].tolist()
@@ -265,7 +278,7 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
     # 5. Assign Heuristic Category ONLY if verdict is INJECTION
     heuristic_category: Optional[str] = None
     if verdict == "INJECTION":
-        heuristic_category = tag_heuristic_category(text, rule_hits)
+        heuristic_category = tag_heuristic_category(eval_text, rule_hits)
 
     category_label = heuristic_category if heuristic_category else "BENIGN"
 
@@ -278,7 +291,12 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
         "final_score": final_score,
         "mode": mode,
         "category": category_label,
-        "legacy_category": TAXONOMY_CONVERTER.get(category_label, "safe"),
+        "legacy_category": "safe" if verdict in ["BENIGN", "SKIPPED_NON_PROSE"] else TAXONOMY_CONVERTER.get(category_label, "prompt_injection"),
         "confidence": confidence,
         "source": "distilbert_local" if model_p_inj is not None else "rules_engine",
+        "original_text": text,
+        "normalized_text": normalized_text,
+        "revealed_payload": revealed_payload,
+        "revealed_rules": norm_evidence["revealed_rules"],
+        "anomaly_codes": anomaly_codes,
     }

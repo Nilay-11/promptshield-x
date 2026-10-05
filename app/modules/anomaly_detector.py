@@ -1,7 +1,11 @@
-﻿"""
+"""
 PromptShield X - Semantic Anomaly Detector.
 Uses Isolation Forest trained on benign vector embeddings (all-MiniLM-L6-v2)
 to detect out-of-distribution adversarial vectors and cloaked prompt embeddings.
+
+NOTE: This module is currently DORMANT TELEMETRY. It does not contribute to the
+composite risk score in live Prompt/PDF firewall pipelines and cannot alone change
+an enforcement action (PASS/REVIEW/BLOCK). It is preserved strictly for offline research.
 """
 
 import os

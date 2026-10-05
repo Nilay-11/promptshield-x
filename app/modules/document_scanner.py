@@ -149,6 +149,10 @@ class DocumentScanner:
             if final_risk > max_risk:
                 max_risk = final_risk
 
+            for ac in distil_res.get("anomaly_codes", []):
+                if ac not in anomaly_codes:
+                    anomaly_codes.append(ac)
+
             # ------------------------------------------------------------------
             # 4. Explicit Audit Reason Codes
             # ------------------------------------------------------------------
@@ -166,7 +170,7 @@ class DocumentScanner:
                     reason = "Ambiguous prompt content; flagged for review"
             else:  # PASS
                 if anomaly_codes:
-                    reason = f"Benign segment with layout anomalies logged ({', '.join(anomaly_codes)}); no attack directive"
+                    reason = f"Benign segment with layout anomalies logged ({', '.join(anomaly_codes)}); no malicious directive"
                 else:
                     reason = "Standard benign document content"
 
@@ -197,6 +201,7 @@ class DocumentScanner:
                 "final_risk": final_risk,
                 "risk_score": final_risk,
                 "distilbert_class": heuristic_cat if heuristic_cat else verdict,
+                "semantic_class": verdict,
                 "heuristic_category": heuristic_cat,
                 "model_p_inj": model_p_inj,
                 "model_p_benign": model_p_benign,
