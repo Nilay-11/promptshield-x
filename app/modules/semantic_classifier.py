@@ -120,19 +120,21 @@ def classify_prompt_api(text: str, api_key: str, provider: str) -> dict | None:
 def classify_prompt_local_fallback(text: str) -> dict:
     """
     Lightweight keyword-based matcher that serves as a fallback to avoid dependencies or API calls.
+    All matching strictly uses word boundaries to prevent substring bugs on 'guidance', 'standard', etc.
     """
+    import re
     tl = text.lower()
     
-    if "system prompt" in tl or "reveal your prompt" in tl or "reveal prompt" in tl:
+    if re.search(r"\b(system\s*prompt|reveal\s+(your\s+)?prompt)\b", tl):
         category = "prompt_extraction"
-        confidence = 0.6  # Keep in REWRITE range for test cases
-    elif "ignore previous" in tl or "ignore all previous" in tl or "ignore instructions" in tl:
+        confidence = 0.6
+    elif re.search(r"\b(ignore\s+(all\s+|any\s+)?(previous|above|prior)?\s*instructions)\b", tl):
         category = "prompt_injection"
         confidence = 0.6
-    elif "dan" in tl or "bypass safety" in tl or "no restrictions" in tl or "act as" in tl:
+    elif re.search(r"\b(dan|bypass\s+safety|no\s+restrictions|act\s+as\s+(an?\s+)?unrestricted)\b", tl):
         category = "jailbreak"
         confidence = 0.6
-    elif "agent" in tl or "override" in tl:
+    elif re.search(r"\b(agent|override)\b", tl):
         category = "agent_manipulation"
         confidence = 0.6
     else:
@@ -148,8 +150,13 @@ def classify_prompt_local_fallback(text: str) -> dict:
             
     return {
         "category": category,
+        "verdict": "BENIGN" if category == "safe" else "INJECTION",
+        "heuristic_category": None if category == "safe" else category,
         "confidence": confidence,
-        "raw_scores": raw_scores
+        "raw_scores": raw_scores,
+        "model_p_inj": None,
+        "rule_hits": [category] if category != "safe" else [],
+        "source": "local_fallback",
     }
 
 
@@ -159,11 +166,37 @@ def classify_prompt(text: str) -> dict:
         {
             "category": "safe" | "prompt_injection" | "jailbreak" |
                         "prompt_extraction" | "agent_manipulation",
+            "verdict": "BENIGN" | "INJECTION" | "SKIPPED_NON_PROSE",
+            "heuristic_category": Optional[str],
+            "model_p_inj": Optional[float],
+            "rule_hits": list[str],
             "confidence": float 0-1,
-            "raw_scores": {label: score, ...}
+            "raw_scores": {label: score, ...},
+            "source": str
         }
     """
-    # 1. Try local transformers if installed and loaded
+    # 1. Try local fine-tuned DistilBERT model if weights are available
+    try:
+        from app.modules.distilbert_classifier import classify_prompt_distilbert, MODEL_DIR
+        if MODEL_DIR.exists() and (MODEL_DIR / "config.json").exists():
+            distil_res = classify_prompt_distilbert(text)
+            if distil_res and distil_res.get("source") in ["distilbert_local", "rules_engine", "skipped_non_prose"]:
+                return {
+                    "category": distil_res.get("legacy_category", "safe"),
+                    "primary_label": distil_res.get("category", "BENIGN"),
+                    "verdict": distil_res.get("verdict", "BENIGN"),
+                    "heuristic_category": distil_res.get("heuristic_category"),
+                    "model_p_inj": distil_res.get("model_p_inj"),
+                    "rule_hits": distil_res.get("rule_hits", []),
+                    "final_score": distil_res.get("final_score", 0),
+                    "confidence": distil_res.get("confidence", 0.9),
+                    "raw_scores": distil_res.get("raw_scores", {}),
+                    "source": distil_res.get("source", "distilbert_local")
+                }
+    except Exception as e:
+        print(f"[Classifier] DistilBERT check skipped: {e}")
+
+    # 2. Try zero-shot pipeline if installed
     if HAS_TRANSFORMERS:
         try:
             classifier = _get_classifier()
@@ -175,9 +208,11 @@ def classify_prompt(text: str) -> dict:
                     "category": LABEL_MAP[top_label],
                     "confidence": round(top_score, 4),
                     "raw_scores": dict(zip(result["labels"], [round(s, 4) for s in result["scores"]])),
+                    "source": "zero_shot_pipeline"
                 }
         except Exception as e:
             print(f"HuggingFace classification failed: {e}")
+
 
     # 2. Try API fallback (Gemini / OpenAI)
     gemini_key = os.environ.get("GEMINI_API_KEY")
