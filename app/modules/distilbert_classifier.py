@@ -209,8 +209,12 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
     if mode in ["combined", "rules_only"]:
         rule_hits = norm_evidence["norm_rules"]
         rule_severity = norm_evidence["max_severity"]
+        if settings.rules_evidence_only:
+            # Rule hits can raise severity to REVIEW level (<= 40), never BLOCK (>= 60) alone
+            rule_severity = min(rule_severity, 40)
 
     # 2. Evaluate Neural Model (DistilBERT on de-obfuscated text)
+    # Long inputs: support overlapping sliding-window scoring (max over windows)
     model_p_inj: Optional[float] = None
     model_p_benign: Optional[float] = None
     tokenizer, model = _get_distilbert()
@@ -219,12 +223,46 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
     if mode in ["combined", "model_only", "semantic_only"] and tokenizer is not None and model is not None:
         try:
             import torch
-            inputs = tokenizer(eval_text, return_tensors="pt", truncation=True, max_length=512)
-            with torch.no_grad():
-                outputs = model(**inputs)
-                probs = torch.softmax(outputs.logits, dim=-1)[0].tolist()
-                model_p_benign = round(probs[0], 4)
-                model_p_inj = round(probs[1], 4)
+            token_ids = tokenizer.encode(eval_text, add_special_tokens=True)
+            max_len = 512
+            stride = settings.sliding_window_stride
+
+            if len(token_ids) <= max_len or not settings.sliding_window_inference_enabled:
+                inputs = tokenizer(eval_text, return_tensors="pt", truncation=True, max_length=max_len)
+                with torch.no_grad():
+                    outputs = model(**inputs)
+                    probs = torch.softmax(outputs.logits, dim=-1)[0].tolist()
+                    model_p_benign = round(probs[0], 4)
+                    model_p_inj = round(probs[1], 4)
+            else:
+                # Sliding-window inference across long text
+                window_p_injs = []
+                window_p_bens = []
+                # Strip outermost special tokens for interior chunk slicing
+                core_ids = token_ids[1:-1]
+                content_len = max_len - 2
+                cls_id = tokenizer.cls_token_id
+                sep_id = tokenizer.sep_token_id
+
+                for start_idx in range(0, len(core_ids), stride):
+                    chunk_slice = core_ids[start_idx : start_idx + content_len]
+                    if not chunk_slice:
+                        continue
+                    framed_ids = [cls_id] + chunk_slice + [sep_id]
+                    input_tensor = torch.tensor([framed_ids], dtype=torch.long)
+                    attention_mask = torch.ones_like(input_tensor)
+                    with torch.no_grad():
+                        out = model(input_ids=input_tensor, attention_mask=attention_mask)
+                        chunk_probs = torch.softmax(out.logits, dim=-1)[0].tolist()
+                        window_p_bens.append(chunk_probs[0])
+                        window_p_injs.append(chunk_probs[1])
+                    if start_idx + content_len >= len(core_ids):
+                        break
+
+                max_p_inj = max(window_p_injs) if window_p_injs else 0.0
+                model_p_inj = round(max_p_inj, 4)
+                model_p_benign = round(1.0 - max_p_inj, 4)
+
         except Exception as e:
             print(f"[DistilBERT Inference Error] {e}")
             model_p_inj = None

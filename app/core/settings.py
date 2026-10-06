@@ -62,6 +62,11 @@ class FirewallSettings(BaseModel):
     hidden_text_review_p_threshold: float = 0.15
     quoted_context_rule_softening: bool = True
 
+    # Phase 4: Rules Evidence-Only & Long Input Sliding Window
+    rules_evidence_only: bool = False  # If True, rule hits can raise to REVIEW (severity <= 40), never BLOCK alone
+    sliding_window_inference_enabled: bool = True  # Handles inputs > 512 tokens via overlapping windows
+    sliding_window_stride: int = 256  # Overlap stride in tokens
+
 
 # Global singleton settings instance
 settings = FirewallSettings()
