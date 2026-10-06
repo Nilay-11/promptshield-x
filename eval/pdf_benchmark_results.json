@@ -1,0 +1,106 @@
+{
+  "microfont": {
+    "structural_only": {
+      "recall_defend": 100.0,
+      "recall_block": 0.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 100.0
+    },
+    "semantic_only": {
+      "recall_defend": 80.0,
+      "recall_block": 80.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "rules_only": {
+      "recall_defend": 32.0,
+      "recall_block": 32.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "combined": {
+      "recall_defend": 88.0,
+      "recall_block": 88.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    }
+  },
+  "white_text": {
+    "structural_only": {
+      "recall_defend": 100.0,
+      "recall_block": 0.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "semantic_only": {
+      "recall_defend": 80.0,
+      "recall_block": 80.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "rules_only": {
+      "recall_defend": 32.0,
+      "recall_block": 32.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "combined": {
+      "recall_defend": 88.0,
+      "recall_block": 88.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    }
+  },
+  "off_canvas": {
+    "structural_only": {
+      "recall_defend": 100.0,
+      "recall_block": 0.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "semantic_only": {
+      "recall_defend": 80.0,
+      "recall_block": 80.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "rules_only": {
+      "recall_defend": 32.0,
+      "recall_block": 32.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "combined": {
+      "recall_defend": 88.0,
+      "recall_block": 88.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    }
+  },
+  "metadata": {
+    "structural_only": {
+      "recall_defend": 72.0,
+      "recall_block": 0.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "semantic_only": {
+      "recall_defend": 68.0,
+      "recall_block": 68.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "rules_only": {
+      "recall_defend": 20.0,
+      "recall_block": 20.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    },
+    "combined": {
+      "recall_defend": 72.0,
+      "recall_block": 72.0,
+      "benign_block_fpr": 0.0,
+      "benign_review_rate": 0.0
+    }
+  }
+}

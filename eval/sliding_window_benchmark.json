@@ -1,0 +1,183 @@
+{
+  "total_docs": 25,
+  "pass_count": 25,
+  "review_count": 0,
+  "block_count": 0,
+  "docs": [
+    {
+      "doc_id": 1,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 2,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 3,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 4,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 5,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 7,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 6,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 7,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 7,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 7,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 8,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 7,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 9,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 10,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 11,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 12,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 13,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 14,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 15,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 16,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 17,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 18,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 19,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 20,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 21,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 22,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 23,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 1,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 24,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    },
+    {
+      "doc_id": 25,
+      "segments_count": 4,
+      "overall_action": "PASS",
+      "risk_score": 0,
+      "window_triggers": []
+    }
+  ]
+}
