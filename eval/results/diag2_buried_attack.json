@@ -1,0 +1,111 @@
+{
+  "padding_lengths": [
+    0,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "curve_by_length": [
+    {
+      "n_pad_sentences": 0,
+      "sample_count": 30,
+      "avg_word_count": 11.0,
+      "baseline_detection_rate_pct": 93.33,
+      "baseline_mean_p_inj": 0.9149,
+      "retrained_detection_rate_pct": 96.67,
+      "retrained_mean_p_inj": 0.9687
+    },
+    {
+      "n_pad_sentences": 2,
+      "sample_count": 270,
+      "avg_word_count": 36.2,
+      "baseline_detection_rate_pct": 54.81,
+      "baseline_mean_p_inj": 0.5534,
+      "retrained_detection_rate_pct": 99.26,
+      "retrained_mean_p_inj": 0.9918
+    },
+    {
+      "n_pad_sentences": 5,
+      "sample_count": 270,
+      "avg_word_count": 74.5,
+      "baseline_detection_rate_pct": 28.89,
+      "baseline_mean_p_inj": 0.2873,
+      "retrained_detection_rate_pct": 100.0,
+      "retrained_mean_p_inj": 0.998
+    },
+    {
+      "n_pad_sentences": 10,
+      "sample_count": 270,
+      "avg_word_count": 137.9,
+      "baseline_detection_rate_pct": 19.63,
+      "baseline_mean_p_inj": 0.204,
+      "retrained_detection_rate_pct": 100.0,
+      "retrained_mean_p_inj": 0.9974
+    },
+    {
+      "n_pad_sentences": 20,
+      "sample_count": 270,
+      "avg_word_count": 264.7,
+      "baseline_detection_rate_pct": 20.74,
+      "baseline_mean_p_inj": 0.1992,
+      "retrained_detection_rate_pct": 100.0,
+      "retrained_mean_p_inj": 0.9964
+    },
+    {
+      "n_pad_sentences": 50,
+      "sample_count": 270,
+      "avg_word_count": 646.9,
+      "baseline_detection_rate_pct": 20.37,
+      "baseline_mean_p_inj": 0.2019,
+      "retrained_detection_rate_pct": 100.0,
+      "retrained_mean_p_inj": 0.9962
+    },
+    {
+      "n_pad_sentences": 100,
+      "sample_count": 270,
+      "avg_word_count": 1279.2,
+      "baseline_detection_rate_pct": 19.63,
+      "baseline_mean_p_inj": 0.1975,
+      "retrained_detection_rate_pct": 100.0,
+      "retrained_mean_p_inj": 0.9961
+    }
+  ],
+  "position_breakdown_long_padding": {
+    "start": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 60.0,
+      "retrained_detection_rate_pct": 100.0
+    },
+    "middle": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 0.28,
+      "retrained_detection_rate_pct": 100.0
+    },
+    "end": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 0.0,
+      "retrained_detection_rate_pct": 100.0
+    }
+  },
+  "style_breakdown_long_padding": {
+    "corporate": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 13.06,
+      "retrained_detection_rate_pct": 100.0
+    },
+    "casual": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 25.28,
+      "retrained_detection_rate_pct": 100.0
+    },
+    "technical": {
+      "sample_count": 360,
+      "baseline_detection_rate_pct": 21.94,
+      "retrained_detection_rate_pct": 100.0
+    }
+  },
+  "plain_verdict": "RESOLVED: Retraining significantly mitigated the padding failure across lengths (50-sentence det: 100.0%, 100-sentence det: 100.0%)."
+}

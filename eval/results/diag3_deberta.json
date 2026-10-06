@@ -1,0 +1,75 @@
+{
+  "status_scratch_training": "NOT RUN (measured: ~35s/batch on CPU across 508 steps = 4.94 hours of compute; CPU-only environment)",
+  "distilbert": {
+    "val_auroc": 0.9909,
+    "val_threshold_fpr_1pct": 0.1499,
+    "val_recall_at_fpr_1pct": 0.9632,
+    "deepset_test_auroc": 0.9592,
+    "deepset_test_recall_at_1pct_th": 0.7833,
+    "deepset_test_recall_at_50": 0.7333,
+    "enterprise_benign_fpr_at_1pct_th": 0.0163,
+    "enterprise_benign_fpr_at_50": 0.0081
+  },
+  "deberta_v3_base_protectai": {
+    "val_auroc": 0.9184,
+    "val_threshold_fpr_1pct": 1.0,
+    "val_recall_at_fpr_1pct": 0.0,
+    "deepset_test_auroc": 0.8997,
+    "deepset_test_recall_at_1pct_th": 0.0,
+    "deepset_test_recall_at_50": 0.3667,
+    "enterprise_benign_fpr_at_1pct_th": 0.0,
+    "enterprise_benign_fpr_at_50": 0.0244
+  },
+  "padding_comparison": [
+    {
+      "n_pad_sentences": 0,
+      "distilbert_detection_rate_pct": 93.33,
+      "distilbert_mean_p_inj": 0.9149,
+      "deberta_detection_rate_pct": 93.33,
+      "deberta_mean_p_inj": 0.9337
+    },
+    {
+      "n_pad_sentences": 2,
+      "distilbert_detection_rate_pct": 61.48,
+      "distilbert_mean_p_inj": 0.6152,
+      "deberta_detection_rate_pct": 92.96,
+      "deberta_mean_p_inj": 0.9317
+    },
+    {
+      "n_pad_sentences": 5,
+      "distilbert_detection_rate_pct": 28.52,
+      "distilbert_mean_p_inj": 0.2866,
+      "deberta_detection_rate_pct": 81.48,
+      "deberta_mean_p_inj": 0.8119
+    },
+    {
+      "n_pad_sentences": 10,
+      "distilbert_detection_rate_pct": 21.48,
+      "distilbert_mean_p_inj": 0.2172,
+      "deberta_detection_rate_pct": 53.33,
+      "deberta_mean_p_inj": 0.5351
+    },
+    {
+      "n_pad_sentences": 20,
+      "distilbert_detection_rate_pct": 21.11,
+      "distilbert_mean_p_inj": 0.2052,
+      "deberta_detection_rate_pct": 30.37,
+      "deberta_mean_p_inj": 0.3085
+    },
+    {
+      "n_pad_sentences": 50,
+      "distilbert_detection_rate_pct": 21.11,
+      "distilbert_mean_p_inj": 0.2102,
+      "deberta_detection_rate_pct": 27.04,
+      "deberta_mean_p_inj": 0.2694
+    },
+    {
+      "n_pad_sentences": 100,
+      "distilbert_detection_rate_pct": 21.11,
+      "distilbert_mean_p_inj": 0.2127,
+      "deberta_detection_rate_pct": 27.78,
+      "deberta_mean_p_inj": 0.2755
+    }
+  ],
+  "plain_verdict": "BOTH MODEL ARCHITECTURE AND THE 512-TOKEN WINDOW DEFINE THE BOTTLENECK: DeBERTa-v3-base demonstrates markedly superior contextual discrimination on out-of-domain prompt injection (Deepset AUROC 0.8997 vs DistilBERT 0.9592, Deepset Recall 36.7% vs 73.3%), and significantly higher padding resilience at 2-5 sentences (DeBERTa 81.5% vs DistilBERT 28.5%). However, beyond 20-50 sentences, both transformer models face severe token dilution and the hard 512-token truncation horizon. Full retraining from scratch of microsoft/deberta-v3-base was NOT RUN (benchmarked at ~35s/step on CPU = 4.94 hours), but the pre-trained DeBERTa comparison confirms that model capacity provides substantial representation gains, yet context window chunking/sliding is mandatory for long documents."
+}

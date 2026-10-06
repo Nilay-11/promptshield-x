@@ -1,0 +1,96 @@
+{
+  "learning_curve_slices": [
+    {
+      "fraction": 0.25,
+      "train_samples": 1013,
+      "train_duration_seconds": 297.8,
+      "val_auroc": 0.9818,
+      "val_threshold_fpr_1pct": 0.8846,
+      "val_fpr_achieved": 0.0091,
+      "val_recall_at_fpr_1pct": 0.9191,
+      "deepset_test_auroc": 0.8649,
+      "deepset_test_recall_at_val_1pct_threshold": 0.2333,
+      "deepset_test_recall_at_50": 0.4333,
+      "deepset_test_fpr_at_val_1pct_threshold": 0.0,
+      "enterprise_benign_fpr_at_val_1pct_threshold": 0.0,
+      "enterprise_benign_fpr_at_50": 0.0163,
+      "benign_10_paragraphs_fpr_at_50": 0.2,
+      "benign_10_paragraphs_fpr_at_1pct": 0.0
+    },
+    {
+      "fraction": 0.5,
+      "train_samples": 2028,
+      "train_duration_seconds": 602.9,
+      "val_auroc": 0.9857,
+      "val_threshold_fpr_1pct": 0.482,
+      "val_fpr_achieved": 0.0091,
+      "val_recall_at_fpr_1pct": 0.9485,
+      "deepset_test_auroc": 0.9048,
+      "deepset_test_recall_at_val_1pct_threshold": 0.55,
+      "deepset_test_recall_at_50": 0.55,
+      "deepset_test_fpr_at_val_1pct_threshold": 0.0,
+      "enterprise_benign_fpr_at_val_1pct_threshold": 0.1463,
+      "enterprise_benign_fpr_at_50": 0.0163,
+      "benign_10_paragraphs_fpr_at_50": 0.2,
+      "benign_10_paragraphs_fpr_at_1pct": 0.2
+    },
+    {
+      "fraction": 0.75,
+      "train_samples": 3039,
+      "train_duration_seconds": 891.4,
+      "val_auroc": 0.9905,
+      "val_threshold_fpr_1pct": 0.7359,
+      "val_fpr_achieved": 0.0091,
+      "val_recall_at_fpr_1pct": 0.9632,
+      "deepset_test_auroc": 0.9455,
+      "deepset_test_recall_at_val_1pct_threshold": 0.5833,
+      "deepset_test_recall_at_50": 0.6833,
+      "deepset_test_fpr_at_val_1pct_threshold": 0.0,
+      "enterprise_benign_fpr_at_val_1pct_threshold": 0.0163,
+      "enterprise_benign_fpr_at_50": 0.1463,
+      "benign_10_paragraphs_fpr_at_50": 0.2,
+      "benign_10_paragraphs_fpr_at_1pct": 0.2
+    },
+    {
+      "fraction": 1.0,
+      "train_samples": 4052,
+      "train_duration_seconds": 1184.9,
+      "val_auroc": 0.9954,
+      "val_threshold_fpr_1pct": 0.5799,
+      "val_fpr_achieved": 0.0091,
+      "val_recall_at_fpr_1pct": 0.9632,
+      "deepset_test_auroc": 0.9387,
+      "deepset_test_recall_at_val_1pct_threshold": 0.7167,
+      "deepset_test_recall_at_50": 0.75,
+      "deepset_test_fpr_at_val_1pct_threshold": 0.0,
+      "enterprise_benign_fpr_at_val_1pct_threshold": 0.1463,
+      "enterprise_benign_fpr_at_50": 0.1463,
+      "benign_10_paragraphs_fpr_at_50": 0.2,
+      "benign_10_paragraphs_fpr_at_1pct": 0.2
+    }
+  ],
+  "trajectory_analysis": {
+    "val_aurocs": [
+      0.9818,
+      0.9857,
+      0.9905,
+      0.9954
+    ],
+    "deepset_test_aurocs": [
+      0.8649,
+      0.9048,
+      0.9455,
+      0.9387
+    ],
+    "deepset_recalls_at_1pct_val_th": [
+      0.2333,
+      0.55,
+      0.5833,
+      0.7167
+    ],
+    "gain_val_25_to_100": 0.0136,
+    "gain_deepset_25_to_100": 0.0738,
+    "gain_deepset_75_to_100": -0.0068,
+    "plain_verdict": "PLATEAUING: AUROC shows marginal gain between 75% and 100%."
+  }
+}
