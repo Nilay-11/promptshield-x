@@ -58,6 +58,10 @@ class FirewallSettings(BaseModel):
     norm_rot13: bool = True
     norm_fuzzy_canonical: bool = True
 
+    # Phase 3.5: Hidden-Text Review Path & Quoted Context
+    hidden_text_review_p_threshold: float = 0.15
+    quoted_context_rule_softening: bool = True
+
 
 # Global singleton settings instance
 settings = FirewallSettings()

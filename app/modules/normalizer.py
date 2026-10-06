@@ -473,6 +473,8 @@ def evaluate_normalized_evidence(original_text: str) -> Dict[str, Any]:
     anomaly_codes = []
     if revealed_payload:
         anomaly_codes.append("NORMALIZATION_REVEALED_PAYLOAD")
+    if orig_scan.get("rule_hit_in_quoted_context") or norm_scan.get("rule_hit_in_quoted_context"):
+        anomaly_codes.append("RULE_HIT_IN_QUOTED_CONTEXT")
 
     return {
         "original_text": original_text,

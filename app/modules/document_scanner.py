@@ -87,9 +87,13 @@ class DocumentScanner:
             structural_amplifier = (max_struct / 100.0) * settings.structural_amplifier_max
 
             # ------------------------------------------------------------------
-            # 3. Multiplicative Risk Engine & Configurable Tiers (Phase 1.5)
+            # 3. Multiplicative Risk Engine & Configurable Tiers (Phase 1.5 / Phase 3.5)
             # ------------------------------------------------------------------
-            if settings.additive_hidden_penalty_enabled:
+            if settings.classifier_mode == "structural_only":
+                # D.3: Structural-only mode derives risk strictly from layout anomalies, action is REVIEW at most (>= 30), never BLOCK
+                final_risk = int(max_struct)
+                action = "REVIEW" if final_risk >= settings.review_risk_threshold else "PASS"
+            elif settings.additive_hidden_penalty_enabled:
                 # Legacy additive mode for ablation
                 raw_combined = round(
                     0.60 * semantic_attack_score
@@ -145,6 +149,16 @@ class DocumentScanner:
                     else:
                         final_risk = max(final_risk, settings.block_risk_threshold)
                         action = "BLOCK"
+
+                # D.2: Hidden-text REVIEW path
+                # If hidden anomaly is present and (model_p_inj >= hidden_text_review_p_threshold or rule_hits),
+                # action must be at least REVIEW. Never BLOCK on structure alone.
+                has_hidden_anomaly = bool(seg.is_hidden or seg.cloaking_signal != "NONE" or max_struct >= 30)
+                p_inj_val = model_p_inj if model_p_inj is not None else 0.0
+                if has_hidden_anomaly and (p_inj_val >= settings.hidden_text_review_p_threshold or bool(rule_hits)):
+                    if action == "PASS":
+                        action = "REVIEW"
+                        final_risk = max(final_risk, settings.review_risk_threshold)
 
             if final_risk > max_risk:
                 max_risk = final_risk

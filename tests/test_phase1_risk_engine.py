@@ -274,10 +274,6 @@ def test_ablation_flags_toggle():
 # 7. End-to-End PDF Scanner Integration Tests (Phase 1.5, Section 4)
 # ==============================================================================
 
-@pytest.mark.xfail(
-    reason="DistilBERT raw model false positive on footnote prose (p_inj=0.8691, semantic=87) causes high-tier BLOCK; requires Phase 3 retraining",
-    strict=False
-)
 def test_e2e_benign_footnote_pass_with_anomaly_code():
     """Benign footnote at 1.5pt -> overall PASS, with LAYOUT_ANOMALY_SMALL_FONT in the anomaly log."""
     doc = fitz.open()
