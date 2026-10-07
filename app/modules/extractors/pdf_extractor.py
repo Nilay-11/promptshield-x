@@ -58,6 +58,7 @@ class PDFExtractor(BaseExtractor):
             doc = fitz.open(stream=data, filetype="pdf")
             import re
 
+            FREE_TEXT_METADATA_KEYS = {"title", "subject", "keywords", "author"}
             SUSPICIOUS_METADATA_REGEX = re.compile(
                 r"(?i)\b(ignore|disregard|system\s*prompt|you are now|dan|override|bypass|reveal)\b"
             )
@@ -71,6 +72,19 @@ class PDFExtractor(BaseExtractor):
                 for meta_key, meta_val in doc.metadata.items():
                     if meta_val and isinstance(meta_val, str):
                         clean_val = meta_val.strip()
+                        if meta_key in FREE_TEXT_METADATA_KEYS and len(clean_val) >= 20 \
+                                and not SUSPICIOUS_METADATA_REGEX.search(clean_val):
+                            # Free-text metadata always reaches the classifier: a keyword gate
+                            # alone lets paraphrased injections through. No anomaly score here.
+                            result.segments.append(
+                                ExtractedSegment(
+                                    content=clean_val,
+                                    source_type=SourceType.PDF,
+                                    location={"element": "metadata", "key": meta_key},
+                                    segment_type="PDF_METADATA",
+                                    metadata={"meta_key": meta_key},
+                                )
+                            )
                         # Only flag metadata as a threat if it contains an actual attack directive
                         if SUSPICIOUS_METADATA_REGEX.search(clean_val):
                             result.segments.append(

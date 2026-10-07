@@ -1,0 +1,1886 @@
+{
+  "test_set": "final_test_v40",
+  "timestamp": "2026-10-07T07:42:39.313977+00:00",
+  "bootstrap": {
+    "n": 1000,
+    "unit": "group"
+  },
+  "scorers": {
+    "style_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.9848046139116439,
+          "long": 0.9912750183486342
+        },
+        "val_fpr5": {
+          "short": 0.9237714725505702,
+          "long": 0.9764786806724964
+        }
+      },
+      "val_auroc": 0.7154,
+      "slices": {
+        "ALL": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.7521,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8669,
+              "ci95": [
+                0.8524,
+                0.8806
+              ]
+            },
+            "fpr": {
+              "value": 0.3365,
+              "ci95": [
+                0.3184,
+                0.3553
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0026,
+              "ci95": [
+                0.0014,
+                0.0039
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0195,
+              "ci95": [
+                0.016,
+                0.0233
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.436,
+              "ci95": [
+                0.374,
+                0.502
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.7521,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8669,
+              "ci95": [
+                0.8523,
+                0.8805
+              ]
+            },
+            "fpr": {
+              "value": 0.3365,
+              "ci95": [
+                0.3191,
+                0.3569
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0026,
+              "ci95": [
+                0.0014,
+                0.0038
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0195,
+              "ci95": [
+                0.0162,
+                0.0237
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_attack": {
+          "n": 1711,
+          "groups": 1711,
+          "n_injection": 1711,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9737,
+              "ci95": [
+                0.9661,
+                0.9813
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_safe": {
+          "n": 1781,
+          "groups": 1781,
+          "n_injection": 0,
+          "n_benign": 1781,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.7692,
+              "ci95": [
+                0.749,
+                0.7883
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0084,
+              "ci95": [
+                0.0045,
+                0.0129
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0685,
+              "ci95": [
+                0.0567,
+                0.0814
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_attack": {
+          "n": 330,
+          "groups": 330,
+          "n_injection": 330,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6394,
+              "ci95": [
+                0.5848,
+                0.6939
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_safe": {
+          "n": 271,
+          "groups": 271,
+          "n_injection": 0,
+          "n_benign": 271,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.7232,
+              "ci95": [
+                0.6642,
+                0.7712
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0111,
+              "ci95": [
+                0.0,
+                0.0258
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0554,
+              "ci95": [
+                0.0295,
+                0.0849
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_attacked_gentel_cnn_final": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.436,
+              "ci95": [
+                0.3775,
+                0.498
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_cnn_only_final": {
+          "n": 242,
+          "groups": 99,
+          "n_injection": 0,
+          "n_benign": 242,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.2355,
+              "ci95": [
+                0.1786,
+                0.3026
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_gentel_cnn_final": {
+          "n": 4728,
+          "groups": 300,
+          "n_injection": 0,
+          "n_benign": 4728,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.1565,
+              "ci95": [
+                0.1441,
+                0.1705
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9462,
+              "ci95": [
+                0.9,
+                0.9769
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.2462,
+              "ci95": [
+                0.1769,
+                0.3156
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.3846,
+              "ci95": [
+                0.3077,
+                0.4692
+              ]
+            }
+          }
+        }
+      }
+    },
+    "tfidf_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.6951772733122538,
+          "long": 0.8577647832852683
+        },
+        "val_fpr5": {
+          "short": 0.31694636378150937,
+          "long": 0.6764820179075516
+        }
+      },
+      "val_auroc": 0.9634,
+      "slices": {
+        "ALL": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.8199,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.522,
+              "ci95": [
+                0.5018,
+                0.5413
+              ]
+            },
+            "fpr": {
+              "value": 0.0886,
+              "ci95": [
+                0.0791,
+                0.0987
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.4614,
+              "ci95": [
+                0.4409,
+                0.4823
+              ]
+            },
+            "fpr": {
+              "value": 0.0496,
+              "ci95": [
+                0.0439,
+                0.0561
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5949,
+              "ci95": [
+                0.5746,
+                0.6145
+              ]
+            },
+            "fpr": {
+              "value": 0.1393,
+              "ci95": [
+                0.1264,
+                0.1539
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.296,
+              "ci95": [
+                0.2355,
+                0.3597
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.224,
+              "ci95": [
+                0.1746,
+                0.2794
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.352,
+              "ci95": [
+                0.2925,
+                0.413
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.8199,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.522,
+              "ci95": [
+                0.5004,
+                0.5415
+              ]
+            },
+            "fpr": {
+              "value": 0.0886,
+              "ci95": [
+                0.0795,
+                0.0978
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.4614,
+              "ci95": [
+                0.4402,
+                0.4821
+              ]
+            },
+            "fpr": {
+              "value": 0.0496,
+              "ci95": [
+                0.0434,
+                0.0562
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5949,
+              "ci95": [
+                0.5743,
+                0.6151
+              ]
+            },
+            "fpr": {
+              "value": 0.1393,
+              "ci95": [
+                0.1274,
+                0.1539
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_attack": {
+          "n": 1711,
+          "groups": 1711,
+          "n_injection": 1711,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.4629,
+              "ci95": [
+                0.4407,
+                0.4863
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.3928,
+              "ci95": [
+                0.3688,
+                0.415
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5523,
+              "ci95": [
+                0.5278,
+                0.5769
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_safe": {
+          "n": 1781,
+          "groups": 1781,
+          "n_injection": 0,
+          "n_benign": 1781,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.3071,
+              "ci95": [
+                0.2858,
+                0.329
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.1696,
+              "ci95": [
+                0.1527,
+                0.1881
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.4705,
+              "ci95": [
+                0.4469,
+                0.4947
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_attack": {
+          "n": 330,
+          "groups": 330,
+          "n_injection": 330,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.997,
+              "ci95": [
+                0.9909,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_safe": {
+          "n": 271,
+          "groups": 271,
+          "n_injection": 0,
+          "n_benign": 271,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.2768,
+              "ci95": [
+                0.2251,
+                0.3358
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.1697,
+              "ci95": [
+                0.1292,
+                0.214
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.4797,
+              "ci95": [
+                0.4244,
+                0.5424
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_attacked_gentel_cnn_final": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.296,
+              "ci95": [
+                0.2419,
+                0.3583
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.224,
+              "ci95": [
+                0.1746,
+                0.2799
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.352,
+              "ci95": [
+                0.2927,
+                0.416
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_cnn_only_final": {
+          "n": 242,
+          "groups": 99,
+          "n_injection": 0,
+          "n_benign": 242,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_gentel_cnn_final": {
+          "n": 4728,
+          "groups": 300,
+          "n_injection": 0,
+          "n_benign": 4728,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0021,
+              "ci95": [
+                0.0009,
+                0.0034
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9154,
+              "ci95": [
+                0.8615,
+                0.9615
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.9077,
+              "ci95": [
+                0.8538,
+                0.9538
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.9308,
+              "ci95": [
+                0.8846,
+                0.9692
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v39": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.8522614703903199,
+          "long": 0.9291847811470032
+        },
+        "val_fpr5": {
+          "short": 0.04464020742273331,
+          "long": 0.9177470074424744
+        }
+      },
+      "val_auroc": 0.9844,
+      "slices": {
+        "ALL": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.7917,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5495,
+              "ci95": [
+                0.5284,
+                0.5705
+              ]
+            },
+            "fpr": {
+              "value": 0.0763,
+              "ci95": [
+                0.068,
+                0.0847
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.502,
+              "ci95": [
+                0.4806,
+                0.5221
+              ]
+            },
+            "fpr": {
+              "value": 0.0594,
+              "ci95": [
+                0.0527,
+                0.0669
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.6133,
+              "ci95": [
+                0.5947,
+                0.6323
+              ]
+            },
+            "fpr": {
+              "value": 0.1528,
+              "ci95": [
+                0.1393,
+                0.1666
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6,
+              "ci95": [
+                0.5322,
+                0.664
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.536,
+              "ci95": [
+                0.4722,
+                0.6031
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8,
+              "ci95": [
+                0.75,
+                0.8478
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.7917,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5495,
+              "ci95": [
+                0.5274,
+                0.5688
+              ]
+            },
+            "fpr": {
+              "value": 0.0763,
+              "ci95": [
+                0.0683,
+                0.085
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.502,
+              "ci95": [
+                0.4815,
+                0.5228
+              ]
+            },
+            "fpr": {
+              "value": 0.0594,
+              "ci95": [
+                0.0529,
+                0.0659
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.6133,
+              "ci95": [
+                0.5937,
+                0.6339
+              ]
+            },
+            "fpr": {
+              "value": 0.1528,
+              "ci95": [
+                0.1408,
+                0.1678
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_attack": {
+          "n": 1711,
+          "groups": 1711,
+          "n_injection": 1711,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.4553,
+              "ci95": [
+                0.4319,
+                0.4793
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.4009,
+              "ci95": [
+                0.3781,
+                0.4249
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5114,
+              "ci95": [
+                0.4868,
+                0.5348
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_safe": {
+          "n": 1781,
+          "groups": 1781,
+          "n_injection": 0,
+          "n_benign": 1781,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.2527,
+              "ci95": [
+                0.2325,
+                0.274
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.1948,
+              "ci95": [
+                0.1757,
+                0.2139
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.4745,
+              "ci95": [
+                0.4531,
+                0.4969
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_attack": {
+          "n": 330,
+          "groups": 330,
+          "n_injection": 330,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_safe": {
+          "n": 271,
+          "groups": 271,
+          "n_injection": 0,
+          "n_benign": 271,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.2509,
+              "ci95": [
+                0.1993,
+                0.3026
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.214,
+              "ci95": [
+                0.1624,
+                0.2657
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.4871,
+              "ci95": [
+                0.428,
+                0.5462
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_attacked_gentel_cnn_final": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6,
+              "ci95": [
+                0.5422,
+                0.6654
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.536,
+              "ci95": [
+                0.4743,
+                0.5967
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8,
+              "ci95": [
+                0.7459,
+                0.8478
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_cnn_only_final": {
+          "n": 242,
+          "groups": 99,
+          "n_injection": 0,
+          "n_benign": 242,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0041,
+              "ci95": [
+                0.0,
+                0.0132
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0041,
+              "ci95": [
+                0.0,
+                0.0132
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0207,
+              "ci95": [
+                0.0043,
+                0.0389
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_gentel_cnn_final": {
+          "n": 4728,
+          "groups": 300,
+          "n_injection": 0,
+          "n_benign": 4728,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0036,
+              "ci95": [
+                0.002,
+                0.0053
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0023,
+              "ci95": [
+                0.0011,
+                0.0039
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0192,
+              "ci95": [
+                0.0151,
+                0.0236
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8308,
+              "ci95": [
+                0.7615,
+                0.8923
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7769,
+              "ci95": [
+                0.7,
+                0.8462
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8692,
+              "ci95": [
+                0.8077,
+                0.9231
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v40": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.9276925192604065,
+          "long": 0.960547612739563
+        },
+        "val_fpr5": {
+          "short": 0.04054173989391327,
+          "long": 0.938011573387146
+        }
+      },
+      "val_auroc": 0.99,
+      "slices": {
+        "ALL": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.9268,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7573,
+              "ci95": [
+                0.7401,
+                0.7734
+              ]
+            },
+            "fpr": {
+              "value": 0.1242,
+              "ci95": [
+                0.1128,
+                0.1366
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6307,
+              "ci95": [
+                0.612,
+                0.6496
+              ]
+            },
+            "fpr": {
+              "value": 0.0721,
+              "ci95": [
+                0.0644,
+                0.0806
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8765,
+              "ci95": [
+                0.8634,
+                0.8886
+              ]
+            },
+            "fpr": {
+              "value": 0.2095,
+              "ci95": [
+                0.1915,
+                0.2293
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.744,
+              "ci95": [
+                0.6831,
+                0.7976
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.64,
+              "ci95": [
+                0.576,
+                0.708
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.852,
+              "ci95": [
+                0.8074,
+                0.8947
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 9313,
+          "groups": 4492,
+          "n_injection": 2291,
+          "n_benign": 7022,
+          "auroc": 0.9268,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7573,
+              "ci95": [
+                0.7398,
+                0.7743
+              ]
+            },
+            "fpr": {
+              "value": 0.1242,
+              "ci95": [
+                0.1124,
+                0.137
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6307,
+              "ci95": [
+                0.6113,
+                0.6511
+              ]
+            },
+            "fpr": {
+              "value": 0.0721,
+              "ci95": [
+                0.0643,
+                0.0801
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8765,
+              "ci95": [
+                0.8634,
+                0.89
+              ]
+            },
+            "fpr": {
+              "value": 0.2095,
+              "ci95": [
+                0.1933,
+                0.2287
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_attack": {
+          "n": 1711,
+          "groups": 1711,
+          "n_injection": 1711,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7124,
+              "ci95": [
+                0.692,
+                0.7341
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.5582,
+              "ci95": [
+                0.5354,
+                0.5821
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8562,
+              "ci95": [
+                0.8404,
+                0.8726
+              ]
+            }
+          }
+        },
+        "source:gentel_goal_hijacking_safe": {
+          "n": 1781,
+          "groups": 1781,
+          "n_injection": 0,
+          "n_benign": 1781,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.4133,
+              "ci95": [
+                0.3902,
+                0.4385
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.2414,
+              "ci95": [
+                0.2212,
+                0.26
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.6934,
+              "ci95": [
+                0.6732,
+                0.7153
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_attack": {
+          "n": 330,
+          "groups": 330,
+          "n_injection": 330,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          }
+        },
+        "source:gentel_prompt_leaking_safe": {
+          "n": 271,
+          "groups": 271,
+          "n_injection": 0,
+          "n_benign": 271,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.4354,
+              "ci95": [
+                0.3801,
+                0.4908
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.2546,
+              "ci95": [
+                0.203,
+                0.31
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.7011,
+              "ci95": [
+                0.6458,
+                0.7601
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_attacked_gentel_cnn_final": {
+          "n": 250,
+          "groups": 232,
+          "n_injection": 250,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.744,
+              "ci95": [
+                0.6877,
+                0.8024
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.64,
+              "ci95": [
+                0.5787,
+                0.7082
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.852,
+              "ci95": [
+                0.808,
+                0.8941
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_cnn_only_final": {
+          "n": 242,
+          "groups": 99,
+          "n_injection": 0,
+          "n_benign": 242,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0083,
+              "ci95": [
+                0.0,
+                0.0208
+              ]
+            }
+          }
+        },
+        "source:rag_chunk_clean_gentel_cnn_final": {
+          "n": 4728,
+          "groups": 300,
+          "n_injection": 0,
+          "n_benign": 4728,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0038,
+              "ci95": [
+                0.0021,
+                0.0058
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0015,
+              "ci95": [
+                0.0006,
+                0.0027
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0093,
+              "ci95": [
+                0.0064,
+                0.0122
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.25,
+              "ci95": [
+                0.0833,
+                0.4167
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8462,
+              "ci95": [
+                0.7846,
+                0.9077
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.8154,
+              "ci95": [
+                0.7462,
+                0.8846
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8769,
+              "ci95": [
+                0.8231,
+                0.9308
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

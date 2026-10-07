@@ -1,0 +1,3174 @@
+{
+  "test_set": "final_test_v36",
+  "timestamp": "2026-10-06T21:05:46.466792+00:00",
+  "bootstrap": {
+    "n": 1000,
+    "unit": "group"
+  },
+  "scorers": {
+    "style_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.44790321931114085,
+          "long": 0.5138086695050735
+        },
+        "val_fpr5": {
+          "short": 0.37323650095321226,
+          "long": 0.4180979746296188
+        }
+      },
+      "val_auroc": 0.5244,
+      "slices": {
+        "ALL": {
+          "n": 4802,
+          "groups": 3660,
+          "n_injection": 2865,
+          "n_benign": 1937,
+          "auroc": 0.6717,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.3124,
+              "ci95": [
+                0.2569,
+                0.3642
+              ]
+            },
+            "fpr": {
+              "value": 0.0015,
+              "ci95": [
+                0.0,
+                0.0035
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.3595,
+              "ci95": [
+                0.3009,
+                0.4152
+              ]
+            },
+            "fpr": {
+              "value": 0.0015,
+              "ci95": [
+                0.0,
+                0.0036
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.4258,
+              "ci95": [
+                0.373,
+                0.4775
+              ]
+            },
+            "fpr": {
+              "value": 0.017,
+              "ci95": [
+                0.0116,
+                0.023
+              ]
+            }
+          }
+        },
+        "slice:context_dependent": {
+          "n": 2192,
+          "groups": 1200,
+          "n_injection": 2192,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.4056,
+              "ci95": [
+                0.3418,
+                0.4622
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.4658,
+              "ci95": [
+                0.4012,
+                0.5214
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5474,
+              "ci95": [
+                0.4892,
+                0.5979
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 187,
+          "groups": 187,
+          "n_injection": 187,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:long_documents": {
+          "n": 300,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 150,
+          "auroc": 0.6984,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.0467
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0133,
+              "ci95": [
+                0.0,
+                0.0333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.0333,
+                0.1133
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:persona_benign": {
+          "n": 83,
+          "groups": 83,
+          "n_injection": 0,
+          "n_benign": 83,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 4502,
+          "groups": 3510,
+          "n_injection": 2715,
+          "n_benign": 1787,
+          "auroc": 0.6747,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.3285,
+              "ci95": [
+                0.2729,
+                0.3788
+              ]
+            },
+            "fpr": {
+              "value": 0.0017,
+              "ci95": [
+                0.0,
+                0.0039
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.3786,
+              "ci95": [
+                0.3179,
+                0.4279
+              ]
+            },
+            "fpr": {
+              "value": 0.0017,
+              "ci95": [
+                0.0,
+                0.0039
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.4453,
+              "ci95": [
+                0.386,
+                0.4957
+              ]
+            },
+            "fpr": {
+              "value": 0.0185,
+              "ci95": [
+                0.0126,
+                0.0241
+              ]
+            }
+          }
+        },
+        "slice:source_balanced": {
+          "n": 3248,
+          "groups": 3098,
+          "n_injection": 1811,
+          "n_benign": 1437,
+          "auroc": 0.4988,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0116,
+              "ci95": [
+                0.0071,
+                0.017
+              ]
+            },
+            "fpr": {
+              "value": 0.0007,
+              "ci95": [
+                0.0,
+                0.0021
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0215,
+              "ci95": [
+                0.0157,
+                0.0286
+              ]
+            },
+            "fpr": {
+              "value": 0.0007,
+              "ci95": [
+                0.0,
+                0.0021
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0955,
+              "ci95": [
+                0.082,
+                0.1099
+              ]
+            },
+            "fpr": {
+              "value": 0.0111,
+              "ci95": [
+                0.0064,
+                0.0164
+              ]
+            }
+          }
+        },
+        "source:bbc_news_final": {
+          "n": 600,
+          "groups": 600,
+          "n_injection": 187,
+          "n_benign": 413,
+          "auroc": 0.4549,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0073,
+              "ci95": [
+                0.0,
+                0.0166
+              ]
+            }
+          }
+        },
+        "source:injecagent_dh": {
+          "n": 510,
+          "groups": 30,
+          "n_injection": 510,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9137,
+              "ci95": [
+                0.8608,
+                0.949
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.9686,
+              "ci95": [
+                0.9569,
+                0.9784
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          }
+        },
+        "source:injecagent_ds": {
+          "n": 544,
+          "groups": 32,
+          "n_injection": 544,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.75,
+              "ci95": [
+                0.6618,
+                0.8346
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.9136,
+              "ci95": [
+                0.8768,
+                0.943
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.9871,
+              "ci95": [
+                0.9779,
+                0.9945
+              ]
+            }
+          }
+        },
+        "source:jackhhao": {
+          "n": 1123,
+          "groups": 1123,
+          "n_injection": 486,
+          "n_benign": 637,
+          "auroc": 0.5223,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0123,
+              "ci95": [
+                0.004,
+                0.0219
+              ]
+            },
+            "fpr": {
+              "value": 0.0016,
+              "ci95": [
+                0.0,
+                0.0048
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0185,
+              "ci95": [
+                0.008,
+                0.0307
+              ]
+            },
+            "fpr": {
+              "value": 0.0016,
+              "ci95": [
+                0.0,
+                0.0049
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0412,
+              "ci95": [
+                0.0242,
+                0.0601
+              ]
+            },
+            "fpr": {
+              "value": 0.0204,
+              "ci95": [
+                0.0096,
+                0.0313
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_api_triggered": {
+          "n": 492,
+          "groups": 492,
+          "n_injection": 492,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0061,
+              "ci95": [
+                0.0,
+                0.0142
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0203,
+              "ci95": [
+                0.0081,
+                0.0326
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1484,
+              "ci95": [
+                0.122,
+                0.1829
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_judge_labeled": {
+          "n": 496,
+          "groups": 496,
+          "n_injection": 496,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0181,
+              "ci95": [
+                0.006,
+                0.0282
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0363,
+              "ci95": [
+                0.0202,
+                0.0524
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1391,
+              "ci95": [
+                0.1089,
+                0.1694
+              ]
+            }
+          }
+        },
+        "source:llmail_benign_email": {
+          "n": 237,
+          "groups": 237,
+          "n_injection": 0,
+          "n_benign": 237,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:llmail_context_attacked": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.0467
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0133,
+              "ci95": [
+                0.0,
+                0.0333
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.0333,
+                0.12
+              ]
+            }
+          }
+        },
+        "source:llmail_context_benign": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 0,
+          "n_benign": 150,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:no_robots": {
+          "n": 500,
+          "groups": 500,
+          "n_injection": 0,
+          "n_benign": 500,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.004,
+              "ci95": [
+                0.0,
+                0.01
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.004,
+              "ci95": [
+                0.0,
+                0.01
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.034,
+              "ci95": [
+                0.018,
+                0.05
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0231,
+              "ci95": [
+                0.0,
+                0.0538
+              ]
+            }
+          }
+        }
+      }
+    },
+    "tfidf_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.3870741187248663,
+          "long": 0.8185882984499279
+        },
+        "val_fpr5": {
+          "short": 0.2366601594017059,
+          "long": 0.471041905400128
+        }
+      },
+      "val_auroc": 0.9688,
+      "slices": {
+        "ALL": {
+          "n": 4802,
+          "groups": 3660,
+          "n_injection": 2865,
+          "n_benign": 1937,
+          "auroc": 0.5017,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1368,
+              "ci95": [
+                0.1192,
+                0.1562
+              ]
+            },
+            "fpr": {
+              "value": 0.0237,
+              "ci95": [
+                0.0175,
+                0.0304
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.1588,
+              "ci95": [
+                0.1404,
+                0.1811
+              ]
+            },
+            "fpr": {
+              "value": 0.0434,
+              "ci95": [
+                0.0348,
+                0.0519
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2168,
+              "ci95": [
+                0.1914,
+                0.243
+              ]
+            },
+            "fpr": {
+              "value": 0.1415,
+              "ci95": [
+                0.1263,
+                0.156
+              ]
+            }
+          }
+        },
+        "slice:context_dependent": {
+          "n": 2192,
+          "groups": 1200,
+          "n_injection": 2192,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0265,
+              "ci95": [
+                0.018,
+                0.0372
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0319,
+              "ci95": [
+                0.0205,
+                0.0479
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0707,
+              "ci95": [
+                0.0548,
+                0.0933
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 187,
+          "groups": 187,
+          "n_injection": 187,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.016,
+              "ci95": [
+                0.0,
+                0.0374
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0321,
+              "ci95": [
+                0.0107,
+                0.0588
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1711,
+              "ci95": [
+                0.1229,
+                0.2299
+              ]
+            }
+          }
+        },
+        "slice:long_documents": {
+          "n": 300,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 150,
+          "auroc": 0.6284,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.04,
+                0.12
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.0467
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.0398,
+                0.12
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:persona_benign": {
+          "n": 83,
+          "groups": 83,
+          "n_injection": 0,
+          "n_benign": 83,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0361,
+              "ci95": [
+                0.0,
+                0.0843
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0723,
+              "ci95": [
+                0.0241,
+                0.1325
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.241,
+              "ci95": [
+                0.1566,
+                0.3373
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 4502,
+          "groups": 3510,
+          "n_injection": 2715,
+          "n_benign": 1787,
+          "auroc": 0.4998,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1403,
+              "ci95": [
+                0.1228,
+                0.1606
+              ]
+            },
+            "fpr": {
+              "value": 0.0257,
+              "ci95": [
+                0.0185,
+                0.0329
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.1665,
+              "ci95": [
+                0.1464,
+                0.1889
+              ]
+            },
+            "fpr": {
+              "value": 0.047,
+              "ci95": [
+                0.0376,
+                0.057
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2247,
+              "ci95": [
+                0.1991,
+                0.2536
+              ]
+            },
+            "fpr": {
+              "value": 0.1533,
+              "ci95": [
+                0.1379,
+                0.1706
+              ]
+            }
+          }
+        },
+        "slice:source_balanced": {
+          "n": 3248,
+          "groups": 3098,
+          "n_injection": 1811,
+          "n_benign": 1437,
+          "auroc": 0.5584,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.212,
+              "ci95": [
+                0.1944,
+                0.2294
+              ]
+            },
+            "fpr": {
+              "value": 0.0244,
+              "ci95": [
+                0.0169,
+                0.033
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.2435,
+              "ci95": [
+                0.2233,
+                0.2642
+              ]
+            },
+            "fpr": {
+              "value": 0.048,
+              "ci95": [
+                0.0382,
+                0.0594
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.323,
+              "ci95": [
+                0.3019,
+                0.3429
+              ]
+            },
+            "fpr": {
+              "value": 0.1531,
+              "ci95": [
+                0.134,
+                0.1719
+              ]
+            }
+          }
+        },
+        "source:bbc_news_final": {
+          "n": 600,
+          "groups": 600,
+          "n_injection": 187,
+          "n_benign": 413,
+          "auroc": 0.5843,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.016,
+              "ci95": [
+                0.0,
+                0.0345
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0321,
+              "ci95": [
+                0.0104,
+                0.0588
+              ]
+            },
+            "fpr": {
+              "value": 0.0048,
+              "ci95": [
+                0.0,
+                0.0123
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1711,
+              "ci95": [
+                0.1182,
+                0.2253
+              ]
+            },
+            "fpr": {
+              "value": 0.0557,
+              "ci95": [
+                0.0345,
+                0.0785
+              ]
+            }
+          }
+        },
+        "source:injecagent_dh": {
+          "n": 510,
+          "groups": 30,
+          "n_injection": 510,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0157,
+              "ci95": [
+                0.0,
+                0.0471
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0275,
+              "ci95": [
+                0.0,
+                0.0824
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.049,
+              "ci95": [
+                0.0078,
+                0.1196
+              ]
+            }
+          }
+        },
+        "source:injecagent_ds": {
+          "n": 544,
+          "groups": 32,
+          "n_injection": 544,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0202,
+              "ci95": [
+                0.0074,
+                0.0368
+              ]
+            }
+          }
+        },
+        "source:jackhhao": {
+          "n": 1123,
+          "groups": 1123,
+          "n_injection": 486,
+          "n_benign": 637,
+          "auroc": 0.898,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6811,
+              "ci95": [
+                0.6375,
+                0.7233
+              ]
+            },
+            "fpr": {
+              "value": 0.0549,
+              "ci95": [
+                0.0378,
+                0.0733
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7798,
+              "ci95": [
+                0.7429,
+                0.8168
+              ]
+            },
+            "fpr": {
+              "value": 0.1052,
+              "ci95": [
+                0.0826,
+                0.132
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.893,
+              "ci95": [
+                0.8654,
+                0.9185
+              ]
+            },
+            "fpr": {
+              "value": 0.3061,
+              "ci95": [
+                0.2704,
+                0.3407
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_api_triggered": {
+          "n": 492,
+          "groups": 492,
+          "n_injection": 492,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0183,
+              "ci95": [
+                0.0081,
+                0.0305
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0264,
+              "ci95": [
+                0.0122,
+                0.0407
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0813,
+              "ci95": [
+                0.0589,
+                0.1057
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_judge_labeled": {
+          "n": 496,
+          "groups": 496,
+          "n_injection": 496,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0605,
+              "ci95": [
+                0.0403,
+                0.0827
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0806,
+              "ci95": [
+                0.0585,
+                0.1048
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1371,
+              "ci95": [
+                0.1068,
+                0.1694
+              ]
+            }
+          }
+        },
+        "source:llmail_benign_email": {
+          "n": 237,
+          "groups": 237,
+          "n_injection": 0,
+          "n_benign": 237,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0084,
+              "ci95": [
+                0.0,
+                0.0211
+              ]
+            }
+          }
+        },
+        "source:llmail_context_attacked": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.0333,
+                0.12
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.0467
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0733,
+              "ci95": [
+                0.0333,
+                0.1133
+              ]
+            }
+          }
+        },
+        "source:llmail_context_benign": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 0,
+          "n_benign": 150,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:no_robots": {
+          "n": 500,
+          "groups": 500,
+          "n_injection": 0,
+          "n_benign": 500,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.022,
+              "ci95": [
+                0.01,
+                0.034
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.03,
+              "ci95": [
+                0.016,
+                0.046
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.108,
+              "ci95": [
+                0.08,
+                0.136
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.25
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7769,
+              "ci95": [
+                0.7077,
+                0.8462
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.8,
+              "ci95": [
+                0.7306,
+                0.8692
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8231,
+              "ci95": [
+                0.7615,
+                0.8846
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:app/modules/weights/distilbert_v35_backup": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.9479072557220459,
+          "long": 0.9672382937202454
+        },
+        "val_fpr5": {
+          "short": 0.34120573265647886,
+          "long": 0.9325188861618042
+        }
+      },
+      "val_auroc": 0.8338,
+      "slices": {
+        "ALL": {
+          "n": 4802,
+          "groups": 3660,
+          "n_injection": 2865,
+          "n_benign": 1937,
+          "auroc": 0.4894,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.2531,
+              "ci95": [
+                0.2302,
+                0.2802
+              ]
+            },
+            "fpr": {
+              "value": 0.1962,
+              "ci95": [
+                0.1797,
+                0.2148
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.1557,
+              "ci95": [
+                0.1391,
+                0.1746
+              ]
+            },
+            "fpr": {
+              "value": 0.0614,
+              "ci95": [
+                0.0511,
+                0.072
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2579,
+              "ci95": [
+                0.2347,
+                0.2841
+              ]
+            },
+            "fpr": {
+              "value": 0.2122,
+              "ci95": [
+                0.1957,
+                0.2304
+              ]
+            }
+          }
+        },
+        "slice:context_dependent": {
+          "n": 2192,
+          "groups": 1200,
+          "n_injection": 2192,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1419,
+              "ci95": [
+                0.1241,
+                0.1624
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0534,
+              "ci95": [
+                0.043,
+                0.0649
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1391,
+              "ci95": [
+                0.1229,
+                0.1572
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 187,
+          "groups": 187,
+          "n_injection": 187,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0909,
+              "ci95": [
+                0.0481,
+                0.139
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.016,
+              "ci95": [
+                0.0,
+                0.0374
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1176,
+              "ci95": [
+                0.0749,
+                0.1658
+              ]
+            }
+          }
+        },
+        "slice:long_documents": {
+          "n": 300,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 150,
+          "auroc": 0.7701,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5533,
+              "ci95": [
+                0.4733,
+                0.6267
+              ]
+            },
+            "fpr": {
+              "value": 0.1333,
+              "ci95": [
+                0.08,
+                0.1933
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.16,
+              "ci95": [
+                0.1067,
+                0.2135
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2267,
+              "ci95": [
+                0.16,
+                0.2933
+              ]
+            },
+            "fpr": {
+              "value": 0.0067,
+              "ci95": [
+                0.0,
+                0.02
+              ]
+            }
+          }
+        },
+        "slice:persona_benign": {
+          "n": 83,
+          "groups": 83,
+          "n_injection": 0,
+          "n_benign": 83,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.5783,
+              "ci95": [
+                0.4699,
+                0.6747
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.1446,
+              "ci95": [
+                0.0723,
+                0.2289
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.6145,
+              "ci95": [
+                0.506,
+                0.7108
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 4502,
+          "groups": 3510,
+          "n_injection": 2715,
+          "n_benign": 1787,
+          "auroc": 0.4842,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.2365,
+              "ci95": [
+                0.2128,
+                0.2619
+              ]
+            },
+            "fpr": {
+              "value": 0.2015,
+              "ci95": [
+                0.183,
+                0.2213
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.1554,
+              "ci95": [
+                0.1385,
+                0.1771
+              ]
+            },
+            "fpr": {
+              "value": 0.0666,
+              "ci95": [
+                0.0543,
+                0.0786
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2597,
+              "ci95": [
+                0.236,
+                0.2861
+              ]
+            },
+            "fpr": {
+              "value": 0.2294,
+              "ci95": [
+                0.2125,
+                0.2486
+              ]
+            }
+          }
+        },
+        "slice:source_balanced": {
+          "n": 3248,
+          "groups": 3098,
+          "n_injection": 1811,
+          "n_benign": 1437,
+          "auroc": 0.5614,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.376,
+              "ci95": [
+                0.3545,
+                0.3996
+              ]
+            },
+            "fpr": {
+              "value": 0.2443,
+              "ci95": [
+                0.2221,
+                0.2676
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.243,
+              "ci95": [
+                0.2241,
+                0.2627
+              ]
+            },
+            "fpr": {
+              "value": 0.0772,
+              "ci95": [
+                0.0632,
+                0.0903
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.376,
+              "ci95": [
+                0.3545,
+                0.3972
+              ]
+            },
+            "fpr": {
+              "value": 0.2603,
+              "ci95": [
+                0.2384,
+                0.284
+              ]
+            }
+          }
+        },
+        "source:bbc_news_final": {
+          "n": 600,
+          "groups": 600,
+          "n_injection": 187,
+          "n_benign": 413,
+          "auroc": 0.4664,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0909,
+              "ci95": [
+                0.0526,
+                0.1347
+              ]
+            },
+            "fpr": {
+              "value": 0.0993,
+              "ci95": [
+                0.0718,
+                0.1302
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.016,
+              "ci95": [
+                0.0,
+                0.0361
+              ]
+            },
+            "fpr": {
+              "value": 0.0194,
+              "ci95": [
+                0.0073,
+                0.0338
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1176,
+              "ci95": [
+                0.0753,
+                0.1699
+              ]
+            },
+            "fpr": {
+              "value": 0.1308,
+              "ci95": [
+                0.0995,
+                0.1641
+              ]
+            }
+          }
+        },
+        "source:injecagent_dh": {
+          "n": 510,
+          "groups": 30,
+          "n_injection": 510,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0392,
+              "ci95": [
+                0.0274,
+                0.051
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0078,
+              "ci95": [
+                0.002,
+                0.0157
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.051,
+              "ci95": [
+                0.0373,
+                0.0647
+              ]
+            }
+          }
+        },
+        "source:injecagent_ds": {
+          "n": 544,
+          "groups": 32,
+          "n_injection": 544,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0441,
+              "ci95": [
+                0.0221,
+                0.0681
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0037,
+              "ci95": [
+                0.0,
+                0.0092
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0588,
+              "ci95": [
+                0.0349,
+                0.0846
+              ]
+            }
+          }
+        },
+        "source:jackhhao": {
+          "n": 1123,
+          "groups": 1123,
+          "n_injection": 486,
+          "n_benign": 637,
+          "auroc": 0.8076,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8169,
+              "ci95": [
+                0.7814,
+                0.8506
+              ]
+            },
+            "fpr": {
+              "value": 0.4505,
+              "ci95": [
+                0.413,
+                0.4873
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6708,
+              "ci95": [
+                0.6299,
+                0.7177
+              ]
+            },
+            "fpr": {
+              "value": 0.1617,
+              "ci95": [
+                0.1341,
+                0.1897
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8477,
+              "ci95": [
+                0.8146,
+                0.8789
+              ]
+            },
+            "fpr": {
+              "value": 0.4945,
+              "ci95": [
+                0.4534,
+                0.5337
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_api_triggered": {
+          "n": 492,
+          "groups": 492,
+          "n_injection": 492,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.189,
+              "ci95": [
+                0.1504,
+                0.2256
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0793,
+              "ci95": [
+                0.0569,
+                0.1037
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2195,
+              "ci95": [
+                0.1829,
+                0.2581
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_judge_labeled": {
+          "n": 496,
+          "groups": 496,
+          "n_injection": 496,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1835,
+              "ci95": [
+                0.1512,
+                0.2177
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0968,
+              "ci95": [
+                0.0726,
+                0.123
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2117,
+              "ci95": [
+                0.1754,
+                0.25
+              ]
+            }
+          }
+        },
+        "source:llmail_benign_email": {
+          "n": 237,
+          "groups": 237,
+          "n_injection": 0,
+          "n_benign": 237,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0127,
+              "ci95": [
+                0.0,
+                0.0295
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0169,
+              "ci95": [
+                0.0042,
+                0.0338
+              ]
+            }
+          }
+        },
+        "source:llmail_context_attacked": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5533,
+              "ci95": [
+                0.4733,
+                0.6333
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.16,
+              "ci95": [
+                0.1067,
+                0.22
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2267,
+              "ci95": [
+                0.16,
+                0.2933
+              ]
+            }
+          }
+        },
+        "source:llmail_context_benign": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 0,
+          "n_benign": 150,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.1333,
+              "ci95": [
+                0.0867,
+                0.1867
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0067,
+              "ci95": [
+                0.0,
+                0.02
+              ]
+            }
+          }
+        },
+        "source:no_robots": {
+          "n": 500,
+          "groups": 500,
+          "n_injection": 0,
+          "n_benign": 500,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.058,
+              "ci95": [
+                0.038,
+                0.078
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.016,
+              "ci95": [
+                0.006,
+                0.028
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.074,
+              "ci95": [
+                0.052,
+                0.098
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8154,
+              "ci95": [
+                0.7462,
+                0.8769
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7923,
+              "ci95": [
+                0.7154,
+                0.8615
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8308,
+              "ci95": [
+                0.7615,
+                0.8923
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v36": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.04787273494696617,
+          "long": 0.9974489675292969
+        },
+        "val_fpr5": {
+          "short": 0.005626251214951277,
+          "long": 0.9962987766990662
+        }
+      },
+      "val_auroc": 0.9953,
+      "slices": {
+        "ALL": {
+          "n": 4802,
+          "groups": 3660,
+          "n_injection": 2865,
+          "n_benign": 1937,
+          "auroc": 0.4491,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1253,
+              "ci95": [
+                0.1089,
+                0.1433
+              ]
+            },
+            "fpr": {
+              "value": 0.0764,
+              "ci95": [
+                0.0644,
+                0.0881
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.1721,
+              "ci95": [
+                0.1526,
+                0.1943
+              ]
+            },
+            "fpr": {
+              "value": 0.1255,
+              "ci95": [
+                0.1107,
+                0.1407
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.3438,
+              "ci95": [
+                0.3115,
+                0.3755
+              ]
+            },
+            "fpr": {
+              "value": 0.4233,
+              "ci95": [
+                0.4015,
+                0.4452
+              ]
+            }
+          }
+        },
+        "slice:context_dependent": {
+          "n": 2192,
+          "groups": 1200,
+          "n_injection": 2192,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0328,
+              "ci95": [
+                0.0252,
+                0.0418
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0406,
+              "ci95": [
+                0.0321,
+                0.0513
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.1688,
+              "ci95": [
+                0.1482,
+                0.1928
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 187,
+          "groups": 187,
+          "n_injection": 187,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0695,
+              "ci95": [
+                0.0374,
+                0.107
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.2567,
+              "ci95": [
+                0.2032,
+                0.3209
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.9305,
+              "ci95": [
+                0.8983,
+                0.9627
+              ]
+            }
+          }
+        },
+        "slice:long_documents": {
+          "n": 300,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 150,
+          "auroc": 0.7211,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1667,
+              "ci95": [
+                0.1133,
+                0.2333
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0067,
+                0.0667
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0467,
+              "ci95": [
+                0.0133,
+                0.08
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0533,
+              "ci95": [
+                0.02,
+                0.0867
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:persona_benign": {
+          "n": 83,
+          "groups": 83,
+          "n_injection": 0,
+          "n_benign": 83,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0241,
+              "ci95": [
+                0.0,
+                0.0602
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.2289,
+              "ci95": [
+                0.1446,
+                0.3136
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 4502,
+          "groups": 3510,
+          "n_injection": 2715,
+          "n_benign": 1787,
+          "auroc": 0.4438,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.123,
+              "ci95": [
+                0.1063,
+                0.1408
+              ]
+            },
+            "fpr": {
+              "value": 0.08,
+              "ci95": [
+                0.0674,
+                0.0922
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.179,
+              "ci95": [
+                0.16,
+                0.2036
+              ]
+            },
+            "fpr": {
+              "value": 0.136,
+              "ci95": [
+                0.1201,
+                0.1509
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.3599,
+              "ci95": [
+                0.327,
+                0.3961
+              ]
+            },
+            "fpr": {
+              "value": 0.4589,
+              "ci95": [
+                0.4354,
+                0.4828
+              ]
+            }
+          }
+        },
+        "slice:source_balanced": {
+          "n": 3248,
+          "groups": 3098,
+          "n_injection": 1811,
+          "n_benign": 1437,
+          "auroc": 0.549,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1982,
+              "ci95": [
+                0.1808,
+                0.217
+              ]
+            },
+            "fpr": {
+              "value": 0.0821,
+              "ci95": [
+                0.0692,
+                0.0974
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.2711,
+              "ci95": [
+                0.2488,
+                0.2919
+              ]
+            },
+            "fpr": {
+              "value": 0.1371,
+              "ci95": [
+                0.1191,
+                0.1542
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5279,
+              "ci95": [
+                0.5045,
+                0.5485
+              ]
+            },
+            "fpr": {
+              "value": 0.5031,
+              "ci95": [
+                0.4778,
+                0.5302
+              ]
+            }
+          }
+        },
+        "source:bbc_news_final": {
+          "n": 600,
+          "groups": 600,
+          "n_injection": 187,
+          "n_benign": 413,
+          "auroc": 0.5816,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0695,
+              "ci95": [
+                0.0347,
+                0.1027
+              ]
+            },
+            "fpr": {
+              "value": 0.0121,
+              "ci95": [
+                0.0025,
+                0.0235
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.2567,
+              "ci95": [
+                0.1935,
+                0.3266
+              ]
+            },
+            "fpr": {
+              "value": 0.0847,
+              "ci95": [
+                0.0594,
+                0.1111
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.9305,
+              "ci95": [
+                0.8936,
+                0.9655
+              ]
+            },
+            "fpr": {
+              "value": 0.9637,
+              "ci95": [
+                0.9427,
+                0.9807
+              ]
+            }
+          }
+        },
+        "source:injecagent_dh": {
+          "n": 510,
+          "groups": 30,
+          "n_injection": 510,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0039,
+              "ci95": [
+                0.0,
+                0.0098
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0373,
+              "ci95": [
+                0.0255,
+                0.0471
+              ]
+            }
+          }
+        },
+        "source:injecagent_ds": {
+          "n": 544,
+          "groups": 32,
+          "n_injection": 544,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0184,
+              "ci95": [
+                0.0092,
+                0.0276
+              ]
+            }
+          }
+        },
+        "source:jackhhao": {
+          "n": 1123,
+          "groups": 1123,
+          "n_injection": 486,
+          "n_benign": 637,
+          "auroc": 0.8174,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5638,
+              "ci95": [
+                0.5195,
+                0.6068
+              ]
+            },
+            "fpr": {
+              "value": 0.1695,
+              "ci95": [
+                0.1413,
+                0.1997
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7325,
+              "ci95": [
+                0.6969,
+                0.772
+              ]
+            },
+            "fpr": {
+              "value": 0.2543,
+              "ci95": [
+                0.2192,
+                0.2873
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.9074,
+              "ci95": [
+                0.8808,
+                0.9319
+              ]
+            },
+            "fpr": {
+              "value": 0.4898,
+              "ci95": [
+                0.4535,
+                0.5256
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_api_triggered": {
+          "n": 492,
+          "groups": 492,
+          "n_injection": 492,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0183,
+              "ci95": [
+                0.0081,
+                0.0305
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0366,
+              "ci95": [
+                0.0203,
+                0.0549
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2744,
+              "ci95": [
+                0.2358,
+                0.315
+              ]
+            }
+          }
+        },
+        "source:llmail_attack_judge_labeled": {
+          "n": 496,
+          "groups": 496,
+          "n_injection": 496,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0766,
+              "ci95": [
+                0.0544,
+                0.1008
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.125,
+              "ci95": [
+                0.0968,
+                0.1552
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.3992,
+              "ci95": [
+                0.3548,
+                0.4435
+              ]
+            }
+          }
+        },
+        "source:llmail_benign_email": {
+          "n": 237,
+          "groups": 237,
+          "n_injection": 0,
+          "n_benign": 237,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0549,
+              "ci95": [
+                0.0295,
+                0.0886
+              ]
+            }
+          }
+        },
+        "source:llmail_context_attacked": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 150,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1667,
+              "ci95": [
+                0.1133,
+                0.2267
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0467,
+              "ci95": [
+                0.0133,
+                0.08
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0533,
+              "ci95": [
+                0.02,
+                0.0933
+              ]
+            }
+          }
+        },
+        "source:llmail_context_benign": {
+          "n": 150,
+          "groups": 150,
+          "n_injection": 0,
+          "n_benign": 150,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0067,
+                0.0667
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:no_robots": {
+          "n": 500,
+          "groups": 500,
+          "n_injection": 0,
+          "n_benign": 500,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.06,
+              "ci95": [
+                0.04,
+                0.082
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.092,
+              "ci95": [
+                0.066,
+                0.116
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.194,
+              "ci95": [
+                0.16,
+                0.23
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7538,
+              "ci95": [
+                0.6846,
+                0.8231
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7692,
+              "ci95": [
+                0.6921,
+                0.8385
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7769,
+              "ci95": [
+                0.7077,
+                0.8462
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

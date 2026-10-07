@@ -10,6 +10,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.api import routes
+from app.api import gateway_routes
 
 app = FastAPI(
     title="PromptShield X",
@@ -20,6 +21,7 @@ app = FastAPI(
 from fastapi.responses import RedirectResponse
 
 app.include_router(routes.router)
+app.include_router(gateway_routes.router)
 
 # Serve the audit dashboard's static assets (Chart.js, css, js)
 app.mount("/dashboard/static", StaticFiles(directory="dashboard/static"), name="dashboard-static")
@@ -27,7 +29,7 @@ app.mount("/dashboard/static", StaticFiles(directory="dashboard/static"), name="
 
 @app.get("/")
 def root_redirect():
-    return RedirectResponse(url="/dashboard")
+    return RedirectResponse(url="/app")
 
 
 @app.get("/health")

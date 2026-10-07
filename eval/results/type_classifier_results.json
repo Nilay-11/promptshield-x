@@ -1,0 +1,64 @@
+{
+  "val_macro_f1": 0.9163292910593127,
+  "test_report": {
+    "DIRECT": {
+      "precision": 0.955,
+      "recall": 0.9794871794871794,
+      "f1-score": 0.9670886075949368,
+      "support": 195.0
+    },
+    "JAILBREAK": {
+      "precision": 0.90625,
+      "recall": 0.8055555555555556,
+      "f1-score": 0.8529411764705882,
+      "support": 36.0
+    },
+    "PROMPT_EXTRACTION": {
+      "precision": 0.9407894736842105,
+      "recall": 0.934640522875817,
+      "f1-score": 0.9377049180327869,
+      "support": 153.0
+    },
+    "accuracy": 0.9453125,
+    "macro avg": {
+      "precision": 0.9340131578947369,
+      "recall": 0.9065610859728507,
+      "f1-score": 0.9192449006994372,
+      "support": 384.0
+    },
+    "weighted avg": {
+      "precision": 0.9447676809210526,
+      "recall": 0.9453125,
+      "f1-score": 0.9446797221171099,
+      "support": 384.0
+    }
+  },
+  "test_confusion": [
+    [
+      191,
+      0,
+      4
+    ],
+    [
+      2,
+      29,
+      5
+    ],
+    [
+      7,
+      3,
+      143
+    ]
+  ],
+  "labels": [
+    "DIRECT",
+    "JAILBREAK",
+    "PROMPT_EXTRACTION"
+  ],
+  "max_length": 256,
+  "n": {
+    "train": 8707,
+    "val": 395,
+    "test": 384
+  }
+}

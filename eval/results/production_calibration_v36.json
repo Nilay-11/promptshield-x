@@ -1,0 +1,37 @@
+{
+  "val_pdfs": 2000,
+  "configured": {
+    "review_risk_threshold": 30,
+    "block_risk_threshold": 60
+  },
+  "at_review_threshold": {
+    "recall": 0.971,
+    "fpr": 0.023
+  },
+  "at_block_threshold": {
+    "recall": 0.965,
+    "fpr": 0.008
+  },
+  "lowest_review_threshold_val_fpr1": 47,
+  "lowest_review_threshold_val_fpr5": 9,
+  "benign_score_quantiles_50_90_95_99": [
+    3.0,
+    5.0,
+    8.0,
+    46.069999999999936
+  ],
+  "attack_score_quantiles_1_5_10_50": [
+    2.0,
+    96.0,
+    97.0,
+    100.0
+  ],
+  "at_47": {
+    "recall": 0.966,
+    "fpr": 0.01
+  },
+  "at_9": {
+    "recall": 0.98,
+    "fpr": 0.049
+  }
+}

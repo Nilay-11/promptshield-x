@@ -1,0 +1,545 @@
+{
+  "seed": 37,
+  "base": "v36",
+  "removed": {
+    "final/dup_within": 62,
+    "test/dup_earlier_split": 31,
+    "test/dup_within": 6,
+    "test/near_dup_earlier_split": 141,
+    "train/dup_within": 143,
+    "val/dup_earlier_split": 28,
+    "val/dup_within": 1,
+    "val/near_dup_earlier_split": 453
+  },
+  "train_v37": {
+    "rows": 24636,
+    "unique": 24636,
+    "groups": 19608,
+    "by_source": {
+      "arxiv_meta_train": {
+        "benign": 848,
+        "injection": 336
+      },
+      "arxiv_meta_train_augmented": {
+        "benign": 168,
+        "injection": 53
+      },
+      "arxiv_train": {
+        "benign": 844,
+        "injection": 356
+      },
+      "arxiv_train_augmented": {
+        "benign": 165,
+        "injection": 61
+      },
+      "awesome_prompts_train": {
+        "benign": 1407,
+        "injection": 0
+      },
+      "awesome_prompts_train_augmented": {
+        "benign": 294,
+        "injection": 0
+      },
+      "bbc_news_train": {
+        "benign": 497,
+        "injection": 220
+      },
+      "bbc_news_train_augmented": {
+        "benign": 75,
+        "injection": 34
+      },
+      "bipia_code_train": {
+        "benign": 40,
+        "injection": 40
+      },
+      "bipia_code_train_augmented": {
+        "benign": 12,
+        "injection": 12
+      },
+      "bipia_email_train": {
+        "benign": 36,
+        "injection": 36
+      },
+      "bipia_email_train_augmented": {
+        "benign": 8,
+        "injection": 9
+      },
+      "bipia_table_train": {
+        "benign": 51,
+        "injection": 51
+      },
+      "bipia_table_train_augmented": {
+        "benign": 5,
+        "injection": 10
+      },
+      "deepset_train": {
+        "benign": 286,
+        "injection": 175
+      },
+      "deepset_train_augmented": {
+        "benign": 49,
+        "injection": 29
+      },
+      "dolly_train": {
+        "benign": 1000,
+        "injection": 0
+      },
+      "dolly_train_augmented": {
+        "benign": 201,
+        "injection": 0
+      },
+      "enron_email_train": {
+        "benign": 838,
+        "injection": 362
+      },
+      "enron_email_train_augmented": {
+        "benign": 184,
+        "injection": 71
+      },
+      "gandalf_train": {
+        "benign": 0,
+        "injection": 300
+      },
+      "gandalf_train_augmented": {
+        "benign": 0,
+        "injection": 62
+      },
+      "injecagent_benign_twin_train": {
+        "benign": 624,
+        "injection": 0
+      },
+      "injecagent_benign_twin_train_augmented": {
+        "benign": 92,
+        "injection": 0
+      },
+      "injecagent_train": {
+        "benign": 0,
+        "injection": 629
+      },
+      "injecagent_train_augmented": {
+        "benign": 0,
+        "injection": 96
+      },
+      "jackhhao_train": {
+        "benign": 371,
+        "injection": 392
+      },
+      "jackhhao_train_augmented": {
+        "benign": 59,
+        "injection": 60
+      },
+      "ledgar_train": {
+        "benign": 847,
+        "injection": 352
+      },
+      "ledgar_train_augmented": {
+        "benign": 183,
+        "injection": 79
+      },
+      "llmail_benign_email_train": {
+        "benign": 119,
+        "injection": 0
+      },
+      "llmail_benign_email_train_augmented": {
+        "benign": 20,
+        "injection": 0
+      },
+      "llmail_p1_api_train": {
+        "benign": 0,
+        "injection": 2938
+      },
+      "llmail_p1_api_train_augmented": {
+        "benign": 0,
+        "injection": 454
+      },
+      "llmail_p1_judge_train": {
+        "benign": 0,
+        "injection": 2967
+      },
+      "llmail_p1_judge_train_augmented": {
+        "benign": 0,
+        "injection": 448
+      },
+      "no_robots_train": {
+        "benign": 1500,
+        "injection": 0
+      },
+      "no_robots_train_augmented": {
+        "benign": 215,
+        "injection": 0
+      },
+      "rubend18_jailbreak": {
+        "benign": 0,
+        "injection": 58
+      },
+      "rubend18_jailbreak_augmented": {
+        "benign": 0,
+        "injection": 16
+      },
+      "tensor_trust_train": {
+        "benign": 0,
+        "injection": 632
+      },
+      "tensor_trust_train_augmented": {
+        "benign": 0,
+        "injection": 131
+      },
+      "unfair_tos_train": {
+        "benign": 406,
+        "injection": 194
+      },
+      "unfair_tos_train_augmented": {
+        "benign": 74,
+        "injection": 36
+      },
+      "wikipedia_train": {
+        "benign": 848,
+        "injection": 352
+      },
+      "wikipedia_train_augmented": {
+        "benign": 153,
+        "injection": 66
+      }
+    }
+  },
+  "val_v37": {
+    "rows": 4163,
+    "unique": 4163,
+    "groups": 3645,
+    "by_source": {
+      "arxiv_meta_val": {
+        "benign": 194,
+        "injection": 102
+      },
+      "arxiv_val": {
+        "benign": 224,
+        "injection": 76
+      },
+      "awesome_prompts_val": {
+        "benign": 316,
+        "injection": 0
+      },
+      "bbc_news_val": {
+        "benign": 168,
+        "injection": 64
+      },
+      "bipia_code_val": {
+        "benign": 5,
+        "injection": 5
+      },
+      "bipia_email_val": {
+        "benign": 2,
+        "injection": 4
+      },
+      "bipia_table_val": {
+        "benign": 16,
+        "injection": 16
+      },
+      "deepset_val": {
+        "benign": 52,
+        "injection": 17
+      },
+      "dolly_val": {
+        "benign": 250,
+        "injection": 0
+      },
+      "enron_email_val": {
+        "benign": 210,
+        "injection": 87
+      },
+      "gandalf_val": {
+        "benign": 0,
+        "injection": 111
+      },
+      "injecagent_benign_twin_val": {
+        "benign": 195,
+        "injection": 0
+      },
+      "injecagent_val": {
+        "benign": 0,
+        "injection": 192
+      },
+      "jackhhao_val": {
+        "benign": 133,
+        "injection": 77
+      },
+      "ledgar_val": {
+        "benign": 178,
+        "injection": 102
+      },
+      "llmail_benign_email_val": {
+        "benign": 36,
+        "injection": 0
+      },
+      "llmail_context_attacked_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "llmail_context_benign_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "llmail_p1_api_val": {
+        "benign": 0,
+        "injection": 84
+      },
+      "llmail_p1_judge_val": {
+        "benign": 0,
+        "injection": 126
+      },
+      "long_benign_doc_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "long_buried_attack_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "no_robots_val": {
+        "benign": 300,
+        "injection": 0
+      },
+      "padded_benign_instruction_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "tensor_trust_val": {
+        "benign": 0,
+        "injection": 71
+      },
+      "unfair_tos_val": {
+        "benign": 104,
+        "injection": 46
+      },
+      "wikipedia_val": {
+        "benign": 213,
+        "injection": 87
+      }
+    }
+  },
+  "heldout_test_v37": {
+    "rows": 6665,
+    "unique": 6665,
+    "groups": 5998,
+    "by_source": {
+      "arxiv_meta_test": {
+        "benign": 323,
+        "injection": 170
+      },
+      "arxiv_test": {
+        "benign": 293,
+        "injection": 107
+      },
+      "awesome_prompts_test": {
+        "benign": 429,
+        "injection": 0
+      },
+      "bbc_news_test": {
+        "benign": 380,
+        "injection": 181
+      },
+      "bipia_code_test": {
+        "benign": 5,
+        "injection": 6
+      },
+      "bipia_email_test": {
+        "benign": 3,
+        "injection": 5
+      },
+      "bipia_table_test": {
+        "benign": 17,
+        "injection": 17
+      },
+      "deepset_test": {
+        "benign": 56,
+        "injection": 54
+      },
+      "dolly_test": {
+        "benign": 347,
+        "injection": 0
+      },
+      "enron_email_test": {
+        "benign": 268,
+        "injection": 125
+      },
+      "gandalf_test": {
+        "benign": 0,
+        "injection": 112
+      },
+      "injecagent_benign_twin_test": {
+        "benign": 203,
+        "injection": 0
+      },
+      "injecagent_test": {
+        "benign": 0,
+        "injection": 202
+      },
+      "jackhhao_test": {
+        "benign": 131,
+        "injection": 74
+      },
+      "ledgar_test": {
+        "benign": 249,
+        "injection": 126
+      },
+      "llmail_benign_email_test": {
+        "benign": 48,
+        "injection": 0
+      },
+      "llmail_context_attacked_test": {
+        "benign": 0,
+        "injection": 150
+      },
+      "llmail_context_benign_test": {
+        "benign": 150,
+        "injection": 0
+      },
+      "llmail_p2_api_triggered_test": {
+        "benign": 0,
+        "injection": 484
+      },
+      "llmail_p2_judge_labeled_test": {
+        "benign": 0,
+        "injection": 493
+      },
+      "long_benign_doc_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "long_buried_attack_test": {
+        "benign": 0,
+        "injection": 100
+      },
+      "no_robots_test": {
+        "benign": 500,
+        "injection": 0
+      },
+      "padded_benign_instruction_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "tensor_trust_test": {
+        "benign": 0,
+        "injection": 58
+      },
+      "unfair_tos_test": {
+        "benign": 148,
+        "injection": 51
+      },
+      "wikipedia_test": {
+        "benign": 282,
+        "injection": 118
+      }
+    }
+  },
+  "final_test_v37": {
+    "rows": 949,
+    "unique": 949,
+    "groups": 694,
+    "by_source": {
+      "agentdojo_banking_benign": {
+        "benign": 16,
+        "injection": 0
+      },
+      "agentdojo_banking_direct": {
+        "benign": 0,
+        "injection": 5
+      },
+      "agentdojo_banking_ignore_previous": {
+        "benign": 0,
+        "injection": 5
+      },
+      "agentdojo_banking_important_instructions": {
+        "benign": 0,
+        "injection": 8
+      },
+      "agentdojo_banking_injecagent": {
+        "benign": 0,
+        "injection": 5
+      },
+      "agentdojo_banking_system_message": {
+        "benign": 0,
+        "injection": 6
+      },
+      "agentdojo_slack_benign": {
+        "benign": 18,
+        "injection": 0
+      },
+      "agentdojo_slack_direct": {
+        "benign": 0,
+        "injection": 8
+      },
+      "agentdojo_slack_ignore_previous": {
+        "benign": 0,
+        "injection": 11
+      },
+      "agentdojo_slack_important_instructions": {
+        "benign": 0,
+        "injection": 7
+      },
+      "agentdojo_slack_injecagent": {
+        "benign": 0,
+        "injection": 10
+      },
+      "agentdojo_slack_system_message": {
+        "benign": 0,
+        "injection": 5
+      },
+      "agentdojo_travel_benign": {
+        "benign": 27,
+        "injection": 0
+      },
+      "agentdojo_travel_direct": {
+        "benign": 0,
+        "injection": 13
+      },
+      "agentdojo_travel_ignore_previous": {
+        "benign": 0,
+        "injection": 18
+      },
+      "agentdojo_travel_important_instructions": {
+        "benign": 0,
+        "injection": 12
+      },
+      "agentdojo_travel_injecagent": {
+        "benign": 0,
+        "injection": 19
+      },
+      "agentdojo_travel_system_message": {
+        "benign": 0,
+        "injection": 12
+      },
+      "agentdojo_workspace_benign": {
+        "benign": 31,
+        "injection": 0
+      },
+      "agentdojo_workspace_direct": {
+        "benign": 0,
+        "injection": 27
+      },
+      "agentdojo_workspace_ignore_previous": {
+        "benign": 0,
+        "injection": 21
+      },
+      "agentdojo_workspace_important_instructions": {
+        "benign": 0,
+        "injection": 30
+      },
+      "agentdojo_workspace_injecagent": {
+        "benign": 0,
+        "injection": 21
+      },
+      "agentdojo_workspace_system_message": {
+        "benign": 0,
+        "injection": 14
+      },
+      "pubmed_final": {
+        "benign": 401,
+        "injection": 199
+      }
+    }
+  },
+  "cross_split_label_conflicts": 0,
+  "label_conflicts_dropped": 0,
+  "format_suite_v37_final": 1200
+}

@@ -32,12 +32,13 @@
   severity: 85
 
 - id: dan-jailbreak
-  pattern: "(?i)\\b(act as( an?)?|you are( now)?|from now on you are)\\b.{0,40}\\b(DAN|unrestricted|jailbroken|Do Anything Now)\\b"
+  # also catches casual spellings: "your dan now", "you're DAN", "ur DAN", "u r dan"
+  pattern: "(?i)\\b(act as( an?)?|(you('| a)?re|youre|your|ur|u r)( now)?|from now on (you('| a)?re|your|ur|u r))\\s+(now\\s+)?(a |an |the )?(DAN|unrestricted|jailbroken|Do Anything Now)\\b|\\b(act as( an?)?|you are( now)?|from now on you are)\\b.{0,40}\\b(DAN|unrestricted|jailbroken|Do Anything Now)\\b"
   category: jailbreak
   severity: 90
 
 - id: you-are-now
-  pattern: "(?i)\\b(you are now|from now on you are)\\b.{0,40}\\b(unfiltered|unlocked|free|unrestricted|DAN)\\b"
+  pattern: "(?i)\\b((you('| a)?re|youre|your|ur|u r) now|from now on (you('| a)?re|your|ur|u r))\\b.{0,40}\\b(unfiltered|unlocked|free|unrestricted|DAN)\\b"
   category: jailbreak
   severity: 85
 

@@ -3,6 +3,42 @@
 A multi-layer AI firewall for securing LLMs and RAG pipelines against direct
 and indirect prompt injection attacks.
 
+
+## Secure LLM Gateway (user mode + admin mode)
+
+```
+TEXT / PDF / CSV-XLSX / IMAGE / WEB PAGE / GITHUB
+  -> Content Extraction -> Normalization -> Detection -> Classification
+  -> Risk Engine -> Action Engine -> Explanation + Audit -> core LLM (any provider)
+```
+
+Run it:
+
+```
+python -m uvicorn app.main:app --port 8000
+```
+
+- **User mode** - http://localhost:8000/app : chat with any LLM through PromptShield X. Attach PDFs, CSV/XLSX, images, HTML, code or text, or add a web page / GitHub URL. A live pipeline shows every stage; each answer shows the decision, risk, attack type (direct / indirect / jailbreak / prompt extraction) and the reason.
+- **Admin mode** - http://localhost:8000/admin : review queue (approve & forward / reject with an audit note), blocked prompts (override or confirm), full searchable logs, forensic drawer per request (pipeline timings, findings, LLM response), live stats.
+
+Decisions: **ALLOW** (forwarded), **REWRITE** (attack fragment removed, cleaned prompt forwarded), **REVIEW** (held for an admin; used when only one detection signal fires), **BLOCK** (a detection rule and the model agree, or a document contains a confirmed injection). Document content is sent to the LLM inside `<untrusted_content>` tags with a guardrail system prompt.
+
+Models: user prompts are judged by the prompt detector (`app/modules/weights/distilbert_prompt`, v37), document / RAG / file content by the document detector (`app/modules/weights/distilbert`, v40), the attack type by `app/modules/weights/type_classifier`.
+
+Configuration (environment variables):
+
+| Variable | Default | Meaning |
+| :--- | :--- | :--- |
+| `PS_LLM_PROVIDER` | `mock` | `mock` (offline demo), `anthropic`, `openai` (any OpenAI-compatible API), `ollama` |
+| `PS_LLM_MODEL` | per provider (`claude-opus-5-5`, `gpt-4o-mini`, `llama3.1`) | model id |
+| `PS_LLM_BASE_URL` | provider default | OpenAI-compatible base URL (Groq, Together, LM Studio, vLLM ...) or Ollama URL |
+| `PS_LLM_API_KEY` | - | key for OpenAI-compatible providers (Anthropic uses `ANTHROPIC_API_KEY` or `ant auth login`) |
+| `PS_ADMIN_TOKEN` | `admin` (flagged in the UI) | admin console / admin API token - **set this before deploying** |
+| `PS_ATTACK_PREVALENCE` | `0.10` | assumed share of traffic that is attacks; the displayed risk is P(attack) corrected to this rate |
+| `PS_POLICY` | `balanced` | `balanced`, `strict` (model alone can block; rewrites go to review), `monitor` (log only, always forward) |
+
+Image OCR needs Tesseract installed; without it, images are screened through their metadata (EXIF) only.
+
 ## Project layout
 
 ```

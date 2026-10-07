@@ -1,0 +1,726 @@
+{
+  "seed": 40,
+  "base": "v39",
+  "removed": {
+    "final/dup_within": 2866,
+    "final/near_dup_earlier_split": 591,
+    "test/dup_within": 61,
+    "test/near_dup_earlier_split": 21,
+    "train/dup_within": 360,
+    "val/dup_within": 56,
+    "val/near_dup_earlier_split": 24
+  },
+  "train_v40": {
+    "rows": 69912,
+    "unique": 69912,
+    "groups": 51031,
+    "by_source": {
+      "agentdojo_banking_benign": {
+        "benign": 25,
+        "injection": 0
+      },
+      "agentdojo_banking_direct": {
+        "benign": 0,
+        "injection": 12
+      },
+      "agentdojo_banking_ignore_previous": {
+        "benign": 0,
+        "injection": 10
+      },
+      "agentdojo_banking_important_instructions": {
+        "benign": 0,
+        "injection": 15
+      },
+      "agentdojo_banking_injecagent": {
+        "benign": 0,
+        "injection": 13
+      },
+      "agentdojo_banking_system_message": {
+        "benign": 0,
+        "injection": 7
+      },
+      "agentdojo_travel_benign": {
+        "benign": 43,
+        "injection": 0
+      },
+      "agentdojo_travel_direct": {
+        "benign": 0,
+        "injection": 20
+      },
+      "agentdojo_travel_ignore_previous": {
+        "benign": 0,
+        "injection": 21
+      },
+      "agentdojo_travel_important_instructions": {
+        "benign": 0,
+        "injection": 36
+      },
+      "agentdojo_travel_injecagent": {
+        "benign": 0,
+        "injection": 21
+      },
+      "agentdojo_travel_system_message": {
+        "benign": 0,
+        "injection": 21
+      },
+      "agentdojo_workspace_benign": {
+        "benign": 46,
+        "injection": 0
+      },
+      "agentdojo_workspace_direct": {
+        "benign": 0,
+        "injection": 36
+      },
+      "agentdojo_workspace_ignore_previous": {
+        "benign": 0,
+        "injection": 40
+      },
+      "agentdojo_workspace_important_instructions": {
+        "benign": 0,
+        "injection": 48
+      },
+      "agentdojo_workspace_injecagent": {
+        "benign": 0,
+        "injection": 44
+      },
+      "agentdojo_workspace_system_message": {
+        "benign": 0,
+        "injection": 42
+      },
+      "arxiv_meta_train": {
+        "benign": 795,
+        "injection": 336
+      },
+      "arxiv_meta_train_augmented": {
+        "benign": 168,
+        "injection": 53
+      },
+      "arxiv_train": {
+        "benign": 844,
+        "injection": 356
+      },
+      "arxiv_train_augmented": {
+        "benign": 165,
+        "injection": 61
+      },
+      "awesome_prompts_train": {
+        "benign": 1407,
+        "injection": 0
+      },
+      "awesome_prompts_train_augmented": {
+        "benign": 294,
+        "injection": 0
+      },
+      "bbc_news_train": {
+        "benign": 497,
+        "injection": 220
+      },
+      "bbc_news_train_augmented": {
+        "benign": 75,
+        "injection": 34
+      },
+      "bipia_code_train": {
+        "benign": 40,
+        "injection": 39
+      },
+      "bipia_code_train_augmented": {
+        "benign": 12,
+        "injection": 12
+      },
+      "bipia_combo_code_train": {
+        "benign": 0,
+        "injection": 359
+      },
+      "bipia_combo_email_train": {
+        "benign": 0,
+        "injection": 359
+      },
+      "bipia_combo_table_train": {
+        "benign": 0,
+        "injection": 766
+      },
+      "bipia_email_train": {
+        "benign": 36,
+        "injection": 36
+      },
+      "bipia_email_train_augmented": {
+        "benign": 8,
+        "injection": 9
+      },
+      "bipia_table_train": {
+        "benign": 51,
+        "injection": 50
+      },
+      "bipia_table_train_augmented": {
+        "benign": 5,
+        "injection": 10
+      },
+      "deepset_train": {
+        "benign": 286,
+        "injection": 175
+      },
+      "deepset_train_augmented": {
+        "benign": 49,
+        "injection": 29
+      },
+      "dolly_train": {
+        "benign": 1000,
+        "injection": 0
+      },
+      "dolly_train_augmented": {
+        "benign": 201,
+        "injection": 0
+      },
+      "enron_email_train": {
+        "benign": 833,
+        "injection": 362
+      },
+      "enron_email_train_augmented": {
+        "benign": 184,
+        "injection": 71
+      },
+      "gandalf_full_train": {
+        "benign": 0,
+        "injection": 639
+      },
+      "gandalf_train": {
+        "benign": 0,
+        "injection": 137
+      },
+      "gandalf_train_augmented": {
+        "benign": 0,
+        "injection": 62
+      },
+      "goalswap_doc_train": {
+        "benign": 1125,
+        "injection": 1287
+      },
+      "goalswap_standalone_train": {
+        "benign": 0,
+        "injection": 756
+      },
+      "injecagent_benign_twin_train": {
+        "benign": 624,
+        "injection": 0
+      },
+      "injecagent_benign_twin_train_augmented": {
+        "benign": 92,
+        "injection": 0
+      },
+      "injecagent_train": {
+        "benign": 0,
+        "injection": 629
+      },
+      "injecagent_train_augmented": {
+        "benign": 0,
+        "injection": 96
+      },
+      "jackhhao_train": {
+        "benign": 371,
+        "injection": 391
+      },
+      "jackhhao_train_augmented": {
+        "benign": 59,
+        "injection": 60
+      },
+      "ledgar_train": {
+        "benign": 846,
+        "injection": 352
+      },
+      "ledgar_train_augmented": {
+        "benign": 183,
+        "injection": 79
+      },
+      "llmail_benign_email_train": {
+        "benign": 119,
+        "injection": 0
+      },
+      "llmail_benign_email_train_augmented": {
+        "benign": 20,
+        "injection": 0
+      },
+      "llmail_p1_api_train": {
+        "benign": 0,
+        "injection": 1862
+      },
+      "llmail_p1_api_train_augmented": {
+        "benign": 0,
+        "injection": 454
+      },
+      "llmail_p1_judge_train": {
+        "benign": 0,
+        "injection": 2765
+      },
+      "llmail_p1_judge_train_augmented": {
+        "benign": 0,
+        "injection": 448
+      },
+      "llmail_p1_more_train": {
+        "benign": 0,
+        "injection": 18160
+      },
+      "no_robots_train": {
+        "benign": 1500,
+        "injection": 0
+      },
+      "no_robots_train_augmented": {
+        "benign": 215,
+        "injection": 0
+      },
+      "rag_chunk_attacked_mixed_train": {
+        "benign": 0,
+        "injection": 1545
+      },
+      "rag_chunk_attacked_wasp_train": {
+        "benign": 0,
+        "injection": 577
+      },
+      "rag_chunk_clean_mixed_train": {
+        "benign": 7293,
+        "injection": 0
+      },
+      "rag_chunk_clean_wasp_train": {
+        "benign": 4398,
+        "injection": 0
+      },
+      "reddit_benign_train": {
+        "benign": 499,
+        "injection": 0
+      },
+      "reddit_wasp_train": {
+        "benign": 0,
+        "injection": 535
+      },
+      "rubend18_jailbreak": {
+        "benign": 0,
+        "injection": 56
+      },
+      "rubend18_jailbreak_augmented": {
+        "benign": 0,
+        "injection": 16
+      },
+      "satml_train": {
+        "benign": 0,
+        "injection": 7965
+      },
+      "tensor_trust_train": {
+        "benign": 0,
+        "injection": 594
+      },
+      "tensor_trust_train_augmented": {
+        "benign": 0,
+        "injection": 131
+      },
+      "unfair_tos_train": {
+        "benign": 384,
+        "injection": 194
+      },
+      "unfair_tos_train_augmented": {
+        "benign": 74,
+        "injection": 36
+      },
+      "wasp_standalone_train": {
+        "benign": 0,
+        "injection": 84
+      },
+      "wikipedia_train": {
+        "benign": 842,
+        "injection": 352
+      },
+      "wikipedia_train_augmented": {
+        "benign": 153,
+        "injection": 66
+      }
+    }
+  },
+  "val_v40": {
+    "rows": 8568,
+    "unique": 8568,
+    "groups": 5875,
+    "by_source": {
+      "agentdojo_slack_benign": {
+        "benign": 29,
+        "injection": 0
+      },
+      "agentdojo_slack_direct": {
+        "benign": 0,
+        "injection": 15
+      },
+      "agentdojo_slack_ignore_previous": {
+        "benign": 0,
+        "injection": 13
+      },
+      "agentdojo_slack_important_instructions": {
+        "benign": 0,
+        "injection": 18
+      },
+      "agentdojo_slack_injecagent": {
+        "benign": 0,
+        "injection": 16
+      },
+      "agentdojo_slack_system_message": {
+        "benign": 0,
+        "injection": 14
+      },
+      "arxiv_meta_val": {
+        "benign": 77,
+        "injection": 102
+      },
+      "arxiv_val": {
+        "benign": 219,
+        "injection": 76
+      },
+      "awesome_prompts_val": {
+        "benign": 316,
+        "injection": 0
+      },
+      "bbc_news_val": {
+        "benign": 168,
+        "injection": 64
+      },
+      "bipia_code_val": {
+        "benign": 4,
+        "injection": 1
+      },
+      "bipia_combo_code_val": {
+        "benign": 0,
+        "injection": 36
+      },
+      "bipia_combo_email_val": {
+        "benign": 0,
+        "injection": 43
+      },
+      "bipia_combo_table_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "bipia_email_val": {
+        "benign": 1,
+        "injection": 4
+      },
+      "bipia_table_val": {
+        "benign": 5,
+        "injection": 3
+      },
+      "deepset_val": {
+        "benign": 52,
+        "injection": 14
+      },
+      "dolly_val": {
+        "benign": 250,
+        "injection": 0
+      },
+      "enron_email_val": {
+        "benign": 205,
+        "injection": 87
+      },
+      "gandalf_val": {
+        "benign": 0,
+        "injection": 110
+      },
+      "goalswap_doc_val": {
+        "benign": 202,
+        "injection": 253
+      },
+      "goalswap_standalone_val": {
+        "benign": 0,
+        "injection": 90
+      },
+      "injecagent_benign_twin_val": {
+        "benign": 193,
+        "injection": 0
+      },
+      "injecagent_val": {
+        "benign": 0,
+        "injection": 192
+      },
+      "jackhhao_val": {
+        "benign": 133,
+        "injection": 73
+      },
+      "ledgar_val": {
+        "benign": 168,
+        "injection": 102
+      },
+      "llmail_benign_email_val": {
+        "benign": 36,
+        "injection": 0
+      },
+      "llmail_context_attacked_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "llmail_context_benign_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "llmail_p1_api_val": {
+        "benign": 0,
+        "injection": 14
+      },
+      "llmail_p1_judge_val": {
+        "benign": 0,
+        "injection": 76
+      },
+      "llmail_p1_more_val": {
+        "benign": 0,
+        "injection": 376
+      },
+      "long_benign_doc_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "long_buried_attack_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "no_robots_val": {
+        "benign": 300,
+        "injection": 0
+      },
+      "padded_benign_instruction_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "rag_chunk_attacked_mixed_val": {
+        "benign": 0,
+        "injection": 262
+      },
+      "rag_chunk_attacked_wasp_val": {
+        "benign": 0,
+        "injection": 107
+      },
+      "rag_chunk_clean_mixed_val": {
+        "benign": 1048,
+        "injection": 0
+      },
+      "rag_chunk_clean_wasp_val": {
+        "benign": 918,
+        "injection": 0
+      },
+      "reddit_benign_val": {
+        "benign": 114,
+        "injection": 0
+      },
+      "reddit_wasp_val": {
+        "benign": 0,
+        "injection": 111
+      },
+      "satml_val": {
+        "benign": 0,
+        "injection": 996
+      },
+      "tensor_trust_val": {
+        "benign": 0,
+        "injection": 59
+      },
+      "unfair_tos_val": {
+        "benign": 100,
+        "injection": 46
+      },
+      "wikipedia_val": {
+        "benign": 210,
+        "injection": 87
+      }
+    }
+  },
+  "heldout_test_v40": {
+    "rows": 10716,
+    "unique": 10716,
+    "groups": 7904,
+    "by_source": {
+      "arxiv_meta_test": {
+        "benign": 110,
+        "injection": 170
+      },
+      "arxiv_test": {
+        "benign": 290,
+        "injection": 107
+      },
+      "awesome_prompts_test": {
+        "benign": 429,
+        "injection": 0
+      },
+      "bbc_news_test": {
+        "benign": 380,
+        "injection": 181
+      },
+      "bipia_combo_code_test": {
+        "benign": 0,
+        "injection": 46
+      },
+      "bipia_combo_email_test": {
+        "benign": 0,
+        "injection": 19
+      },
+      "bipia_combo_table_test": {
+        "benign": 0,
+        "injection": 123
+      },
+      "bipia_email_test": {
+        "benign": 0,
+        "injection": 3
+      },
+      "bipia_table_test": {
+        "benign": 10,
+        "injection": 7
+      },
+      "deepset_test": {
+        "benign": 56,
+        "injection": 53
+      },
+      "dolly_test": {
+        "benign": 347,
+        "injection": 0
+      },
+      "enron_email_test": {
+        "benign": 261,
+        "injection": 125
+      },
+      "gandalf_test": {
+        "benign": 0,
+        "injection": 112
+      },
+      "goalswap_doc_test": {
+        "benign": 204,
+        "injection": 311
+      },
+      "goalswap_standalone_test": {
+        "benign": 0,
+        "injection": 90
+      },
+      "injecagent_benign_twin_test": {
+        "benign": 203,
+        "injection": 0
+      },
+      "injecagent_test": {
+        "benign": 0,
+        "injection": 202
+      },
+      "jackhhao_test": {
+        "benign": 131,
+        "injection": 73
+      },
+      "ledgar_test": {
+        "benign": 237,
+        "injection": 126
+      },
+      "llmail_benign_email_test": {
+        "benign": 48,
+        "injection": 0
+      },
+      "llmail_context_attacked_test": {
+        "benign": 0,
+        "injection": 150
+      },
+      "llmail_context_benign_test": {
+        "benign": 150,
+        "injection": 0
+      },
+      "llmail_p2_api_triggered_test": {
+        "benign": 0,
+        "injection": 483
+      },
+      "llmail_p2_judge_labeled_test": {
+        "benign": 0,
+        "injection": 492
+      },
+      "long_benign_doc_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "long_buried_attack_test": {
+        "benign": 0,
+        "injection": 100
+      },
+      "no_robots_test": {
+        "benign": 500,
+        "injection": 0
+      },
+      "padded_benign_instruction_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "rag_chunk_attacked_mixed_test": {
+        "benign": 0,
+        "injection": 304
+      },
+      "rag_chunk_attacked_wasp_test": {
+        "benign": 0,
+        "injection": 102
+      },
+      "rag_chunk_clean_mixed_test": {
+        "benign": 1049,
+        "injection": 0
+      },
+      "rag_chunk_clean_wasp_test": {
+        "benign": 887,
+        "injection": 0
+      },
+      "reddit_benign_test": {
+        "benign": 106,
+        "injection": 0
+      },
+      "reddit_wasp_test": {
+        "benign": 0,
+        "injection": 119
+      },
+      "satml_test": {
+        "benign": 0,
+        "injection": 973
+      },
+      "tensor_trust_test": {
+        "benign": 0,
+        "injection": 47
+      },
+      "unfair_tos_test": {
+        "benign": 141,
+        "injection": 51
+      },
+      "wasp_standalone_test": {
+        "benign": 0,
+        "injection": 8
+      },
+      "wikipedia_test": {
+        "benign": 282,
+        "injection": 118
+      }
+    }
+  },
+  "final_test_v40": {
+    "rows": 9313,
+    "unique": 9313,
+    "groups": 4492,
+    "by_source": {
+      "gentel_goal_hijacking_attack": {
+        "benign": 0,
+        "injection": 1711
+      },
+      "gentel_goal_hijacking_safe": {
+        "benign": 1781,
+        "injection": 0
+      },
+      "gentel_prompt_leaking_attack": {
+        "benign": 0,
+        "injection": 330
+      },
+      "gentel_prompt_leaking_safe": {
+        "benign": 271,
+        "injection": 0
+      },
+      "rag_chunk_attacked_gentel_cnn_final": {
+        "benign": 0,
+        "injection": 250
+      },
+      "rag_chunk_clean_cnn_only_final": {
+        "benign": 242,
+        "injection": 0
+      },
+      "rag_chunk_clean_gentel_cnn_final": {
+        "benign": 4728,
+        "injection": 0
+      }
+    }
+  },
+  "cross_split_label_conflicts": 0
+}

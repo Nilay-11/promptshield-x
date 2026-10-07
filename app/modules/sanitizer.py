@@ -75,6 +75,30 @@ def normalize_unicode(text: str) -> str:
 from app.modules.normalizer import normalize_input
 
 
+def extract_hidden(text: str) -> list[str]:
+    """
+    Returns the content that sanitize() removes as hidden: HTML comments, display:none / visibility:hidden
+    elements, <script>/<style> bodies and markdown reference-link payloads. Detection must scan these too:
+    removing a hidden instruction without detecting it would let the attack go unlogged and unexplained.
+    """
+    found = [m.strip() for m in re.findall(r"<!--(.*?)-->", text, flags=re.DOTALL)]
+    found += [m.strip() for m in re.findall(r"^\s*\[[^\]]+\]:\s*\S+(.*)$", text, flags=re.MULTILINE)]
+    if "<" in text and ">" in text:
+        soup = BeautifulSoup(text, "html.parser")
+        for tag in soup(["script", "style"]):
+            found.append(tag.get_text(" ").strip())
+        for tag in soup.find_all(style=True):
+            style = tag["style"].replace(" ", "").lower()
+            if any(k in style for k in ("display:none", "visibility:hidden", "font-size:0", "opacity:0")):
+                found.append(tag.get_text(" ").strip())
+    out = []
+    for f in found:
+        f = re.sub(r"\s+", " ", normalize_input(normalize_unicode(f))).strip(" '\"")
+        if len(f) >= 8 and f not in out:
+            out.append(f)
+    return out
+
+
 def sanitize(text: str) -> str:
     """
     Main entrypoint — call this first in the /analyze pipeline, before

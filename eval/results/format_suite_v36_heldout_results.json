@@ -1,0 +1,1221 @@
+{
+  "suite": "format_suite_v36_heldout",
+  "timestamp": "2026-10-06T21:01:48.310023+00:00",
+  "payload_surfaced_by_extractors": 0.959,
+  "scorers": {
+    "tfidf_lr": {
+      "doc_thresholds": {
+        "val_fpr5": 0.30991799841562906,
+        "val_fpr1": 0.5234682115069944,
+        "text_val_fpr1": 0.3870741187248663
+      },
+      "results": {
+        "val_fpr5": {
+          "ALL": {
+            "n": 2000,
+            "recall": {
+              "value": 0.939,
+              "ci95": [
+                0.924,
+                0.953
+              ]
+            },
+            "fpr": {
+              "value": 0.084,
+              "ci95": [
+                0.044,
+                0.126
+              ]
+            }
+          },
+          "format:html": {
+            "n": 1000,
+            "recall": {
+              "value": 0.936,
+              "ci95": [
+                0.914,
+                0.954
+              ]
+            },
+            "fpr": {
+              "value": 0.122,
+              "ci95": [
+                0.07,
+                0.182
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 1000,
+            "recall": {
+              "value": 0.942,
+              "ci95": [
+                0.922,
+                0.96
+              ]
+            },
+            "fpr": {
+              "value": 0.046,
+              "ci95": [
+                0.014,
+                0.084
+              ]
+            }
+          },
+          "genre:arxiv": {
+            "n": 320,
+            "recall": {
+              "value": 0.9625,
+              "ci95": [
+                0.925,
+                0.9938
+              ]
+            },
+            "fpr": {
+              "value": 0.0063,
+              "ci95": [
+                0.0,
+                0.0187
+              ]
+            }
+          },
+          "genre:arxiv_meta": {
+            "n": 480,
+            "recall": {
+              "value": 0.9208,
+              "ci95": [
+                0.8792,
+                0.9583
+              ]
+            },
+            "fpr": {
+              "value": 0.1583,
+              "ci95": [
+                0.05,
+                0.2875
+              ]
+            }
+          },
+          "genre:enron_email": {
+            "n": 360,
+            "recall": {
+              "value": 0.9278,
+              "ci95": [
+                0.8944,
+                0.9611
+              ]
+            },
+            "fpr": {
+              "value": 0.0667,
+              "ci95": [
+                0.0,
+                0.1833
+              ]
+            }
+          },
+          "genre:ledgar": {
+            "n": 320,
+            "recall": {
+              "value": 0.9437,
+              "ci95": [
+                0.9062,
+                0.975
+              ]
+            },
+            "fpr": {
+              "value": 0.0125,
+              "ci95": [
+                0.0,
+                0.0312
+              ]
+            }
+          },
+          "genre:unfair_tos": {
+            "n": 240,
+            "recall": {
+              "value": 0.95,
+              "ci95": [
+                0.9083,
+                0.9833
+              ]
+            },
+            "fpr": {
+              "value": 0.1833,
+              "ci95": [
+                0.0333,
+                0.3667
+              ]
+            }
+          },
+          "genre:wikipedia": {
+            "n": 280,
+            "recall": {
+              "value": 0.9429,
+              "ci95": [
+                0.9071,
+                0.9714
+              ]
+            },
+            "fpr": {
+              "value": 0.0643,
+              "ci95": [
+                0.0143,
+                0.1429
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 200,
+            "recall": {
+              "value": 0.91,
+              "ci95": [
+                0.85,
+                0.96
+              ]
+            },
+            "fpr": {
+              "value": 0.11,
+              "ci95": [
+                0.05,
+                0.17
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 200,
+            "recall": {
+              "value": 0.97,
+              "ci95": [
+                0.94,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.12,
+              "ci95": [
+                0.06,
+                0.19
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 200,
+            "recall": {
+              "value": 0.92,
+              "ci95": [
+                0.86,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.11,
+              "ci95": [
+                0.05,
+                0.17
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.93,
+              "ci95": [
+                0.88,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.12,
+              "ci95": [
+                0.06,
+                0.19
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 200,
+            "recall": {
+              "value": 0.95,
+              "ci95": [
+                0.9098,
+                0.99
+              ]
+            },
+            "fpr": {
+              "value": 0.15,
+              "ci95": [
+                0.09,
+                0.22
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.06,
+              "ci95": [
+                0.02,
+                0.11
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 200,
+            "recall": {
+              "value": 0.97,
+              "ci95": [
+                0.93,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.05,
+              "ci95": [
+                0.01,
+                0.1
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 200,
+            "recall": {
+              "value": 0.93,
+              "ci95": [
+                0.87,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.05,
+              "ci95": [
+                0.01,
+                0.0902
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.93,
+              "ci95": [
+                0.88,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.03,
+              "ci95": [
+                0.0,
+                0.07
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.04,
+              "ci95": [
+                0.01,
+                0.08
+              ]
+            }
+          }
+        },
+        "val_fpr1": {
+          "ALL": {
+            "n": 2000,
+            "recall": {
+              "value": 0.872,
+              "ci95": [
+                0.853,
+                0.889
+              ]
+            },
+            "fpr": {
+              "value": 0.011,
+              "ci95": [
+                0.0,
+                0.027
+              ]
+            }
+          },
+          "format:html": {
+            "n": 1000,
+            "recall": {
+              "value": 0.866,
+              "ci95": [
+                0.84,
+                0.8901
+              ]
+            },
+            "fpr": {
+              "value": 0.022,
+              "ci95": [
+                0.0,
+                0.052
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 1000,
+            "recall": {
+              "value": 0.878,
+              "ci95": [
+                0.852,
+                0.904
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:arxiv": {
+            "n": 320,
+            "recall": {
+              "value": 0.875,
+              "ci95": [
+                0.825,
+                0.9187
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:arxiv_meta": {
+            "n": 480,
+            "recall": {
+              "value": 0.85,
+              "ci95": [
+                0.8125,
+                0.8875
+              ]
+            },
+            "fpr": {
+              "value": 0.025,
+              "ci95": [
+                0.0,
+                0.0708
+              ]
+            }
+          },
+          "genre:enron_email": {
+            "n": 360,
+            "recall": {
+              "value": 0.9,
+              "ci95": [
+                0.8556,
+                0.9389
+              ]
+            },
+            "fpr": {
+              "value": 0.0278,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "genre:ledgar": {
+            "n": 320,
+            "recall": {
+              "value": 0.8812,
+              "ci95": [
+                0.8375,
+                0.9187
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:unfair_tos": {
+            "n": 240,
+            "recall": {
+              "value": 0.8833,
+              "ci95": [
+                0.85,
+                0.9167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:wikipedia": {
+            "n": 280,
+            "recall": {
+              "value": 0.85,
+              "ci95": [
+                0.8,
+                0.8929
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 200,
+            "recall": {
+              "value": 0.86,
+              "ci95": [
+                0.78,
+                0.93
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 200,
+            "recall": {
+              "value": 0.91,
+              "ci95": [
+                0.85,
+                0.96
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 200,
+            "recall": {
+              "value": 0.86,
+              "ci95": [
+                0.78,
+                0.92
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.86,
+              "ci95": [
+                0.79,
+                0.92
+              ]
+            },
+            "fpr": {
+              "value": 0.03,
+              "ci95": [
+                0.0,
+                0.06
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 200,
+            "recall": {
+              "value": 0.84,
+              "ci95": [
+                0.77,
+                0.91
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 200,
+            "recall": {
+              "value": 0.93,
+              "ci95": [
+                0.88,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 200,
+            "recall": {
+              "value": 0.89,
+              "ci95": [
+                0.8297,
+                0.95
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 200,
+            "recall": {
+              "value": 0.9,
+              "ci95": [
+                0.83,
+                0.95
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.76,
+              "ci95": [
+                0.68,
+                0.84
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 200,
+            "recall": {
+              "value": 0.91,
+              "ci95": [
+                0.85,
+                0.96
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "text_val_fpr1": {
+          "ALL": {
+            "n": 2000,
+            "recall": {
+              "value": 0.923,
+              "ci95": [
+                0.908,
+                0.938
+              ]
+            },
+            "fpr": {
+              "value": 0.051,
+              "ci95": [
+                0.021,
+                0.09
+              ]
+            }
+          },
+          "format:html": {
+            "n": 1000,
+            "recall": {
+              "value": 0.922,
+              "ci95": [
+                0.9,
+                0.944
+              ]
+            },
+            "fpr": {
+              "value": 0.082,
+              "ci95": [
+                0.034,
+                0.132
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 1000,
+            "recall": {
+              "value": 0.924,
+              "ci95": [
+                0.902,
+                0.946
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "genre:arxiv": {
+            "n": 320,
+            "recall": {
+              "value": 0.95,
+              "ci95": [
+                0.9125,
+                0.9812
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:arxiv_meta": {
+            "n": 480,
+            "recall": {
+              "value": 0.9,
+              "ci95": [
+                0.8583,
+                0.9375
+              ]
+            },
+            "fpr": {
+              "value": 0.0917,
+              "ci95": [
+                0.0083,
+                0.1958
+              ]
+            }
+          },
+          "genre:enron_email": {
+            "n": 360,
+            "recall": {
+              "value": 0.9167,
+              "ci95": [
+                0.8778,
+                0.9556
+              ]
+            },
+            "fpr": {
+              "value": 0.0556,
+              "ci95": [
+                0.0,
+                0.1667
+              ]
+            }
+          },
+          "genre:ledgar": {
+            "n": 320,
+            "recall": {
+              "value": 0.925,
+              "ci95": [
+                0.8938,
+                0.9563
+              ]
+            },
+            "fpr": {
+              "value": 0.0063,
+              "ci95": [
+                0.0,
+                0.0187
+              ]
+            }
+          },
+          "genre:unfair_tos": {
+            "n": 240,
+            "recall": {
+              "value": 0.925,
+              "ci95": [
+                0.8833,
+                0.9667
+              ]
+            },
+            "fpr": {
+              "value": 0.1,
+              "ci95": [
+                0.0083,
+                0.2167
+              ]
+            }
+          },
+          "genre:wikipedia": {
+            "n": 280,
+            "recall": {
+              "value": 0.9357,
+              "ci95": [
+                0.8857,
+                0.9714
+              ]
+            },
+            "fpr": {
+              "value": 0.0429,
+              "ci95": [
+                0.0,
+                0.1214
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 200,
+            "recall": {
+              "value": 0.9,
+              "ci95": [
+                0.83,
+                0.95
+              ]
+            },
+            "fpr": {
+              "value": 0.07,
+              "ci95": [
+                0.02,
+                0.12
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 200,
+            "recall": {
+              "value": 0.96,
+              "ci95": [
+                0.92,
+                0.99
+              ]
+            },
+            "fpr": {
+              "value": 0.08,
+              "ci95": [
+                0.03,
+                0.14
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 200,
+            "recall": {
+              "value": 0.92,
+              "ci95": [
+                0.86,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.08,
+              "ci95": [
+                0.03,
+                0.14
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.91,
+              "ci95": [
+                0.85,
+                0.96
+              ]
+            },
+            "fpr": {
+              "value": 0.08,
+              "ci95": [
+                0.0398,
+                0.14
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 200,
+            "recall": {
+              "value": 0.92,
+              "ci95": [
+                0.86,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.1,
+              "ci95": [
+                0.05,
+                0.16
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 200,
+            "recall": {
+              "value": 0.97,
+              "ci95": [
+                0.93,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 200,
+            "recall": {
+              "value": 0.92,
+              "ci95": [
+                0.86,
+                0.97
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.85,
+              "ci95": [
+                0.78,
+                0.9102
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.06
+              ]
+            }
+          }
+        }
+      }
+    },
+    "production_document_scanner": {
+      "doc_thresholds": {
+        "val_fpr5": "overall_action != PASS"
+      },
+      "results": {
+        "val_fpr5": {
+          "ALL": {
+            "n": 1000,
+            "recall": {
+              "value": 0.958,
+              "ci95": [
+                0.938,
+                0.974
+              ]
+            },
+            "fpr": {
+              "value": 0.022,
+              "ci95": [
+                0.004,
+                0.048
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 1000,
+            "recall": {
+              "value": 0.958,
+              "ci95": [
+                0.938,
+                0.974
+              ]
+            },
+            "fpr": {
+              "value": 0.022,
+              "ci95": [
+                0.004,
+                0.046
+              ]
+            }
+          },
+          "genre:arxiv": {
+            "n": 160,
+            "recall": {
+              "value": 0.9375,
+              "ci95": [
+                0.875,
+                0.9875
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:arxiv_meta": {
+            "n": 240,
+            "recall": {
+              "value": 0.9667,
+              "ci95": [
+                0.9333,
+                0.9917
+              ]
+            },
+            "fpr": {
+              "value": 0.025,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "genre:enron_email": {
+            "n": 180,
+            "recall": {
+              "value": 0.9444,
+              "ci95": [
+                0.9,
+                0.9889
+              ]
+            },
+            "fpr": {
+              "value": 0.0889,
+              "ci95": [
+                0.0,
+                0.2222
+              ]
+            }
+          },
+          "genre:ledgar": {
+            "n": 160,
+            "recall": {
+              "value": 0.9375,
+              "ci95": [
+                0.875,
+                0.9875
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:unfair_tos": {
+            "n": 120,
+            "recall": {
+              "value": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:wikipedia": {
+            "n": 140,
+            "recall": {
+              "value": 0.9714,
+              "ci95": [
+                0.9286,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 200,
+            "recall": {
+              "value": 0.97,
+              "ci95": [
+                0.93,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.01,
+              "ci95": [
+                0.0,
+                0.03
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 200,
+            "recall": {
+              "value": 0.95,
+              "ci95": [
+                0.91,
+                0.99
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 200,
+            "recall": {
+              "value": 0.99,
+              "ci95": [
+                0.97,
+                1.0
+              ]
+            },
+            "fpr": {
+              "value": 0.04,
+              "ci95": [
+                0.01,
+                0.09
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 200,
+            "recall": {
+              "value": 0.94,
+              "ci95": [
+                0.89,
+                0.98
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

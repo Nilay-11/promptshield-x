@@ -1,0 +1,1342 @@
+{
+  "test_set": "final_test_v38",
+  "timestamp": "2026-10-07T03:19:08.044099+00:00",
+  "bootstrap": {
+    "n": 1000,
+    "unit": "group"
+  },
+  "scorers": {
+    "style_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.8768615339539858,
+          "long": 0.957137180313283
+        },
+        "val_fpr5": {
+          "short": 0.7560222992611663,
+          "long": 0.8178980270784798
+        }
+      },
+      "val_auroc": 0.6267,
+      "slices": {
+        "ALL": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.5215,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8263,
+              "ci95": [
+                0.7791,
+                0.8719
+              ]
+            },
+            "fpr": {
+              "value": 0.9733,
+              "ci95": [
+                0.9545,
+                0.9902
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.005,
+              "ci95": [
+                0.0,
+                0.0124
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0199,
+              "ci95": [
+                0.0074,
+                0.034
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9933,
+              "ci95": [
+                0.9833,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.5215,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.8263,
+              "ci95": [
+                0.773,
+                0.8717
+              ]
+            },
+            "fpr": {
+              "value": 0.9733,
+              "ci95": [
+                0.9542,
+                0.99
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.005,
+              "ci95": [
+                0.0,
+                0.0126
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0199,
+              "ci95": [
+                0.0076,
+                0.0337
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:govreport_benign": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 0,
+          "n_benign": 300,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.9733,
+              "ci95": [
+                0.9533,
+                0.99
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:govreport_satml_attacked": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.9933,
+              "ci95": [
+                0.9833,
+                1.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "source:satml_attack_standalone": {
+          "n": 103,
+          "groups": 69,
+          "n_injection": 103,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.3398,
+              "ci95": [
+                0.2404,
+                0.4433
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0194,
+              "ci95": [
+                0.0,
+                0.0481
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.0777,
+              "ci95": [
+                0.0342,
+                0.1402
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.3846,
+              "ci95": [
+                0.3,
+                0.4692
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0385,
+              "ci95": [
+                0.0077,
+                0.0769
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.2615,
+              "ci95": [
+                0.1846,
+                0.331
+              ]
+            }
+          }
+        }
+      }
+    },
+    "tfidf_lr": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.4673003428491751,
+          "long": 0.8458330633450153
+        },
+        "val_fpr5": {
+          "short": 0.2404943418527944,
+          "long": 0.5914567893408923
+        }
+      },
+      "val_auroc": 0.964,
+      "slices": {
+        "ALL": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.8567,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1861,
+              "ci95": [
+                0.1436,
+                0.2291
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.206,
+              "ci95": [
+                0.1642,
+                0.2538
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5161,
+              "ci95": [
+                0.4662,
+                0.5667
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0034,
+                0.0327
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0767,
+              "ci95": [
+                0.0468,
+                0.1067
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0967,
+              "ci95": [
+                0.0667,
+                0.1338
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.43,
+              "ci95": [
+                0.3733,
+                0.4851
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.8567,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.1861,
+              "ci95": [
+                0.1443,
+                0.2319
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.206,
+              "ci95": [
+                0.1625,
+                0.2494
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5161,
+              "ci95": [
+                0.4591,
+                0.5653
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0034,
+                0.0309
+              ]
+            }
+          }
+        },
+        "source:govreport_benign": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 0,
+          "n_benign": 300,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0033,
+                0.0333
+              ]
+            }
+          }
+        },
+        "source:govreport_satml_attacked": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.0767,
+              "ci95": [
+                0.05,
+                0.107
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.0967,
+              "ci95": [
+                0.0667,
+                0.132
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.43,
+              "ci95": [
+                0.3787,
+                0.4851
+              ]
+            }
+          }
+        },
+        "source:satml_attack_standalone": {
+          "n": 103,
+          "groups": 69,
+          "n_injection": 103,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5049,
+              "ci95": [
+                0.3977,
+                0.6137
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.5243,
+              "ci95": [
+                0.4211,
+                0.6286
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.767,
+              "ci95": [
+                0.6782,
+                0.8426
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.125,
+              "ci95": [
+                0.0,
+                0.2917
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7462,
+              "ci95": [
+                0.6692,
+                0.8231
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7538,
+              "ci95": [
+                0.6769,
+                0.8231
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8538,
+              "ci95": [
+                0.7923,
+                0.9077
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v36": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.9056575761566162,
+          "long": 0.9974451528320313
+        },
+        "val_fpr5": {
+          "short": 0.029480406774044038,
+          "long": 0.993562863899231
+        }
+      },
+      "val_auroc": 0.8904,
+      "slices": {
+        "ALL": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.897,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5955,
+              "ci95": [
+                0.5429,
+                0.6429
+              ]
+            },
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.0102
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.5509,
+              "ci95": [
+                0.5,
+                0.6
+              ]
+            },
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.0102
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.6799,
+              "ci95": [
+                0.6328,
+                0.7229
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0066,
+                0.0374
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6433,
+              "ci95": [
+                0.5886,
+                0.6954
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6033,
+              "ci95": [
+                0.5485,
+                0.6555
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.72,
+              "ci95": [
+                0.6689,
+                0.7667
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.897,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5955,
+              "ci95": [
+                0.5459,
+                0.6484
+              ]
+            },
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.0103
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.5509,
+              "ci95": [
+                0.5012,
+                0.5971
+              ]
+            },
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.0103
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.6799,
+              "ci95": [
+                0.6334,
+                0.7266
+              ]
+            },
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0066,
+                0.0377
+              ]
+            }
+          }
+        },
+        "source:govreport_benign": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 0,
+          "n_benign": 300,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.01
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0033,
+              "ci95": [
+                0.0,
+                0.01
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.02,
+              "ci95": [
+                0.0066,
+                0.0367
+              ]
+            }
+          }
+        },
+        "source:govreport_satml_attacked": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6433,
+              "ci95": [
+                0.5886,
+                0.6977
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6033,
+              "ci95": [
+                0.5452,
+                0.6623
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.72,
+              "ci95": [
+                0.6744,
+                0.7701
+              ]
+            }
+          }
+        },
+        "source:satml_attack_standalone": {
+          "n": 103,
+          "groups": 69,
+          "n_injection": 103,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.4563,
+              "ci95": [
+                0.3465,
+                0.5649
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.3981,
+              "ci95": [
+                0.2909,
+                0.5138
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.5631,
+              "ci95": [
+                0.4736,
+                0.6522
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7538,
+              "ci95": [
+                0.6769,
+                0.8231
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7308,
+              "ci95": [
+                0.6538,
+                0.8077
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7692,
+              "ci95": [
+                0.6998,
+                0.8308
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v37": {
+      "thresholds": {
+        "tau_0.5": {
+          "short": 0.5,
+          "long": 0.5
+        },
+        "val_fpr1": {
+          "short": 0.660063849521637,
+          "long": 0.9577555523643494
+        },
+        "val_fpr5": {
+          "short": 0.08717550499534607,
+          "long": 0.9481074677238465
+        }
+      },
+      "val_auroc": 0.9917,
+      "slices": {
+        "ALL": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.8837,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6179,
+              "ci95": [
+                0.5657,
+                0.6642
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0034,
+                0.0302
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6104,
+              "ci95": [
+                0.5616,
+                0.6601
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0033,
+                0.0336
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7543,
+              "ci95": [
+                0.7107,
+                0.7949
+              ]
+            },
+            "fpr": {
+              "value": 0.0367,
+              "ci95": [
+                0.0168,
+                0.0606
+              ]
+            }
+          }
+        },
+        "slice:doc_injected": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6333,
+              "ci95": [
+                0.5786,
+                0.6867
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6267,
+              "ci95": [
+                0.5686,
+                0.6811
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7333,
+              "ci95": [
+                0.6823,
+                0.7833
+              ]
+            }
+          }
+        },
+        "slice:short_only": {
+          "n": 703,
+          "groups": 368,
+          "n_injection": 403,
+          "n_benign": 300,
+          "auroc": 0.8837,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6179,
+              "ci95": [
+                0.5697,
+                0.6675
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0034,
+                0.0323
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6104,
+              "ci95": [
+                0.5598,
+                0.6642
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0034,
+                0.0322
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7543,
+              "ci95": [
+                0.711,
+                0.7952
+              ]
+            },
+            "fpr": {
+              "value": 0.0367,
+              "ci95": [
+                0.0165,
+                0.0601
+              ]
+            }
+          }
+        },
+        "source:govreport_benign": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 0,
+          "n_benign": 300,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0033,
+                0.0333
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0033,
+                0.0332
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0367,
+              "ci95": [
+                0.0167,
+                0.0569
+              ]
+            }
+          }
+        },
+        "source:govreport_satml_attacked": {
+          "n": 300,
+          "groups": 299,
+          "n_injection": 300,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.6333,
+              "ci95": [
+                0.5819,
+                0.689
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.6267,
+              "ci95": [
+                0.5766,
+                0.6844
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.7333,
+              "ci95": [
+                0.69,
+                0.7834
+              ]
+            }
+          }
+        },
+        "source:satml_attack_standalone": {
+          "n": 103,
+          "groups": 69,
+          "n_injection": 103,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.5728,
+              "ci95": [
+                0.4512,
+                0.68
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.5631,
+              "ci95": [
+                0.4414,
+                0.6762
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8155,
+              "ci95": [
+                0.7363,
+                0.8835
+              ]
+            }
+          }
+        },
+        "probe:diagnostic_templates_v36": {
+          "n": 24,
+          "groups": 24,
+          "n_injection": 0,
+          "n_benign": 24,
+          "auroc": null,
+          "at_tau_0.5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "fpr": {
+              "value": 0.0417,
+              "ci95": [
+                0.0,
+                0.125
+              ]
+            }
+          }
+        },
+        "probe:ambiguous_v36": {
+          "n": 130,
+          "groups": 130,
+          "n_injection": 130,
+          "n_benign": 0,
+          "auroc": null,
+          "at_tau_0.5": {
+            "recall": {
+              "value": 0.7077,
+              "ci95": [
+                0.6231,
+                0.7846
+              ]
+            }
+          },
+          "at_val_fpr1": {
+            "recall": {
+              "value": 0.7,
+              "ci95": [
+                0.6154,
+                0.7692
+              ]
+            }
+          },
+          "at_val_fpr5": {
+            "recall": {
+              "value": 0.8,
+              "ci95": [
+                0.7308,
+                0.8615
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

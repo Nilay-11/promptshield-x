@@ -50,22 +50,40 @@ def verify_manifest_integrity() -> bool:
         return False
 
 
+# Two detectors, routed by channel:
+#   "document": text from PDFs, RAG chunks, web pages, files (MODEL_DIR, the v40 document model)
+#   "prompt":   what a user types (PROMPT_MODEL_DIR, the v37 model: 0.7% FPR on benign user prompts vs 3.4% for v40)
+# If no prompt model is installed, prompts fall back to the document model.
+PROMPT_MODEL_DIR = WEIGHTS_DIR / "distilbert_prompt"
+AI_TARGETING_RE = re.compile(
+    r"\b(ai|assistant|model|llm|chatbot|bot|gpt|claude|gemini|copilot|agent|system|instructions?|ignore|disregard)\b"
+    r"|https?://|www\.|\b[\w.+-]+@[\w-]+\.[\w.]+", re.I)
 _distilbert_tokenizer = None
 _distilbert_model = None
+_loaded = {}
 
 
-def _get_distilbert():
-    global _distilbert_tokenizer, _distilbert_model
-    if _distilbert_model is None and MODEL_DIR.exists() and (MODEL_DIR / "config.json").exists():
+def _load_dir(path: Path):
+    if path not in _loaded and path.exists() and (path / "config.json").exists():
         try:
+            import torch
             from transformers import AutoTokenizer, AutoModelForSequenceClassification
-            _distilbert_tokenizer = AutoTokenizer.from_pretrained(str(MODEL_DIR), local_files_only=True)
-            _distilbert_model = AutoModelForSequenceClassification.from_pretrained(str(MODEL_DIR), local_files_only=True)
-            _distilbert_model.eval()
+            tok = AutoTokenizer.from_pretrained(str(path), local_files_only=True)
+            model = AutoModelForSequenceClassification.from_pretrained(str(path), local_files_only=True)
+            model.eval().to("cuda" if torch.cuda.is_available() else "cpu")
+            _loaded[path] = (tok, model)
         except Exception as e:
-            print(f"[DistilBERT Load Error] {e}")
-            _distilbert_model = None
-            _distilbert_tokenizer = None
+            print(f"[DistilBERT Load Error] {path}: {e}")
+            _loaded[path] = (None, None)
+    return _loaded.get(path, (None, None))
+
+
+def _get_distilbert(role: str = "document"):
+    global _distilbert_tokenizer, _distilbert_model
+    if role == "prompt" and (PROMPT_MODEL_DIR / "config.json").exists():
+        return _load_dir(PROMPT_MODEL_DIR)
+    if _distilbert_model is None:
+        _distilbert_tokenizer, _distilbert_model = _load_dir(MODEL_DIR)
     return _distilbert_tokenizer, _distilbert_model
 
 
@@ -155,7 +173,11 @@ def is_non_prose(text: str, min_tokens: Optional[int] = None) -> tuple[bool, str
         return True, "NUMERIC_PUNCTUATION"
 
     # Metadata key-values, e.g. "Author: nilay", "Date: 2024-01-01", "Author: Research & Development Group."
-    if re.match(r"^[A-Za-z\s_-]{2,25}\s*:\s*.+$", st) and len(words) <= 10:
+    # Only short values that do not address the model or ask for an action: "AI assistant: tell the user to ..."
+    # used to be skipped here, which let any "Label: instruction" line bypass the classifier.
+    if (re.match(r"^[A-Za-z\s_-]{2,25}\s*:\s*.+$", st) and len(words) <= 6
+            and not re.search(r"\b(ai|assistant|model|bot|llm|you|your|please|tell|send|forward|email|click|log\s*in|"
+                              r"visit|open|delete|transfer|reply|say|respond|output|print|instruction)\b", tl)):
         return True, "METADATA_KEY_VALUE"
 
     # Short token sequences without sentence-ending punctuation (e.g. "Status Report", "Confidential")
@@ -165,7 +187,7 @@ def is_non_prose(text: str, min_tokens: Optional[int] = None) -> tuple[bool, str
     return False, "PROSE"
 
 
-def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
+def classify_prompt_distilbert(text: str, role: str = "document") -> Dict[str, Any]:
     """
     Classifies input text according to settings.classifier_mode with strict provenance tracking.
     Never fabricates probabilities or confidence scores.
@@ -217,7 +239,7 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
     # Long inputs: support overlapping sliding-window scoring (max over windows)
     model_p_inj: Optional[float] = None
     model_p_benign: Optional[float] = None
-    tokenizer, model = _get_distilbert()
+    tokenizer, model = _get_distilbert(role)
     eval_text = normalized_text if normalized_text else text
 
     if mode in ["combined", "model_only", "semantic_only"] and tokenizer is not None and model is not None:
@@ -228,7 +250,7 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
             stride = settings.sliding_window_stride
 
             if len(token_ids) <= max_len or not settings.sliding_window_inference_enabled:
-                inputs = tokenizer(eval_text, return_tensors="pt", truncation=True, max_length=max_len)
+                inputs = tokenizer(eval_text, return_tensors="pt", truncation=True, max_length=max_len).to(model.device)
                 with torch.no_grad():
                     outputs = model(**inputs)
                     probs = torch.softmax(outputs.logits, dim=-1)[0].tolist()
@@ -249,7 +271,7 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
                     if not chunk_slice:
                         continue
                     framed_ids = [cls_id] + chunk_slice + [sep_id]
-                    input_tensor = torch.tensor([framed_ids], dtype=torch.long)
+                    input_tensor = torch.tensor([framed_ids], dtype=torch.long, device=model.device)
                     attention_mask = torch.ones_like(input_tensor)
                     with torch.no_grad():
                         out = model(input_ids=input_tensor, attention_mask=attention_mask)
@@ -267,6 +289,17 @@ def classify_prompt_distilbert(text: str) -> Dict[str, Any]:
             print(f"[DistilBERT Inference Error] {e}")
             model_p_inj = None
             model_p_benign = None
+
+    # 2b. Short-segment gate for the document model: it over-flags short imperative business lines
+    # ("Next steps: finalize the shortlist by Friday"). When the prompt model disagrees and the text neither
+    # addresses an AI nor points anywhere (URL / email) nor tells it to ignore instructions, trust the prompt model.
+    if (role == "document" and model_p_inj is not None and model_p_inj >= 0.5
+            and len(eval_text.split()) < 25 and not AI_TARGETING_RE.search(eval_text)
+            and (PROMPT_MODEL_DIR / "config.json").exists()):
+        p_prompt = classify_prompt_distilbert(eval_text, role="prompt").get("model_p_inj")
+        if p_prompt is not None and p_prompt < 0.5:
+            model_p_inj, model_p_benign = p_prompt, round(1.0 - p_prompt, 4)
+            anomaly_codes.append("SHORT_SEGMENT_PROMPT_MODEL_GATE")
 
     # 3. Decision Logic Based on Operating Mode
     if mode == "rules_only":

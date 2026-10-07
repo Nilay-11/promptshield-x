@@ -127,5 +127,5 @@ def test_dashboard_endpoint_serves_html():
 def test_root_redirects_to_dashboard():
     response = client.get("/", follow_redirects=False)
     assert response.status_code == 307
-    assert response.headers["location"] == "/dashboard"
+    assert response.headers["location"] == "/app"  # root opens the user gateway app
 

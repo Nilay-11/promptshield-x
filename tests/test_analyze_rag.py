@@ -32,7 +32,7 @@ def stub_pipeline(monkeypatch):
             }
         return {"severity": 0, "matches": []}
 
-    def fake_classify_prompt(text):
+    def fake_classify_prompt(text, role="prompt"):
         tl = text.lower()
         if "ignore" in tl or "system prompt" in tl:
             return {"category": "prompt_injection", "confidence": 0.88, "raw_scores": {}}

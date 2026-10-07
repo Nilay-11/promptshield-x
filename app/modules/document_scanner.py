@@ -21,6 +21,29 @@ from app.modules.distilbert_classifier import classify_prompt_distilbert
 from app.modules.anomaly_detector import detect_anomaly
 from app.core.risk_engine import compute_risk_score
 from app.core.settings import settings
+from app.modules.attack_type import classify_attack_type
+
+
+def _seg_page(seg):
+    loc = seg.location if isinstance(seg.location, dict) else {}
+    return loc.get("page", seg.metadata.get("page") if isinstance(seg.metadata, dict) else None)
+
+
+def _merge_hidden_runs(segments):
+    """Join consecutive cloaked lines with the same page and cloaking signal into one segment.
+
+    Hidden text that wraps across lines arrives as mid-sentence fragments; scoring the fragments alone
+    over-flags benign hidden sentences, while the joined text is what an LLM would actually read.
+    """
+    merged = []
+    for seg in segments:
+        prev = merged[-1] if merged else None
+        if (prev is not None and seg.segment_type == "CLOAKED_TEXT" and prev.segment_type == "CLOAKED_TEXT"
+                and seg.cloaking_signal == prev.cloaking_signal and _seg_page(seg) == _seg_page(prev)):
+            prev.content = f"{prev.content.rstrip()} {seg.content.strip()}"
+            continue
+        merged.append(seg)
+    return merged
 
 
 class DocumentScanner:
@@ -35,7 +58,9 @@ class DocumentScanner:
         Structural features can only amplify semantic risk, never create it from zero.
         """
         extracted = self.pdf_extractor.extract(pdf_bytes, filename=filename)
-        
+        if settings.merge_hidden_line_runs:
+            extracted.segments = _merge_hidden_runs(extracted.segments)
+
         segments_results: List[Dict[str, Any]] = []
         flagged_threats: List[Dict[str, Any]] = []
         page_risks: Dict[int, List[int]] = {}
@@ -74,6 +99,14 @@ class DocumentScanner:
             else:
                 # Combined mode
                 semantic_attack_score = distil_res.get("final_score", 0)
+
+            # Short line fragments (wrapped hidden text, headers) cannot carry an instruction on their own and the
+            # model over-scores them. Cap them below REVIEW unless a rule fires; the reading-order window pass
+            # still scores them joined with their neighbours.
+            if (len(clean_text.split()) < settings.min_semantic_words and not rule_hits
+                    and semantic_attack_score > settings.semantic_tier_low):
+                semantic_attack_score = settings.semantic_tier_low
+                anomaly_codes.append("SHORT_FRAGMENT_CAPPED")
 
             # ------------------------------------------------------------------
             # 2. Structural Anomaly Features
@@ -278,7 +311,8 @@ class DocumentScanner:
                     or bool(w_pattern_res.get("rule_hits"))
                     or w_action == "BLOCK"
                 )
-                if w_has_attack and w_action in ["BLOCK", "REVIEW"] and w_semantic > 0:
+                if (w_has_attack and w_action in ["BLOCK", "REVIEW"] and w_semantic > 0
+                        and w_semantic >= settings.reading_order_window_min_semantic):
                     trigger_label = f"segments {i + 1}-{i + len(window_slice)}"
                     w_threat = {
                         "window_type": "READING_ORDER_WINDOW",
@@ -333,7 +367,14 @@ class DocumentScanner:
         if primary_heuristic == "BENIGN" and flagged_threats:
             primary_heuristic = "INJECTION"
 
+        # Attack type: anything found inside a document is INDIRECT; the classifier names the technique.
+        for t in flagged_threats:
+            t.update(classify_attack_type(t.get("full_text") or t.get("text_snippet") or "", "pdf"))
+        top_threat = max(flagged_threats, key=lambda t: t.get("final_risk", 0), default=None)
+
         return {
+            "primary_attack_type": top_threat["attack_type"] if top_threat else None,
+            "primary_technique": top_threat["technique"] if top_threat else None,
             "filename": filename,
             "total_pages": len(page_risks),
             "total_segments": len(segments_results),

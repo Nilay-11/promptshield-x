@@ -1,0 +1,1610 @@
+{
+  "suite": "format_suite_v38_final",
+  "timestamp": "2026-10-07T03:21:28.281804+00:00",
+  "payload_surfaced_by_extractors": 0.9483,
+  "scorers": {
+    "tfidf_lr": {
+      "doc_thresholds": {
+        "val_fpr5": 0.34255985507464143,
+        "val_fpr1": 0.6681281151266444,
+        "text_val_fpr1": 0.4673003428491751
+      },
+      "results": {
+        "val_fpr5": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.6567,
+              "ci95": [
+                0.62,
+                0.695
+              ]
+            },
+            "fpr": {
+              "value": 0.025,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.7067,
+              "ci95": [
+                0.66,
+                0.76
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.6067,
+              "ci95": [
+                0.55,
+                0.66
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.6567,
+              "ci95": [
+                0.62,
+                0.69
+              ]
+            },
+            "fpr": {
+              "value": 0.025,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.6333,
+              "ci95": [
+                0.5167,
+                0.75
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.75,
+              "ci95": [
+                0.6333,
+                0.85
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.7167,
+              "ci95": [
+                0.6,
+                0.8167
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.7833,
+              "ci95": [
+                0.6833,
+                0.8833
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.65,
+              "ci95": [
+                0.5167,
+                0.7667
+              ]
+            },
+            "fpr": {
+              "value": 0.0333,
+              "ci95": [
+                0.0,
+                0.0833
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.4996,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.7333,
+              "ci95": [
+                0.6167,
+                0.85
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.8,
+              "ci95": [
+                0.6833,
+                0.9
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.3833,
+              "ci95": [
+                0.2663,
+                0.5167
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.5,
+              "ci95": [
+                0.3667,
+                0.6333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          }
+        },
+        "val_fpr1": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.3733,
+              "ci95": [
+                0.34,
+                0.4133
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.36,
+              "ci95": [
+                0.3033,
+                0.4167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.3867,
+              "ci95": [
+                0.3367,
+                0.4367
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.3733,
+              "ci95": [
+                0.3366,
+                0.4084
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.2833,
+              "ci95": [
+                0.1667,
+                0.4
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.3833,
+              "ci95": [
+                0.2667,
+                0.5
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.4167,
+              "ci95": [
+                0.2833,
+                0.5333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.3667,
+              "ci95": [
+                0.25,
+                0.4837
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.35,
+              "ci95": [
+                0.2333,
+                0.4667
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.3667,
+              "ci95": [
+                0.2496,
+                0.4837
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.45,
+              "ci95": [
+                0.3167,
+                0.5833
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.6333,
+              "ci95": [
+                0.5,
+                0.75
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.1667,
+              "ci95": [
+                0.0667,
+                0.2667
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.3167,
+              "ci95": [
+                0.2,
+                0.4333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "text_val_fpr1": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.5367,
+              "ci95": [
+                0.5,
+                0.5717
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.5667,
+              "ci95": [
+                0.51,
+                0.6233
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.5067,
+              "ci95": [
+                0.4567,
+                0.5567
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.5367,
+              "ci95": [
+                0.4983,
+                0.5733
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.5167,
+              "ci95": [
+                0.3833,
+                0.65
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.5,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.55,
+              "ci95": [
+                0.4333,
+                0.6671
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.6,
+              "ci95": [
+                0.4667,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.55,
+              "ci95": [
+                0.4329,
+                0.6667
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.4667,
+              "ci95": [
+                0.3333,
+                0.6
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.6333,
+              "ci95": [
+                0.5163,
+                0.75
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.7,
+              "ci95": [
+                0.5667,
+                0.8167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.3,
+              "ci95": [
+                0.1833,
+                0.4171
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.4333,
+              "ci95": [
+                0.3163,
+                0.5667
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      }
+    },
+    "distilbert:models/distilbert_v37": {
+      "doc_thresholds": {
+        "val_fpr5": 0.12142606241798401,
+        "val_fpr1": 0.9462510810623169,
+        "text_val_fpr1": 0.660063849521637
+      },
+      "results": {
+        "val_fpr5": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.755,
+              "ci95": [
+                0.725,
+                0.7867
+              ]
+            },
+            "fpr": {
+              "value": 0.12,
+              "ci95": [
+                0.07,
+                0.1717
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.7433,
+              "ci95": [
+                0.6933,
+                0.79
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.7667,
+              "ci95": [
+                0.71,
+                0.8267
+              ]
+            },
+            "fpr": {
+              "value": 0.24,
+              "ci95": [
+                0.1433,
+                0.3367
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.755,
+              "ci95": [
+                0.725,
+                0.785
+              ]
+            },
+            "fpr": {
+              "value": 0.12,
+              "ci95": [
+                0.0733,
+                0.1717
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.7167,
+              "ci95": [
+                0.6,
+                0.8167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.7833,
+              "ci95": [
+                0.6667,
+                0.8833
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.6833,
+              "ci95": [
+                0.5667,
+                0.8
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.7833,
+              "ci95": [
+                0.6667,
+                0.8833
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.75,
+              "ci95": [
+                0.6333,
+                0.85
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.7167,
+              "ci95": [
+                0.6,
+                0.8333
+              ]
+            },
+            "fpr": {
+              "value": 0.2333,
+              "ci95": [
+                0.1333,
+                0.3337
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.8333,
+              "ci95": [
+                0.7333,
+                0.9167
+              ]
+            },
+            "fpr": {
+              "value": 0.25,
+              "ci95": [
+                0.15,
+                0.3667
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.8333,
+              "ci95": [
+                0.7333,
+                0.9167
+              ]
+            },
+            "fpr": {
+              "value": 0.2333,
+              "ci95": [
+                0.1333,
+                0.3333
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.9,
+              "ci95": [
+                0.8167,
+                0.9667
+              ]
+            },
+            "fpr": {
+              "value": 0.25,
+              "ci95": [
+                0.1333,
+                0.3667
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.55,
+              "ci95": [
+                0.4167,
+                0.6667
+              ]
+            },
+            "fpr": {
+              "value": 0.2333,
+              "ci95": [
+                0.1333,
+                0.35
+              ]
+            }
+          }
+        },
+        "val_fpr1": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.3433,
+              "ci95": [
+                0.3067,
+                0.38
+              ]
+            },
+            "fpr": {
+              "value": 0.0083,
+              "ci95": [
+                0.0,
+                0.025
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.2933,
+              "ci95": [
+                0.2433,
+                0.3467
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.3933,
+              "ci95": [
+                0.33,
+                0.4567
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.3433,
+              "ci95": [
+                0.3067,
+                0.38
+              ]
+            },
+            "fpr": {
+              "value": 0.0083,
+              "ci95": [
+                0.0,
+                0.025
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.2333,
+              "ci95": [
+                0.1333,
+                0.3333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.3,
+              "ci95": [
+                0.2,
+                0.4167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.3333,
+              "ci95": [
+                0.2167,
+                0.45
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.3,
+              "ci95": [
+                0.1833,
+                0.4167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.3,
+              "ci95": [
+                0.1833,
+                0.4167
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.4,
+              "ci95": [
+                0.2833,
+                0.5333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.35,
+              "ci95": [
+                0.2333,
+                0.4667
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.4333,
+              "ci95": [
+                0.3,
+                0.55
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.5,
+              "ci95": [
+                0.3667,
+                0.6333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.2833,
+              "ci95": [
+                0.1667,
+                0.4
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          }
+        },
+        "text_val_fpr1": {
+          "ALL": {
+            "n": 1200,
+            "recall": {
+              "value": 0.6017,
+              "ci95": [
+                0.5633,
+                0.6384
+              ]
+            },
+            "fpr": {
+              "value": 0.0117,
+              "ci95": [
+                0.0,
+                0.0317
+              ]
+            }
+          },
+          "format:html": {
+            "n": 600,
+            "recall": {
+              "value": 0.5867,
+              "ci95": [
+                0.53,
+                0.6433
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.5567,
+                0.6734
+              ]
+            },
+            "fpr": {
+              "value": 0.0233,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 1200,
+            "recall": {
+              "value": 0.6017,
+              "ci95": [
+                0.5633,
+                0.6383
+              ]
+            },
+            "fpr": {
+              "value": 0.0117,
+              "ci95": [
+                0.0,
+                0.03
+              ]
+            }
+          },
+          "method:html/aria_hidden": {
+            "n": 120,
+            "recall": {
+              "value": 0.5333,
+              "ci95": [
+                0.4167,
+                0.65
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/display_none": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.5,
+                0.75
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/html_comment": {
+            "n": 120,
+            "recall": {
+              "value": 0.5667,
+              "ci95": [
+                0.4333,
+                0.6833
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.6,
+              "ci95": [
+                0.4667,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:html/zero_width": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.4833,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.55,
+              "ci95": [
+                0.4333,
+                0.6667
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.5,
+                0.7333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.6833,
+              "ci95": [
+                0.5667,
+                0.8
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.7833,
+              "ci95": [
+                0.6667,
+                0.8833
+              ]
+            },
+            "fpr": {
+              "value": 0.05,
+              "ci95": [
+                0.0,
+                0.1167
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.45,
+              "ci95": [
+                0.3167,
+                0.5667
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          }
+        }
+      }
+    },
+    "production_document_scanner": {
+      "doc_thresholds": {
+        "val_fpr5": "overall_action != PASS"
+      },
+      "results": {
+        "val_fpr5": {
+          "ALL": {
+            "n": 600,
+            "recall": {
+              "value": 0.7067,
+              "ci95": [
+                0.6467,
+                0.7567
+              ]
+            },
+            "fpr": {
+              "value": 0.0233,
+              "ci95": [
+                0.0,
+                0.0667
+              ]
+            }
+          },
+          "format:pdf": {
+            "n": 600,
+            "recall": {
+              "value": 0.7067,
+              "ci95": [
+                0.65,
+                0.7567
+              ]
+            },
+            "fpr": {
+              "value": 0.0233,
+              "ci95": [
+                0.0,
+                0.06
+              ]
+            }
+          },
+          "genre:govreport": {
+            "n": 600,
+            "recall": {
+              "value": 0.7067,
+              "ci95": [
+                0.6567,
+                0.7633
+              ]
+            },
+            "fpr": {
+              "value": 0.0233,
+              "ci95": [
+                0.0,
+                0.06
+              ]
+            }
+          },
+          "method:pdf/metadata": {
+            "n": 120,
+            "recall": {
+              "value": 0.6167,
+              "ci95": [
+                0.5,
+                0.75
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/microfont": {
+            "n": 120,
+            "recall": {
+              "value": 0.8167,
+              "ci95": [
+                0.7167,
+                0.9167
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/off_canvas": {
+            "n": 120,
+            "recall": {
+              "value": 0.8167,
+              "ci95": [
+                0.7163,
+                0.9167
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          },
+          "method:pdf/visible": {
+            "n": 120,
+            "recall": {
+              "value": 0.7833,
+              "ci95": [
+                0.6667,
+                0.8833
+              ]
+            },
+            "fpr": {
+              "value": 0.05,
+              "ci95": [
+                0.0,
+                0.1167
+              ]
+            }
+          },
+          "method:pdf/white_text": {
+            "n": 120,
+            "recall": {
+              "value": 0.5,
+              "ci95": [
+                0.3667,
+                0.6333
+              ]
+            },
+            "fpr": {
+              "value": 0.0167,
+              "ci95": [
+                0.0,
+                0.05
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

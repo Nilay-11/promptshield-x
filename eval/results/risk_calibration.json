@@ -1,0 +1,154 @@
+{
+  "prompt": {
+    "n_val": 2393,
+    "n_test": 2819,
+    "test_auroc": 0.9666,
+    "test_ece": 0.0583,
+    "test_brier": 0.0778,
+    "uncalibrated_model_ece": 0.1002,
+    "thresholds": {
+      "review": 0.8526,
+      "block": 0.9412
+    },
+    "test_at_review": {
+      "recall": 0.7382,
+      "fpr": 0.0123
+    },
+    "test_at_block": {
+      "recall": 0.6217,
+      "fpr": 0.0034
+    },
+    "reliability": [
+      {
+        "bin": "0.0-0.1",
+        "n": 697,
+        "mean_predicted": 0.042,
+        "actual_attack_rate": 0.019
+      },
+      {
+        "bin": "0.1-0.2",
+        "n": 379,
+        "mean_predicted": 0.182,
+        "actual_attack_rate": 0.05
+      },
+      {
+        "bin": "0.2-0.3",
+        "n": 97,
+        "mean_predicted": 0.215,
+        "actual_attack_rate": 0.175
+      },
+      {
+        "bin": "0.3-0.4",
+        "n": 177,
+        "mean_predicted": 0.391,
+        "actual_attack_rate": 0.277
+      },
+      {
+        "bin": "0.4-0.5",
+        "n": 1,
+        "mean_predicted": 0.47,
+        "actual_attack_rate": 0.0
+      },
+      {
+        "bin": "0.5-0.6",
+        "n": 48,
+        "mean_predicted": 0.544,
+        "actual_attack_rate": 0.312
+      },
+      {
+        "bin": "0.6-0.7",
+        "n": 148,
+        "mean_predicted": 0.659,
+        "actual_attack_rate": 0.426
+      },
+      {
+        "bin": "0.7-0.8",
+        "n": 78,
+        "mean_predicted": 0.793,
+        "actual_attack_rate": 0.564
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 229,
+        "mean_predicted": 0.849,
+        "actual_attack_rate": 0.817
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 965,
+        "mean_predicted": 0.986,
+        "actual_attack_rate": 0.983
+      }
+    ]
+  },
+  "document": {
+    "n_val": 5875,
+    "n_test": 7297,
+    "test_auroc": 0.9954,
+    "test_ece": 0.0075,
+    "test_brier": 0.0185,
+    "uncalibrated_model_ece": 0.0214,
+    "thresholds": {
+      "review": 0.2333,
+      "block": 0.5745
+    },
+    "test_at_review": {
+      "recall": 0.9663,
+      "fpr": 0.0138
+    },
+    "test_at_block": {
+      "recall": 0.9385,
+      "fpr": 0.0038
+    },
+    "reliability": [
+      {
+        "bin": "0.0-0.1",
+        "n": 4014,
+        "mean_predicted": 0.011,
+        "actual_attack_rate": 0.01
+      },
+      {
+        "bin": "0.1-0.2",
+        "n": 194,
+        "mean_predicted": 0.13,
+        "actual_attack_rate": 0.242
+      },
+      {
+        "bin": "0.2-0.3",
+        "n": 47,
+        "mean_predicted": 0.234,
+        "actual_attack_rate": 0.34
+      },
+      {
+        "bin": "0.3-0.4",
+        "n": 12,
+        "mean_predicted": 0.385,
+        "actual_attack_rate": 0.333
+      },
+      {
+        "bin": "0.4-0.5",
+        "n": 13,
+        "mean_predicted": 0.401,
+        "actual_attack_rate": 0.538
+      },
+      {
+        "bin": "0.5-0.6",
+        "n": 102,
+        "mean_predicted": 0.561,
+        "actual_attack_rate": 0.725
+      },
+      {
+        "bin": "0.6-0.7",
+        "n": 21,
+        "mean_predicted": 0.667,
+        "actual_attack_rate": 0.952
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 2894,
+        "mean_predicted": 0.995,
+        "actual_attack_rate": 0.995
+      }
+    ]
+  }
+}

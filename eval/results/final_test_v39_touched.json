@@ -1,0 +1,9 @@
+{
+  "touched_at": "2026-10-07T04:22:54.397077+00:00",
+  "scorers": [
+    "style_lr",
+    "tfidf_lr",
+    "distilbert:models/distilbert_v37",
+    "distilbert:models/distilbert_v39"
+  ]
+}

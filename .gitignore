@@ -27,3 +27,6 @@ data/datasets/*
 # fine-tuned model weights pulled from Colab (large binary files)
 app/modules/weights/*
 !app/modules/weights/.gitkeep
+
+# raw downloads used by eval/build_dataset_v36.py (re-downloadable)
+eval/data/raw/

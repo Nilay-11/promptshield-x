@@ -43,6 +43,16 @@ class FirewallSettings(BaseModel):
     # Reading Order Multi-Segment Window Pass
     reading_order_window_enabled: bool = True
     reading_order_window_size: int = 3
+    # A window (joined neighbouring segments) only raises a threat when its semantic score is at least
+    # this high. Calibrated on validation PDFs only (eval/calibrate_window_v37.py): 95 halves the
+    # document FPR (2.8% -> 1.4%) for -1pt recall with the v37 model. 0 = previous behaviour.
+    reading_order_window_min_semantic: int = 95
+    # Segments with fewer words than this get their semantic score capped at semantic_tier_low unless a rule
+    # fires (short wrapped fragments are over-scored by the model). 0 disables.
+    min_semantic_words: int = 6
+    # Join consecutive cloaked lines (same page + cloaking signal) before scoring, so wrapped hidden text is
+    # judged as whole sentences instead of mid-sentence fragments.
+    merge_hidden_line_runs: bool = True
 
     # RAG heuristic ablation flag (default False)
     rag_pure_injection_block_enabled: bool = False

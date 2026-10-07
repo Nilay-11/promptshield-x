@@ -215,8 +215,13 @@ def test_pdf_extractor_metadata_honesty():
     extracted = extractor.extract(pdf_bytes, filename="test_meta.pdf")
     
     meta_segs = [s for s in extracted.segments if s.segment_type == "PDF_METADATA"]
-    assert len(meta_segs) == 1
-    m = meta_segs[0]
+    # Free-text metadata is always surfaced for classification; only the attack is flagged.
+    flagged = [s for s in meta_segs if s.cloaking_signal == "METADATA_SUSPICIOUS_CONTENT"]
+    unflagged = [s for s in meta_segs if s.cloaking_signal == "NONE"]
+    assert len(flagged) == 1
+    assert {s.content for s in unflagged} == {"Quarterly Operations Report", "Corporate Audit Team"}
+    assert all(s.metadata_anomaly_score == 0.0 and not s.threat_indicators for s in unflagged)
+    m = flagged[0]
     assert m.is_hidden is False
     assert m.confidence_penalty == 0.0
     assert m.cloaking_signal == "METADATA_SUSPICIOUS_CONTENT"

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PromptShield X Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/dashboard/static/css/ps.css">
+<style>
+  .layout { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 18px; padding: 18px 20px; min-height: calc(100vh - 61px); }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .nav { flex-direction: row; overflow-x: auto; } }
+  .nav { display: flex; flex-direction: column; gap: 6px; padding: 12px; align-self: start; position: sticky; top: 79px; }
+  .nav button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px; border-radius: 11px; border: 0; background: transparent;
+    color: var(--ink-2); font: 600 14px var(--font); cursor: pointer; transition: .2s; text-align: left; white-space: nowrap; }
+  .nav button:hover { background: var(--surface-2); color: var(--ink); }
+  .nav button.on { background: var(--surface-2); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
+  .nav .count { margin-left: auto; min-width: 22px; padding: 2px 7px; border-radius: 4px; font: 600 11px var(--mono); background: var(--review); color: #2a1700; text-align: center; }
+  .nav .count.zero { background: var(--surface-2); color: var(--ink-3); }
+  .view { display: none; } .view.on { display: block; animation: fadeIn .35s ease both; }
+  h2.title { font: 400 34px/1.1 var(--display); margin: 2px 0 18px; letter-spacing: -.3px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  h2.title .muted { font: 500 12px var(--mono) !important; letter-spacing: .6px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .stat { padding: 16px 18px; position: relative; overflow: hidden; }
+  .stat::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 2px; background: var(--c, var(--accent)); }
+  .stat .lbl { font: 500 11px var(--mono); color: var(--ink-3); letter-spacing: 1.3px; text-transform: uppercase; }
+  .stat .val { font: 500 38px/1.1 var(--mono); margin-top: 8px; letter-spacing: -1.5px; font-variant-numeric: tabular-nums; }
+  .stat .sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 14px; }
+  @media (max-width: 1150px) { .charts { grid-template-columns: 1fr; } }
+  .card { padding: 16px; } .card h4 { margin: 0 0 14px; font: 500 11px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.3px; }
+  .bars { display: grid; gap: 10px; }
+  .bar { display: grid; grid-template-columns: 130px 1fr 40px; gap: 10px; align-items: center; font-size: 12.5px; }
+  .bar b { font: 500 12.5px var(--mono); text-align: right; }
+  .bar .track { height: 8px; border-radius: 2px; background: var(--bg-2); overflow: hidden; border: 1px solid var(--line); }
+  .bar .fill { height: 100%; border-radius: 1px; width: 0; transition: width 1s var(--ease); }
+  .donut-wrap { display: flex; gap: 16px; align-items: center; }
+  .legend-list { display: grid; gap: 7px; font-size: 12.5px; }
+  .legend-list span.sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .toolbar input { flex: 1 1 220px; } .toolbar select { flex: 0 0 170px; }
+  .table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+  .table th { text-align: left; font: 500 10.5px var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-3); padding: 10px 12px; border-bottom: 1px solid var(--line-hi); position: sticky; top: 0; background: var(--surface); }
+  .table td:nth-child(1), .table td:nth-child(5) { font-family: var(--mono); font-size: 12.5px; }
+  .table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .table tr.row { cursor: pointer; transition: background .15s; }
+  .table tr.row:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  .table tr.row:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+  .table td.prompt { max-width: 420px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tablebox { max-height: calc(100vh - 230px); border-radius: var(--radius); }
+  .empty { padding: 50px 20px; text-align: center; color: var(--ink-3); }
+  .empty .big { font-size: 40px; margin-bottom: 8px; }
+
+  .queue { display: grid; gap: 14px; }
+  .qcard { padding: 16px; display: grid; gap: 12px; border-left: 4px solid var(--review); }
+  .qcard.BLOCK { border-left-color: var(--block); }
+  .qhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .qprompt { font: 14px/1.55 var(--mono); padding: 12px 14px; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line); white-space: pre-wrap; word-break: break-word; }
+  .qactions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .qactions input { flex: 1 1 220px; }
+
+  /* drawer */
+  .drawer-bg { position: fixed; inset: 0; background: rgba(5, 8, 16, .55); backdrop-filter: blur(3px); z-index: 60; opacity: 0; pointer-events: none; transition: .25s; }
+  .drawer-bg.show { opacity: 1; pointer-events: auto; }
+  .drawer { position: fixed; top: 0; right: 0; height: 100vh; width: min(720px, 100vw); z-index: 61; transform: translateX(105%); transition: transform .35s var(--ease);
+    background: var(--surface); border-left: 1px solid var(--line-hi); display: flex; flex-direction: column; box-shadow: -30px 0 80px -30px rgba(0, 0, 0, .6); }
+  .drawer.show { transform: none; }
+  .dhead { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+  .dbody { padding: 18px 20px; display: grid; gap: 18px; flex: 1; }
+  .dsec h5 { margin: 0 0 8px; font: 500 10.5px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.2px; }
+  .block { padding: 12px 14px; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line); font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+  .stages { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  @media (max-width: 700px) { .stages { grid-template-columns: repeat(2, 1fr); } }
+  .stg { padding: 10px 8px; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line); border-top: 2px solid var(--allow); text-align: center; font: 11px var(--mono); color: var(--ink-3); }
+  .stg b { display: block; font: 600 12px var(--font); color: var(--ink); margin-bottom: 3px; } .stg.warn { border-top-color: var(--review); } .stg.bad { border-top-color: var(--block); }
+  .finding { padding: 10px 12px; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--review); font-size: 12.5px; margin-bottom: 8px; }
+  .finding.BLOCK { border-left-color: var(--block); }
+  .finding .ft { font-family: var(--mono); font-size: 12px; margin-top: 5px; white-space: pre-wrap; word-break: break-word; }
+  .dfoot { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .dfoot input { flex: 1 1 240px; }
+
+  /* login */
+  .login { position: fixed; inset: 0; display: grid; place-items: center; z-index: 80; }
+  .login .box { width: min(420px, 92vw); padding: 30px; display: grid; gap: 14px; text-align: center; }
+  .login h1 { margin: 8px 0 0; font: 400 38px/1.05 var(--display); } .login p { margin: 0; color: var(--ink-2); font-size: 14px; }
+  .login .brand-logo svg { stroke: var(--accent-ink) !important; }
+  .warnbar { display: none; margin-bottom: 14px; padding: 10px 14px; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--review) 45%, transparent); border-left: 3px solid var(--review);
+    background: color-mix(in srgb, var(--review) 8%, transparent); font-size: 13px; }
+  .warnbar.show { display: block; }
+  .live { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-3); }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--allow); animation: blink 2s infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+</style>
+</head>
+<body>
+<div class="aurora"><span></span><span></span><span></span></div>
+<div class="grid-overlay"></div>
+
+<div class="login" id="login">
+  <div class="box glass fade-in">
+    <div class="brand-logo" style="width:56px;height:56px;margin:0 auto;border-radius:12px"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+    <h1>Admin <em style="color:var(--accent)">console</em></h1>
+    <p>Review held requests, verify blocked prompts and audit every decision.</p>
+    <label for="tokenIn" class="sr-only">Admin token</label>
+    <input type="password" id="tokenIn" placeholder="Admin token" autocomplete="current-password">
+    <button class="btn" id="loginBtn" style="justify-content:center">Sign in</button>
+    <span class="muted" style="font-size:12px">Token comes from the <span class="mono">PS_ADMIN_TOKEN</span> environment variable.</span>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2l8 3v6c0 5-3.5 9.3-8 11-4.5-1.7-8-6-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+    <span>PromptShield <em>X</em></span> <small>Admin console</small>
+  </div>
+  <div class="spacer"></div>
+  <span class="live"><i></i> Live · refreshes every 5 s</span>
+  <span class="pill" id="llmPill"><span class="dot"></span>LLM</span>
+  <nav class="mode-switch"><a href="/app">User</a><a href="/admin" class="on">Admin</a></nav>
+  <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle light or dark theme">◐</button>
+  <button class="icon-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">⎋</button>
+</header>
+
+<div class="layout">
+  <nav class="nav glass" aria-label="Admin sections">
+    <button data-v="overview" class="on">Overview</button>
+    <button data-v="queue">Review queue <span class="count zero" id="qCount">0</span></button>
+    <button data-v="blocked">Blocked <span class="count zero" id="bCount">0</span></button>
+    <button data-v="logs">All logs</button>
+  </nav>
+
+  <main>
+    <div class="warnbar" id="warnbar">⚠️ Using the default admin token <span class="mono">admin</span>. Set <span class="mono">PS_ADMIN_TOKEN</span> before deploying.</div>
+
+    <section class="view on" id="v-overview">
+      <h2 class="title">Security overview</h2>
+      <div class="stats">
+        <div class="stat glass" style="--c:var(--accent)"><div class="lbl">Total requests</div><div class="val" data-n="total">0</div><div class="sub">all time</div></div>
+        <div class="stat glass" style="--c:var(--allow)"><div class="lbl">Forwarded to LLM</div><div class="val" data-n="forwarded">0</div><div class="sub">allowed + rewritten + approved</div></div>
+        <div class="stat glass" style="--c:var(--block)"><div class="lbl">Blocked</div><div class="val" data-n="blocked">0</div><div class="sub" id="blockRate">-</div></div>
+        <div class="stat glass" style="--c:var(--review)"><div class="lbl">Awaiting review</div><div class="val" data-n="pending">0</div><div class="sub">needs a human</div></div>
+      </div>
+      <div class="charts">
+        <div class="card glass"><h4>Decisions</h4><div class="donut-wrap"><svg id="donut" width="140" height="140" viewBox="0 0 42 42"></svg><div class="legend-list" id="donutLegend"></div></div></div>
+        <div class="card glass"><h4>Attack types</h4><div class="bars" id="typeBars"></div></div>
+        <div class="card glass"><h4>Last 14 days</h4><svg id="trend" width="100%" height="150" viewBox="0 0 300 150" preserveAspectRatio="none"></svg><div class="legend-list" style="grid-auto-flow:column;justify-content:start;gap:16px;margin-top:8px"><span><span class="sw" style="background:var(--accent)"></span>requests</span><span><span class="sw" style="background:var(--block)"></span>blocked</span></div></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-queue">
+      <h2 class="title">Review queue <span class="muted" style="font-size:14px;font-weight:600">Held requests wait here for manual verification</span></h2>
+      <div class="queue" id="queue"></div>
+    </section>
+
+    <section class="view" id="v-blocked">
+      <h2 class="title">Blocked prompts <span class="muted" style="font-size:14px;font-weight:600">Open one to verify, override or confirm</span></h2>
+      <div class="glass scroll tablebox"><table class="table" id="blockedTable"></table></div>
+    </section>
+
+    <section class="view" id="v-logs">
+      <h2 class="title">All logs</h2>
+      <div class="toolbar">
+        <input type="search" id="q" placeholder="Search prompts and explanations…">
+        <select id="fDecision"><option value="">Any decision</option><option>ALLOW</option><option>REWRITE</option><option>REVIEW</option><option>BLOCK</option></select>
+        <select id="fStatus"><option value="">Any status</option><option value="forwarded">forwarded</option><option value="pending_review">pending review</option><option value="approved">approved</option><option value="rejected">rejected</option><option value="blocked">blocked</option><option value="llm_error">LLM error</option></select>
+        <select id="fType"><option value="">Any type</option><option>DIRECT</option><option>INDIRECT</option><option>JAILBREAK</option><option>PROMPT_EXTRACTION</option></select>
+      </div>
+      <div class="glass scroll tablebox"><table class="table" id="logTable"></table></div>
+    </section>
+  </main>
+</div>
+
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Request details"><div class="dhead" id="dhead"></div><div class="dbody scroll" id="dbody"></div><div class="dfoot" id="dfoot"></div></aside>
+<div class="toasts" id="toasts"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const COLORS = new Proxy({}, { get: (_, k) => css({ ALLOW: "--allow", REWRITE: "--rewrite", REVIEW: "--review", BLOCK: "--block" }[k]) });
+const TYPE_COLORS = new Proxy({}, { get: (_, k) => ({ DIRECT: css("--block"), INDIRECT: css("--review"), JAILBREAK: "#c58cff", PROMPT_EXTRACTION: css("--rewrite") }[k]) });
+const TYPE_LABEL = { DIRECT: "Direct injection", INDIRECT: "Indirect injection", JAILBREAK: "Jailbreak", PROMPT_EXTRACTION: "Prompt extraction" };
+let token = sessionStorage.getItem("ps_admin") || "", cache = {}, timer = null, lastPending = null;
+
+function toast(text, kind = "ok") { const t = document.createElement("div"); t.className = `toast ${kind}`; t.textContent = text; $("#toasts").appendChild(t); setTimeout(() => t.remove(), 4200); }
+function setTheme(t) { document.documentElement.dataset.theme = t; try { localStorage.setItem("ps_theme", t); } catch {} }
+try { const t = localStorage.getItem("ps_theme"); if (t) setTheme(t); } catch {}
+$("#themeBtn").onclick = () => setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, { ...opts, headers: { "X-Admin-Token": token, "Content-Type": "application/json", ...(opts.headers || {}) } });
+  if (res.status === 401) { logout(); throw new Error("Session expired"); }
+  if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
+  return res.json();
+}
+async function login() {
+  token = $("#tokenIn").value.trim();
+  try { await api("/api/admin/stats"); sessionStorage.setItem("ps_admin", token); $("#login").style.display = "none"; start(); }
+  catch { toast("Wrong admin token", "err"); $("#tokenIn").select(); }
+}
+function logout() { sessionStorage.removeItem("ps_admin"); token = ""; clearInterval(timer); $("#login").style.display = "grid"; }
+$("#loginBtn").onclick = login; $("#tokenIn").onkeydown = e => { if (e.key === "Enter") login(); };
+$("#logoutBtn").onclick = logout;
+
+$$(".nav button").forEach(b => b.onclick = () => { $$(".nav button").forEach(x => x.classList.remove("on")); b.classList.add("on");
+  $$(".view").forEach(v => v.classList.remove("on")); $(`#v-${b.dataset.v}`).classList.add("on"); refresh(); });
+
+function typeChip(t, tech) { if (!t) return '<span class="muted">-</span>'; return `<span class="chip type-${esc(t)}">${esc(TYPE_LABEL[t] || t)}${t === "INDIRECT" && tech ? " · " + esc(tech.replace("_", " ").toLowerCase()) : ""}</span>`; }
+function ago(iso) { const s = (Date.now() - new Date(iso)) / 1000; if (s < 60) return `${s | 0}s ago`; if (s < 3600) return `${(s / 60) | 0}m ago`; if (s < 86400) return `${(s / 3600) | 0}h ago`; return new Date(iso).toLocaleDateString(); }
+function countUp(el, to) { const from = +el.textContent || 0, t0 = performance.now(); const step = now => { const k = Math.min(1, (now - t0) / 700); el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+
+// ---------- overview ----------
+function renderStats(s) {
+  const st = s.by_status || {}, dec = s.by_decision || {};
+  const vals = { total: s.total, forwarded: (st.forwarded || 0) + (st.approved || 0), blocked: (st.blocked || 0) + (st.rejected || 0), pending: st.pending_review || 0 };
+  $$("[data-n]").forEach(el => countUp(el, vals[el.dataset.n] || 0));
+  $("#blockRate").textContent = s.total ? `${((vals.blocked / s.total) * 100).toFixed(1)}% of requests` : "-";
+  $("#warnbar").classList.toggle("show", !!s.default_token);
+  $("#llmPill").innerHTML = `<span class="dot"></span>LLM: ${esc(s.llm.provider)} · ${esc(s.llm.model)} · policy ${esc(s.policy)}`;
+  setCount("#qCount", vals.pending); setCount("#bCount", st.blocked || 0);
+  if (lastPending !== null && vals.pending > lastPending) toast(`${vals.pending - lastPending} new request(s) need review`, "warn");
+  lastPending = vals.pending;
+  // donut
+  const order = ["ALLOW", "REWRITE", "REVIEW", "BLOCK"], tot = order.reduce((a, k) => a + (dec[k] || 0), 0) || 1;
+  let off = 25, arcs = '<circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(130,150,210,.14)" stroke-width="6"/>';
+  order.forEach(k => { const pct = ((dec[k] || 0) / tot) * 100; if (pct > 0) { arcs += `<circle cx="21" cy="21" r="15.9" fill="none" stroke="${COLORS[k]}" stroke-width="6" stroke-dasharray="${pct} ${100 - pct}" stroke-dashoffset="${off}" style="transition:stroke-dasharray 1s"/>`; off -= pct; } });
+  arcs += `<text x="21" y="22.8" text-anchor="middle" font-size="7.5" font-family="IBM Plex Mono, monospace" fill="currentColor">${s.total}</text><text x="21" y="28" text-anchor="middle" font-size="2.4" font-family="IBM Plex Mono, monospace" letter-spacing=".3" fill="currentColor" opacity=".55">REQUESTS</text>`;
+  $("#donut").innerHTML = arcs;
+  $("#donutLegend").innerHTML = order.map(k => `<div><span class="sw" style="background:${COLORS[k]}"></span>${k} <b style="margin-left:6px">${dec[k] || 0}</b></div>`).join("");
+  // types
+  const types = s.by_attack_type || {}, keys = Object.keys(TYPE_LABEL), mx = Math.max(1, ...keys.map(k => types[k] || 0));
+  $("#typeBars").innerHTML = keys.map(k => `<div class="bar"><span>${TYPE_LABEL[k]}</span><div class="track"><div class="fill" style="background:${TYPE_COLORS[k]}" data-w="${((types[k] || 0) / mx) * 100}"></div></div><b>${types[k] || 0}</b></div>`).join("");
+  requestAnimationFrame(() => $$("#typeBars .fill").forEach(f => f.style.width = f.dataset.w + "%"));
+  // trend
+  let d = s.daily || [];
+  if (d.length === 1) d = [d[0], d[0]];  // a single day draws as a flat line, not a wedge
+  if (!d.length) { $("#trend").innerHTML = '<text x="150" y="80" text-anchor="middle" fill="currentColor" opacity=".5" font-size="12">No data yet</text>'; return; }
+  const m = Math.max(1, ...d.map(x => x.total)), W = 300, H = 140, step = d.length > 1 ? W / (d.length - 1) : W;
+  const pts = key => d.map((x, i) => `${(i * step).toFixed(1)},${(H - (x[key] / m) * (H - 14) + 4).toFixed(1)}`).join(" ");
+  $("#trend").innerHTML = `<defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${css("--accent")}" stop-opacity=".28"/><stop offset="1" stop-color="${css("--accent")}" stop-opacity="0"/></linearGradient></defs>
+    <polygon points="0,${H + 4} ${pts("total")} ${W},${H + 4}" fill="url(#g1)"/>
+    <polyline points="${pts("total")}" fill="none" stroke="${css("--accent")}" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <polyline points="${pts("blocked")}" fill="none" stroke="${css("--block")}" stroke-width="2" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>`;
+}
+function setCount(sel, n) { const el = $(sel); el.textContent = n; el.classList.toggle("zero", !n); }
+
+// ---------- tables / queue ----------
+function rows(items) {
+  if (!items.length) return `<tr><td colspan="7"><div class="empty"><div class="big">✨</div>Nothing here yet.</div></td></tr>`;
+  return `<thead><tr><th>When</th><th>User</th><th>Prompt</th><th>Type</th><th>P(attack)</th><th>Decision</th><th>Status</th></tr></thead><tbody>` + items.map(r => `
+    <tr class="row" tabindex="0" data-id="${esc(r.id)}"><td class="muted">${new Date(r.created_at).toLocaleString([], { dateStyle: "short", timeStyle: "short" })}</td><td>${esc(r.user_id)}</td>
+    <td class="prompt">${(r.attachments || []).length ? "📎 " : ""}${esc(r.prompt || "(attachment only)")}</td><td>${typeChip(r.attack_type, r.technique)}</td>
+    <td><b>${r.risk_score}</b></td><td><span class="badge ${esc(r.decision)}">${esc(r.decision)}</span></td><td><span class="badge ${esc(r.status)}">${esc(r.status.replace("_", " "))}</span></td></tr>`).join("") + "</tbody>";
+}
+function setIfChanged(sel, html) {
+  // Re-render only when data changed, so clicks, focus and half-typed review notes survive the 5 s refresh.
+  const el = $(sel); if (el.dataset.sig === html) return false; el.dataset.sig = html; el.innerHTML = html; return true;
+}
+function bindRows(sel) { $$(`${sel} tr.row`).forEach(tr => { tr.onclick = () => openDrawer(tr.dataset.id); tr.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openDrawer(tr.dataset.id); } }; }); }
+function renderQueue(items) {
+  const html = items.length ? items.map(r => `
+    <div class="qcard glass ${esc(r.decision)} fade-in">
+      <div class="qhead"><span class="badge REVIEW">Review</span>${typeChip(r.attack_type, r.technique)}<span class="chip">P(attack) ${r.risk_score}%</span><span class="muted" style="font-size:12px">${esc(r.user_id)} · ${new Date(r.created_at).toLocaleTimeString()}</span><span class="spacer"></span><button class="btn ghost sm" data-open="${esc(r.id)}">Details</button></div>
+      <div class="qprompt">${esc(r.prompt || "(attachment only)")}</div>
+      <div class="muted" style="font-size:13px">${esc(r.explanation)}</div>
+      <div class="qactions"><input type="text" placeholder="Note for the audit log (optional)" id="note-${esc(r.id)}">
+        <button class="btn allow sm" data-approve="${esc(r.id)}">✓ Approve & forward</button><button class="btn block sm" data-reject="${esc(r.id)}">✕ Reject</button></div>
+    </div>`).join("") : `<div class="glass empty"><div class="big">🎉</div>The queue is empty. Nothing is waiting for review.</div>`;
+  if (!setIfChanged("#queue", html)) return;
+  $$("[data-open]").forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+  $$("[data-approve]").forEach(b => b.onclick = () => decide(b.dataset.approve, true, $(`#note-${b.dataset.approve}`).value));
+  $$("[data-reject]").forEach(b => b.onclick = () => decide(b.dataset.reject, false, $(`#note-${b.dataset.reject}`).value));
+}
+async function decide(id, approve, note) {
+  try {
+    const r = await api(`/api/admin/requests/${id}/${approve ? "approve" : "reject"}`, { method: "POST", body: JSON.stringify({ note: note || "" }) });
+    toast(approve ? (r.status === "llm_error" ? "Approved, but the LLM call failed" : "Approved and forwarded to the LLM") : "Rejected", approve ? "ok" : "err");
+    closeDrawer(); refresh();
+  } catch (e) { toast(e.message, "err"); }
+}
+
+// ---------- drawer ----------
+async function openDrawer(id) {
+  let r; try { r = await api(`/api/admin/requests/${id}`); } catch (e) { return toast(e.message, "err"); }
+  const p = r.pipeline || {}, f = (p.explanation || {}).findings || [], tm = p.timings_ms || {};
+  const bad = r.decision === "BLOCK", warn = r.decision === "REVIEW" || r.decision === "REWRITE";
+  const stageNames = ["extraction", "normalization", "detection", "classification", "risk", "action", "explanation"];
+  $("#dhead").innerHTML = `<span class="badge ${esc(r.decision)}">${esc(r.decision)}</span><span class="badge ${esc(r.status)}">${esc(r.status.replace("_", " "))}</span>${typeChip(r.attack_type, r.technique)}<span class="spacer"></span><span class="muted mono" style="font-size:12px">${esc(r.id)}</span><button class="icon-btn" id="dclose">✕</button>`;
+  $("#dbody").innerHTML = `
+    <div class="dsec"><h5>Prompt from ${esc(r.user_id)} · ${new Date(r.created_at).toLocaleString()}</h5><div class="block">${esc(r.prompt || "(attachment only)")}</div></div>
+    ${(r.attachments || []).length ? `<div class="dsec"><h5>Attachments</h5>${r.attachments.map(a => `<span class="chip" style="margin-right:6px">📄 ${esc(a.name)} · ${esc(a.modality)}</span>`).join("")}</div>` : ""}
+    <div class="dsec"><h5>Pipeline</h5><div class="stages">${stageNames.map(k => `<div class="stg ${["detection", "classification", "risk", "action"].includes(k) ? (bad ? "bad" : warn ? "warn" : "") : ""}"><b>${k[0].toUpperCase() + k.slice(1)}</b>${tm[k] != null ? tm[k] + " ms" : "-"}</div>`).join("")}</div></div>
+    <div class="dsec"><h5>P(attack) ${r.risk_score}% · ${esc((p.risk || {}).meaning || "")}</h5><div class="block">${esc(r.explanation)}</div></div>
+    <div class="dsec"><h5>Detection</h5><div class="block mono" style="font-size:12px">rules: ${esc(((p.detection || {}).prompt || {}).patterns?.join(", ") || "none")}
+model p(injection): ${((p.detection || {}).prompt || {}).p_inj ?? "-"}
+normalization: ${esc((p.normalization || {}).modified ? (p.normalization.anomalies || []).join(", ") : "no changes")}</div></div>
+    ${f.length ? `<div class="dsec"><h5>Findings in attachments (${f.length})</h5>${f.map(x => `<div class="finding ${esc(x.decision)}"><b>${esc(x.source)}</b> · ${esc(x.modality)} · ${esc(x.location)} ${x.hidden ? '<span class="chip">hidden</span>' : ""} ${typeChip(x.attack_type, x.technique)} <span class="chip">risk ${x.risk}</span><div class="muted" style="margin-top:4px">${esc(x.reason)}</div><div class="ft">${esc(x.text)}</div></div>`).join("")}</div>` : ""}
+    ${r.forwarded_prompt && r.forwarded_prompt !== r.prompt ? `<div class="dsec"><h5>Prompt sent to the LLM (rewritten)</h5><div class="block">${esc(r.forwarded_prompt)}</div></div>` : ""}
+    ${r.llm_response ? `<div class="dsec"><h5>LLM response · ${esc((r.llm_meta || {}).provider)} · ${esc((r.llm_meta || {}).model)} · ${(r.llm_meta || {}).latency_ms} ms</h5><div class="block">${esc(r.llm_response)}</div></div>` : ""}
+    ${r.reviewed_by ? `<div class="dsec"><h5>Manual verification</h5><div class="block">${esc(r.status)} by ${esc(r.reviewed_by)} · ${new Date(r.reviewed_at).toLocaleString()}${r.review_note ? "\nNote: " + esc(r.review_note) : ""}</div></div>` : ""}`;
+  const canAct = ["pending_review", "blocked"].includes(r.status);
+  $("#dfoot").innerHTML = canAct ? `<input type="text" id="dnote" placeholder="Verification note (saved to the audit log)">
+    <button class="btn allow sm" id="dapprove">✓ ${r.status === "blocked" ? "Override & forward" : "Approve & forward"}</button>
+    <button class="btn block sm" id="dreject">✕ ${r.status === "blocked" ? "Confirm block" : "Reject"}</button>` : `<span class="muted" style="font-size:13px">No action needed: this request is ${esc(r.status.replace("_", " "))}.</span>`;
+  $("#dclose").onclick = closeDrawer;
+  if (canAct) { $("#dapprove").onclick = () => decide(r.id, true, $("#dnote").value); $("#dreject").onclick = () => decide(r.id, false, $("#dnote").value); }
+  $("#drawer").classList.add("show"); $("#drawerBg").classList.add("show");
+}
+function closeDrawer() { $("#drawer").classList.remove("show"); $("#drawerBg").classList.remove("show"); }
+$("#drawerBg").onclick = closeDrawer; document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+// ---------- refresh loop ----------
+let qTimer;
+["#q", "#fDecision", "#fStatus", "#fType"].forEach(s => $(s).addEventListener("input", () => { clearTimeout(qTimer); qTimer = setTimeout(refresh, 250); }));
+async function refresh() {
+  if (!token) return;
+  try {
+    renderStats(await api("/api/admin/stats"));
+    const view = $(".nav button.on").dataset.v;
+    if (view === "queue") renderQueue((await api("/api/admin/requests?status=pending_review")).items);
+    if (view === "blocked") { if (setIfChanged("#blockedTable", rows((await api("/api/admin/requests?status=blocked")).items))) bindRows("#blockedTable"); }
+    if (view === "logs") {
+      const qs = new URLSearchParams({ q: $("#q").value, decision: $("#fDecision").value, status: $("#fStatus").value, attack_type: $("#fType").value });
+      [...qs.keys()].forEach(k => { if (!qs.get(k)) qs.delete(k); });
+      if (setIfChanged("#logTable", rows((await api(`/api/admin/requests?${qs}`)).items))) bindRows("#logTable");
+    }
+  } catch (e) { console.warn(e); }
+}
+function start() { refresh(); clearInterval(timer); timer = setInterval(refresh, 5000); }
+if (token) api("/api/admin/stats").then(() => { $("#login").style.display = "none"; start(); }).catch(logout);
+</script>
+</body>
+</html>

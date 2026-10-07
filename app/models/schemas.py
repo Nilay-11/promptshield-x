@@ -20,6 +20,10 @@ class AnalyzeResponse(BaseModel):
     ]
     details: str
     rewritten_prompt: Optional[str] = None
+    # Attack type (only when the input is flagged): DIRECT / INDIRECT / JAILBREAK / PROMPT_EXTRACTION
+    attack_type: Optional[str] = None
+    technique: Optional[str] = None  # DIRECT / JAILBREAK / PROMPT_EXTRACTION from the type classifier
+    type_confidence: Optional[float] = None
 
 
 # --- Added for /analyze-rag (Person B — minimal RAG path) ---
@@ -38,6 +42,10 @@ class ChunkRiskResult(BaseModel):
     action: Literal["PASS", "REWRITE", "BLOCK"]
     pattern_matches: list[str]  # rule ids from pattern_scanner, e.g. ["ignore_instructions_v1"]
     classifier_confidence: float
+    # Attack type (only when the input is flagged): DIRECT / INDIRECT / JAILBREAK / PROMPT_EXTRACTION
+    attack_type: Optional[str] = None
+    technique: Optional[str] = None  # DIRECT / JAILBREAK / PROMPT_EXTRACTION from the type classifier
+    type_confidence: Optional[float] = None
 
 
 class AnalyzeRagResponse(BaseModel):

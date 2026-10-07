@@ -1,0 +1,347 @@
+{
+  "seed": 42,
+  "removed": {
+    "final/dup_earlier_split": 61,
+    "final/dup_within": 27,
+    "final/near_dup_earlier_split": 108,
+    "test/dup_earlier_split": 8,
+    "test/dup_within": 2,
+    "test/near_dup_earlier_split": 116,
+    "train/dup_within": 9,
+    "val/dup_earlier_split": 4,
+    "val/near_dup_earlier_split": 113
+  },
+  "train_v36": {
+    "rows": 12846,
+    "unique": 12846,
+    "groups": 10587,
+    "by_source": {
+      "arxiv_meta_train": {
+        "benign": 848,
+        "injection": 336
+      },
+      "arxiv_meta_train_augmented": {
+        "benign": 168,
+        "injection": 53
+      },
+      "arxiv_train": {
+        "benign": 844,
+        "injection": 356
+      },
+      "arxiv_train_augmented": {
+        "benign": 165,
+        "injection": 61
+      },
+      "awesome_prompts_train": {
+        "benign": 1407,
+        "injection": 0
+      },
+      "awesome_prompts_train_augmented": {
+        "benign": 294,
+        "injection": 0
+      },
+      "bipia_code_train": {
+        "benign": 40,
+        "injection": 40
+      },
+      "bipia_code_train_augmented": {
+        "benign": 12,
+        "injection": 12
+      },
+      "bipia_email_train": {
+        "benign": 36,
+        "injection": 36
+      },
+      "bipia_email_train_augmented": {
+        "benign": 8,
+        "injection": 9
+      },
+      "bipia_table_train": {
+        "benign": 51,
+        "injection": 51
+      },
+      "bipia_table_train_augmented": {
+        "benign": 5,
+        "injection": 10
+      },
+      "deepset_train": {
+        "benign": 286,
+        "injection": 175
+      },
+      "deepset_train_augmented": {
+        "benign": 49,
+        "injection": 29
+      },
+      "dolly_train": {
+        "benign": 1000,
+        "injection": 0
+      },
+      "dolly_train_augmented": {
+        "benign": 201,
+        "injection": 0
+      },
+      "enron_email_train": {
+        "benign": 838,
+        "injection": 362
+      },
+      "enron_email_train_augmented": {
+        "benign": 184,
+        "injection": 71
+      },
+      "gandalf_train": {
+        "benign": 0,
+        "injection": 300
+      },
+      "gandalf_train_augmented": {
+        "benign": 0,
+        "injection": 62
+      },
+      "ledgar_train": {
+        "benign": 847,
+        "injection": 352
+      },
+      "ledgar_train_augmented": {
+        "benign": 183,
+        "injection": 79
+      },
+      "rubend18_jailbreak": {
+        "benign": 0,
+        "injection": 78
+      },
+      "rubend18_jailbreak_augmented": {
+        "benign": 0,
+        "injection": 16
+      },
+      "tensor_trust_train": {
+        "benign": 0,
+        "injection": 632
+      },
+      "tensor_trust_train_augmented": {
+        "benign": 0,
+        "injection": 131
+      },
+      "unfair_tos_train": {
+        "benign": 406,
+        "injection": 194
+      },
+      "unfair_tos_train_augmented": {
+        "benign": 74,
+        "injection": 36
+      },
+      "wikipedia_train": {
+        "benign": 848,
+        "injection": 352
+      },
+      "wikipedia_train_augmented": {
+        "benign": 153,
+        "injection": 66
+      }
+    }
+  },
+  "val_v36": {
+    "rows": 2668,
+    "unique": 2668,
+    "groups": 2585,
+    "by_source": {
+      "arxiv_meta_val": {
+        "benign": 194,
+        "injection": 102
+      },
+      "arxiv_val": {
+        "benign": 224,
+        "injection": 76
+      },
+      "awesome_prompts_val": {
+        "benign": 316,
+        "injection": 0
+      },
+      "bipia_code_val": {
+        "benign": 5,
+        "injection": 5
+      },
+      "bipia_email_val": {
+        "benign": 2,
+        "injection": 4
+      },
+      "bipia_table_val": {
+        "benign": 16,
+        "injection": 16
+      },
+      "deepset_val": {
+        "benign": 52,
+        "injection": 17
+      },
+      "dolly_val": {
+        "benign": 250,
+        "injection": 0
+      },
+      "enron_email_val": {
+        "benign": 210,
+        "injection": 87
+      },
+      "gandalf_val": {
+        "benign": 0,
+        "injection": 111
+      },
+      "ledgar_val": {
+        "benign": 178,
+        "injection": 102
+      },
+      "long_benign_doc_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "long_buried_attack_val": {
+        "benign": 0,
+        "injection": 60
+      },
+      "padded_benign_instruction_val": {
+        "benign": 60,
+        "injection": 0
+      },
+      "tensor_trust_val": {
+        "benign": 0,
+        "injection": 71
+      },
+      "unfair_tos_val": {
+        "benign": 104,
+        "injection": 46
+      },
+      "wikipedia_val": {
+        "benign": 213,
+        "injection": 87
+      }
+    }
+  },
+  "heldout_test_v36": {
+    "rows": 3669,
+    "unique": 3669,
+    "groups": 3544,
+    "by_source": {
+      "arxiv_meta_test": {
+        "benign": 323,
+        "injection": 170
+      },
+      "arxiv_test": {
+        "benign": 293,
+        "injection": 107
+      },
+      "awesome_prompts_test": {
+        "benign": 429,
+        "injection": 0
+      },
+      "bipia_code_test": {
+        "benign": 5,
+        "injection": 6
+      },
+      "bipia_email_test": {
+        "benign": 3,
+        "injection": 5
+      },
+      "bipia_table_test": {
+        "benign": 17,
+        "injection": 17
+      },
+      "deepset_test": {
+        "benign": 56,
+        "injection": 54
+      },
+      "dolly_test": {
+        "benign": 347,
+        "injection": 0
+      },
+      "enron_email_test": {
+        "benign": 268,
+        "injection": 125
+      },
+      "gandalf_test": {
+        "benign": 0,
+        "injection": 112
+      },
+      "ledgar_test": {
+        "benign": 249,
+        "injection": 126
+      },
+      "long_benign_doc_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "long_buried_attack_test": {
+        "benign": 0,
+        "injection": 100
+      },
+      "padded_benign_instruction_test": {
+        "benign": 100,
+        "injection": 0
+      },
+      "tensor_trust_test": {
+        "benign": 0,
+        "injection": 58
+      },
+      "unfair_tos_test": {
+        "benign": 148,
+        "injection": 51
+      },
+      "wikipedia_test": {
+        "benign": 282,
+        "injection": 118
+      }
+    }
+  },
+  "final_test_v36": {
+    "rows": 4802,
+    "unique": 4802,
+    "groups": 3660,
+    "by_source": {
+      "bbc_news_final": {
+        "benign": 413,
+        "injection": 187
+      },
+      "injecagent_dh": {
+        "benign": 0,
+        "injection": 510
+      },
+      "injecagent_ds": {
+        "benign": 0,
+        "injection": 544
+      },
+      "jackhhao": {
+        "benign": 637,
+        "injection": 486
+      },
+      "llmail_attack_api_triggered": {
+        "benign": 0,
+        "injection": 492
+      },
+      "llmail_attack_judge_labeled": {
+        "benign": 0,
+        "injection": 496
+      },
+      "llmail_benign_email": {
+        "benign": 237,
+        "injection": 0
+      },
+      "llmail_context_attacked": {
+        "benign": 0,
+        "injection": 150
+      },
+      "llmail_context_benign": {
+        "benign": 150,
+        "injection": 0
+      },
+      "no_robots": {
+        "benign": 500,
+        "injection": 0
+      }
+    }
+  },
+  "cross_split_label_conflicts": 0,
+  "ambiguous_rows": {
+    "standalone_persona_labeled_injection": 5,
+    "context_dependent_standalone": 125
+  },
+  "format_suite_v36_heldout": 2000,
+  "format_suite_v36_final": 1200,
+  "format_suite_v36_val": 4000,
+  "diagnostic_templates": 24
+}

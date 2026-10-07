@@ -1,0 +1,23 @@
+{
+  "final_test_v38": {
+    "rows": 703,
+    "unique": 702,
+    "groups": 368,
+    "by_source": {
+      "govreport_benign": {
+        "benign": 300,
+        "injection": 0
+      },
+      "govreport_satml_attacked": {
+        "benign": 0,
+        "injection": 300
+      },
+      "satml_attack_standalone": {
+        "benign": 0,
+        "injection": 103
+      }
+    }
+  },
+  "satml_attacks": 103,
+  "format_suite_v38_final": 1200
+}

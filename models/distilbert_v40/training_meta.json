@@ -1,0 +1,52 @@
+{
+  "version": "3.40.0",
+  "dataset": "train_v40 / val_v40",
+  "label_smoothing": 0.05,
+  "architecture": "distilbert-base-uncased",
+  "max_length": 512,
+  "best_seed": 42,
+  "seeds": {
+    "42": {
+      "loss": 0.14999231982525915,
+      "auroc": 0.9846453211966605,
+      "tau_fpr1": 0.9546484218368531,
+      "recall_at_fpr1": 0.859065934065934,
+      "tau_fpr5": 0.05155918536877632,
+      "recall_at_fpr5": 0.9593406593406594
+    }
+  },
+  "summary": {
+    "loss": {
+      "mean": 0.14999231982525915,
+      "std": 0.0
+    },
+    "auroc": {
+      "mean": 0.9846453211966605,
+      "std": 0.0
+    },
+    "tau_fpr1": {
+      "mean": 0.9546484218368531,
+      "std": 0.0
+    },
+    "recall_at_fpr1": {
+      "mean": 0.859065934065934,
+      "std": 0.0
+    },
+    "tau_fpr5": {
+      "mean": 0.05155918536877632,
+      "std": 0.0
+    },
+    "recall_at_fpr5": {
+      "mean": 0.9593406593406594,
+      "std": 0.0
+    }
+  },
+  "validation_metrics": {
+    "loss": 0.14999231982525915,
+    "auroc": 0.9846453211966605,
+    "tau_fpr1": 0.9546484218368531,
+    "recall_at_fpr1": 0.859065934065934,
+    "tau_fpr5": 0.05155918536877632,
+    "recall_at_fpr5": 0.9593406593406594
+  }
+}

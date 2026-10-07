@@ -19,6 +19,7 @@ NOTE: semantic_classifier is a zero-shot HF pipeline (~0.5-1.5s/call on CPU).
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import HTMLResponse
 
+import json
 import os
 from app.models.schemas import (
     AnalyzeRequest,
@@ -26,12 +27,13 @@ from app.models.schemas import (
     AnalyzeRagResponse,
     ChunkRiskResult,
 )
-from app.modules.sanitizer import sanitize
+from app.modules.sanitizer import extract_hidden, sanitize
 from app.modules.pattern_scanner import scan_prompt
 from app.modules.semantic_classifier import classify_prompt
 from app.core.risk_engine import compute_risk_score
 from app.core.action_engine import apply_action
 from app.core.init_db import log_audit
+from app.modules.attack_type import classify_attack_type
 
 router = APIRouter()
 
@@ -39,9 +41,11 @@ router = APIRouter()
 @router.post("/analyze", response_model=AnalyzeResponse)
 def analyze_prompt(payload: AnalyzeRequest):
     clean_prompt = sanitize(payload.prompt)
+    # scan hidden markup the sanitizer strips (HTML comments, display:none ...) as well as the visible text
+    scan_text = " ".join([clean_prompt] + extract_hidden(payload.prompt))
 
-    pattern_result = scan_prompt(clean_prompt)
-    classification = classify_prompt(clean_prompt)
+    pattern_result = scan_prompt(scan_text)
+    classification = classify_prompt(scan_text)
     scored = compute_risk_score(pattern_result["severity"], classification)
 
     action = scored["action"]
@@ -75,12 +79,14 @@ def analyze_prompt(payload: AnalyzeRequest):
     except Exception as e:
         print(f"Failed to log audit entry: {e}")
 
+    typed = classify_attack_type(clean_prompt, "user") if scored["action"] != "PASS" else {}
     return AnalyzeResponse(
         action=scored["action"],
         risk_score=scored["risk_score"],
         category=scored["category"],
         details=details,
         rewritten_prompt=outcome["prompt"] if scored["action"] == "REWRITE" else None,
+        **typed,
     )
 
 
@@ -97,9 +103,10 @@ def analyze_rag_context(payload: AnalyzeRequest):
     chunk_results: list[ChunkRiskResult] = []
     for i, chunk in enumerate(chunks):
         clean_chunk = sanitize(chunk)
+        scan_text = " ".join([clean_chunk] + extract_hidden(chunk))
 
-        pattern_result = scan_prompt(clean_chunk)
-        classification = classify_prompt(clean_chunk)
+        pattern_result = scan_prompt(scan_text)
+        classification = classify_prompt(scan_text, role="document")
         scored = compute_risk_score(pattern_result["severity"], classification)
 
         chunk_action = scored["action"]
@@ -120,6 +127,7 @@ def analyze_rag_context(payload: AnalyzeRequest):
                 action=chunk_action,
                 pattern_matches=[m["id"] for m in pattern_result["matches"]],
                 classifier_confidence=classification["confidence"],
+                **(classify_attack_type(clean_chunk, "rag") if chunk_action != "PASS" else {}),
             )
         )
 
@@ -274,4 +282,54 @@ def get_dashboard():
         return HTMLResponse("<h1>Dashboard HTML template not found.</h1>", status_code=404)
     with open(template_path, "r", encoding="utf-8") as f:
         html_content = f.read()
-    return HTMLResponse(content=html_content)
+    return HTMLResponse(content=html_content)
+
+@router.get("/demo", response_class=HTMLResponse)
+def get_demo():
+    """Demo page: upload your own PDF, test prompts / RAG chunks, and view unseen-data results."""
+    template_path = os.path.join("dashboard", "templates", "demo.html")
+    if not os.path.exists(template_path):
+        return HTMLResponse("<h1>Demo template not found.</h1>", status_code=404)
+    with open(template_path, "r", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read())
+
+
+# Final tests run ONCE on sources never used for training or tuning (see eval/DATASETS.md).
+# Each entry: (results file, scorer key, slice, operating point, label shown in the demo).
+_UNSEEN_RESULTS = [
+    ("v37_eval_final.json", "distilbert:models/distilbert_v37", "ALL", "at_val_fpr1",
+     "AgentDojo agent tool outputs + PubMed abstracts", "v37 (app model)"),
+    ("v38_eval_final.json", "distilbert:models/distilbert_v37", "ALL", "at_val_fpr1",
+     "SaTML CTF attacks hidden in US government reports", "v37 (app model)"),
+    ("v40_eval_final.json", "distilbert:models/distilbert_v40", "source:rag_chunk_attacked_gentel_cnn_final", "at_val_fpr5",
+     "GenTelBench attacks hidden in CNN/DailyMail RAG chunks", "v40 (RAG research model)"),
+]
+
+
+@router.get("/api/eval-summary")
+def eval_summary():
+    """Recall / false-positive rate of the one-time final tests on unseen data, read from eval/results."""
+    out = []
+    for fname, scorer, sl, op, label, model in _UNSEEN_RESULTS:
+        path = os.path.join("eval", "results", fname)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                slices = json.load(f)["scorers"][scorer]["slices"]
+            rec = slices[sl][op].get("recall")
+            # FPR: the benign rows of the same test (for chunk slices use the matching clean chunks)
+            fpr_slice = sl.replace("attacked", "clean") if "attacked" in sl else sl
+            fpr = slices.get(fpr_slice, {}).get(op, {}).get("fpr")
+            out.append({"test": label, "model": model, "recall": rec, "fpr": fpr,
+                        "auroc": slices["ALL"].get("auroc")})
+        except Exception as e:
+            out.append({"test": label, "model": model, "error": str(e)})
+    pipe = os.path.join("eval", "results", "format_suite_v38_final_results.json")
+    if os.path.exists(pipe):
+        with open(pipe, "r", encoding="utf-8") as f:
+            r = json.load(f)["scorers"]["production_document_scanner"]["results"]["val_fpr5"]["ALL"]
+        out.append({"test": "Full app pipeline on rendered PDFs/HTML (SaTML in GAO reports)",
+                    "model": "v37 + PDF forensics", "recall": r.get("recall"), "fpr": r.get("fpr"), "auroc": None})
+    return {"status": "ok", "results": out,
+            "note": "Each final test was run once, on sources never used for training or threshold tuning."}

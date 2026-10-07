@@ -160,7 +160,7 @@ def classify_prompt_local_fallback(text: str) -> dict:
     }
 
 
-def classify_prompt(text: str) -> dict:
+def classify_prompt(text: str, role: str = "prompt") -> dict:
     """
     Returns:
         {
@@ -179,7 +179,7 @@ def classify_prompt(text: str) -> dict:
     try:
         from app.modules.distilbert_classifier import classify_prompt_distilbert, MODEL_DIR
         if MODEL_DIR.exists() and (MODEL_DIR / "config.json").exists():
-            distil_res = classify_prompt_distilbert(text)
+            distil_res = classify_prompt_distilbert(text, role=role)
             if distil_res and distil_res.get("source") in ["distilbert_local", "rules_engine", "skipped_non_prose"]:
                 return {
                     "category": distil_res.get("legacy_category", "safe"),
