@@ -27,6 +27,14 @@ data/datasets/*
 # fine-tuned model weights pulled from Colab (large binary files)
 app/modules/weights/*
 !app/modules/weights/.gitkeep
+# production models are committed through Git LFS (see .gitattributes); old/backup models stay local
+!app/modules/weights/distilbert/
+!app/modules/weights/distilbert_prompt/
+!app/modules/weights/type_classifier/
+!app/modules/weights/risk_calibrator.json
+!app/modules/weights/manifest.json
+!app/modules/weights/isolation_forest.pkl
+!app/modules/weights/**/*.safetensors
 
 # raw downloads used by eval/build_dataset_v36.py (re-downloadable)
 eval/data/raw/
