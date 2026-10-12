@@ -66,7 +66,29 @@ class SpreadsheetExtractor(BaseExtractor):
         # 1. Structural inspection via OpenPyXL
         try:
             wb = openpyxl.load_workbook(filename=io.BytesIO(data), data_only=False, read_only=False)
-            
+
+            # Named ranges / defined names: their names and values are free text an attacker can fill
+            try:
+                defined = list(wb.defined_names.items()) if hasattr(wb.defined_names, "items") else \
+                    [(d.name, d) for d in getattr(wb.defined_names, "definedName", [])]
+                for name, dn in defined:
+                    value = str(getattr(dn, "attr_text", "") or getattr(dn, "value", "") or "").strip()
+                    text = f"{name} {value}".strip()
+                    if len(text) > 3:
+                        threats, penalty = self._get_threats(value)
+                        result.segments.append(
+                            ExtractedSegment(
+                                content=text,
+                                source_type=SourceType.SPREADSHEET,
+                                location={"element": "defined_name", "name": name},
+                                is_hidden=True,  # never shown in the grid
+                                threat_indicators=threats + [ThreatCategory.HIDDEN_TEXT],
+                                confidence_penalty=penalty,
+                            )
+                        )
+            except Exception as e:
+                result.extraction_warnings.append(f"Defined-name inspection error: {str(e)}")
+
             for sheetname in wb.sheetnames:
                 ws = wb[sheetname]
                 is_sheet_hidden = ws.sheet_state != "visible"
@@ -122,6 +144,24 @@ class SpreadsheetExtractor(BaseExtractor):
                                 )
                             )
                             
+                        # Plain cell text (includes header rows and hidden sheets/rows/columns)
+                        if cell.data_type == 's' and cell.value is not None and str(cell.value).strip():
+                            v = str(cell.value).strip()
+                            threats, penalty = self._get_threats(v)
+                            if is_hidden:
+                                threats.append(ThreatCategory.HIDDEN_TEXT)
+                                penalty += 30.0
+                            result.segments.append(
+                                ExtractedSegment(
+                                    content=v,
+                                    source_type=SourceType.SPREADSHEET,
+                                    location={"sheet": sheetname, "cell": cell_coord},
+                                    is_hidden=is_hidden,
+                                    threat_indicators=threats,
+                                    confidence_penalty=penalty
+                                )
+                            )
+
                         # Extract Formulas (openpyxl retains formula strings since data_only=False)
                         if cell.data_type == 'f' and cell.value:
                             f_val = str(cell.value).strip()
@@ -142,6 +182,7 @@ class SpreadsheetExtractor(BaseExtractor):
                                 )
                             )
             wb.close()
+            return  # openpyxl covered every cell; pandas is only a fallback for files it cannot open (.xls)
         except Exception as e:
             result.extraction_warnings.append(f"Excel OpenPyXL structured parsing error: {str(e)}")
 
