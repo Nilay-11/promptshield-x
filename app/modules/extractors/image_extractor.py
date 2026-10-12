@@ -14,6 +14,31 @@ try:
 except ImportError:
     HAS_TESSERACT = False
 
+try:  # preferred: pip-installable ONNX OCR with bundled models (no system binary needed)
+    from rapidocr_onnxruntime import RapidOCR
+    HAS_RAPIDOCR = True
+except ImportError:
+    HAS_RAPIDOCR = False
+
+_RAPID = None
+
+
+def _rapid_ocr(image) -> str:
+    global _RAPID
+    import numpy as np
+    from PIL import ImageOps
+    if _RAPID is None:
+        _RAPID = RapidOCR()
+    lines, seen = [], set()
+    # second pass on an auto-contrasted copy recovers faint / low-contrast text often used to hide payloads
+    for img in (image.convert("RGB"), ImageOps.autocontrast(image.convert("L"), cutoff=1).convert("RGB")):
+        out, _ = _RAPID(np.array(img))
+        for _box, text, conf in out or []:
+            key = "".join(text.lower().split())  # spacing differs between passes
+            if float(conf) >= 0.5 and key and key not in seen:
+                seen.add(key); lines.append(text.strip())
+    return chr(10).join(lines)
+
 
 class ImageExtractor(BaseExtractor):
     def __init__(self, ocr_engine: str = "pytesseract"):
@@ -45,8 +70,10 @@ class ImageExtractor(BaseExtractor):
                             )
 
             # 2. OCR Optical Text Extraction (Visual Prompt Injection)
-            if HAS_TESSERACT:
-                ocr_text = pytesseract.image_to_string(image).strip()
+            if HAS_RAPIDOCR or HAS_TESSERACT:
+                ocr_text = (_rapid_ocr(image) if HAS_RAPIDOCR else pytesseract.image_to_string(image)).strip()
+                if HAS_RAPIDOCR:  # RapidOCR returns lines; keep them as one block so sentences stay together
+                    ocr_text = ocr_text.replace(chr(10), " ")
                 if ocr_text:
                     # Parse OCR line by line or by paragraph
                     paragraphs = [p.strip() for p in ocr_text.split("\n\n") if p.strip()]
@@ -62,7 +89,7 @@ class ImageExtractor(BaseExtractor):
                             )
                         )
             else:
-                result.extraction_warnings.append("pytesseract is not installed; OCR extraction was skipped.")
+                result.extraction_warnings.append("No OCR engine installed (rapidocr_onnxruntime or pytesseract); OCR skipped.")
 
             result.raw_character_count = sum(len(s.content) for s in result.segments)
             result.anomalies_detected = sum(1 for s in result.segments if s.is_hidden or s.threat_indicators)

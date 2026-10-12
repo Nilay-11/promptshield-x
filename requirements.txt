@@ -29,3 +29,4 @@ httpx==0.27.2
 pandas
 streamlit
 openpyxl
+rapidocr_onnxruntime  # OCR for images (bundled ONNX models, no system binary)
