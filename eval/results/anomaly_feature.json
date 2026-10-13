@@ -1,0 +1,25 @@
+{
+  "anomaly_alone_test_auroc": 0.864,
+  "baseline": {
+    "test_auroc_logistic": 0.9957,
+    "review": {
+      "recall": 0.9663,
+      "fpr": 0.0138
+    },
+    "block": {
+      "recall": 0.9385,
+      "fpr": 0.0038
+    }
+  },
+  "with_anomaly": {
+    "test_auroc_logistic": 0.9957,
+    "review": {
+      "recall": 0.967,
+      "fpr": 0.014
+    },
+    "block": {
+      "recall": 0.9385,
+      "fpr": 0.004
+    }
+  }
+}

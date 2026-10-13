@@ -1,0 +1,411 @@
+{
+  "baselines_v40_final": {
+    "no_defense": {
+      "note": "forwards everything",
+      "ALL": {
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "RAG_chunks": {
+        "recall": 0.0,
+        "fpr": 0.0
+      }
+    },
+    "keyword_rules": {
+      "ALL": {
+        "recall": 0.14185945002182454,
+        "fpr": 0.0
+      },
+      "RAG_chunks": {
+        "recall": 0.1,
+        "fpr": 0.0
+      }
+    },
+    "tfidf_lr": {
+      "val_auroc": 0.9668,
+      "final_auroc": 0.8199,
+      "chunk_auroc": 0.7807,
+      "strict": {
+        "threshold": 0.6951772733122538,
+        "ALL": {
+          "recall": {
+            "value": 0.4614,
+            "ci95": [
+              0.4403,
+              0.48
+            ]
+          },
+          "fpr": {
+            "value": 0.0496,
+            "ci95": [
+              0.0435,
+              0.056
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.224,
+            "ci95": [
+              0.1719,
+              0.2773
+            ]
+          },
+          "fpr": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "loose": {
+        "threshold": 0.31694636378150937,
+        "ALL": {
+          "recall": {
+            "value": 0.5949,
+            "ci95": [
+              0.5734,
+              0.6142
+            ]
+          },
+          "fpr": {
+            "value": 0.1393,
+            "ci95": [
+              0.1272,
+              0.153
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.352,
+            "ci95": [
+              0.293,
+              0.4073
+            ]
+          },
+          "fpr": {
+            "value": 0.0021,
+            "ci95": [
+              0.0008,
+              0.0035
+            ]
+          }
+        }
+      }
+    },
+    "protectai_deberta_v3_v2": {
+      "val_auroc": 0.8842,
+      "final_auroc": 0.9973,
+      "chunk_auroc": 0.9784,
+      "strict": {
+        "threshold": 0.9929756389389038,
+        "ALL": {
+          "recall": {
+            "value": 0.828,
+            "ci95": [
+              0.813,
+              0.8433
+            ]
+          },
+          "fpr": {
+            "value": 0.0004,
+            "ci95": [
+              0.0,
+              0.001
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.324,
+            "ci95": [
+              0.2672,
+              0.3846
+            ]
+          },
+          "fpr": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "loose": {
+        "threshold": 0.1919337974319458,
+        "ALL": {
+          "recall": {
+            "value": 0.8957,
+            "ci95": [
+              0.8829,
+              0.909
+            ]
+          },
+          "fpr": {
+            "value": 0.0009,
+            "ci95": [
+              0.0003,
+              0.0016
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.552,
+            "ci95": [
+              0.4901,
+              0.6157
+            ]
+          },
+          "fpr": {
+            "value": 0.0002,
+            "ci95": [
+              0.0,
+              0.0006
+            ]
+          }
+        }
+      }
+    },
+    "deepset_deberta_v3": {
+      "val_auroc": 0.818,
+      "final_auroc": 0.9747,
+      "chunk_auroc": 0.9343,
+      "strict": {
+        "threshold": 0.9989606605300904,
+        "ALL": {
+          "recall": {
+            "value": 0.6805,
+            "ci95": [
+              0.662,
+              0.7001
+            ]
+          },
+          "fpr": {
+            "value": 0.0007,
+            "ci95": [
+              0.0001,
+              0.0014
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.016,
+            "ci95": [
+              0.0038,
+              0.0323
+            ]
+          },
+          "fpr": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "loose": {
+        "threshold": 0.9988154636154175,
+        "ALL": {
+          "recall": {
+            "value": 0.8708,
+            "ci95": [
+              0.8566,
+              0.8848
+            ]
+          },
+          "fpr": {
+            "value": 0.0077,
+            "ci95": [
+              0.0057,
+              0.0098
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.26,
+            "ci95": [
+              0.2057,
+              0.3149
+            ]
+          },
+          "fpr": {
+            "value": 0.0013,
+            "ci95": [
+              0.0004,
+              0.0024
+            ]
+          }
+        }
+      }
+    },
+    "promptshield_v40": {
+      "val_auroc": 0.9906,
+      "final_auroc": 0.9268,
+      "chunk_auroc": 0.9841,
+      "strict": {
+        "threshold": 0.9276925192604065,
+        "ALL": {
+          "recall": {
+            "value": 0.6307,
+            "ci95": [
+              0.611,
+              0.6505
+            ]
+          },
+          "fpr": {
+            "value": 0.0721,
+            "ci95": [
+              0.0642,
+              0.0805
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.64,
+            "ci95": [
+              0.5783,
+              0.6996
+            ]
+          },
+          "fpr": {
+            "value": 0.0015,
+            "ci95": [
+              0.0004,
+              0.0027
+            ]
+          }
+        }
+      },
+      "loose": {
+        "threshold": 0.04054173989391327,
+        "ALL": {
+          "recall": {
+            "value": 0.8765,
+            "ci95": [
+              0.8629,
+              0.8901
+            ]
+          },
+          "fpr": {
+            "value": 0.2095,
+            "ci95": [
+              0.1902,
+              0.2285
+            ]
+          }
+        },
+        "RAG_chunks": {
+          "recall": {
+            "value": 0.852,
+            "ci95": [
+              0.8086,
+              0.893
+            ]
+          },
+          "fpr": {
+            "value": 0.0093,
+            "ci95": [
+              0.0066,
+              0.012
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ablation_validation_documents": {
+    "pdf": {
+      "n": 2000,
+      "full_pipeline": {
+        "recall": 0.965,
+        "fpr": 0.008
+      },
+      "text_only": {
+        "recall": 0.603,
+        "fpr": 0.016
+      },
+      "by_method": {
+        "metadata": {
+          "full_recall": 0.94,
+          "text_only_recall": 0.01
+        },
+        "microfont": {
+          "full_recall": 0.97,
+          "text_only_recall": 0.985
+        },
+        "off_canvas": {
+          "full_recall": 0.97,
+          "text_only_recall": 0.05
+        },
+        "visible": {
+          "full_recall": 0.97,
+          "text_only_recall": 0.995
+        },
+        "white_text": {
+          "full_recall": 0.975,
+          "text_only_recall": 0.975
+        }
+      }
+    },
+    "html": {
+      "n": 2000,
+      "full_pipeline": {
+        "recall": 0.952,
+        "fpr": 0.034
+      },
+      "text_only": {
+        "recall": 0.605,
+        "fpr": 0.02
+      },
+      "by_method": {
+        "aria_hidden": {
+          "full_recall": 0.96,
+          "text_only_recall": 0.985
+        },
+        "display_none": {
+          "full_recall": 0.935,
+          "text_only_recall": 0.975
+        },
+        "html_comment": {
+          "full_recall": 0.97,
+          "text_only_recall": 0.015
+        },
+        "visible": {
+          "full_recall": 0.93,
+          "text_only_recall": 0.99
+        },
+        "zero_width": {
+          "full_recall": 0.965,
+          "text_only_recall": 0.06
+        }
+      }
+    }
+  },
+  "latency": {
+    "hardware": "NVIDIA RTX 3050 Laptop GPU (6 GB), mock LLM (security pipeline only)",
+    "prompt": {
+      "n": 300,
+      "mean_ms": 35.4,
+      "p95_ms": 55.0
+    },
+    "csv_40_rows": {
+      "n": 30,
+      "mean_ms": 602.8,
+      "p95_ms": 560.0
+    },
+    "pdf_1_page": {
+      "n": 60,
+      "mean_ms": 86.0,
+      "p95_ms": 166.7
+    }
+  }
+}
