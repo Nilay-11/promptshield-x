@@ -1,0 +1,13 @@
+{
+  "n_attacked": 50,
+  "n_clean": 50,
+  "block": {
+    "recall": 0.62,
+    "fpr": 0.1
+  },
+  "review_or_block": {
+    "recall": 0.66,
+    "fpr": 0.1
+  },
+  "mean_seconds_per_pdf": 7.39
+}

@@ -1,0 +1,25 @@
+{
+  "sbert_alone_test_auroc": 0.8593,
+  "baseline": {
+    "test_auroc_logistic": 0.9957,
+    "review": {
+      "recall": 0.9663,
+      "fpr": 0.0138
+    },
+    "block": {
+      "recall": 0.9385,
+      "fpr": 0.0038
+    }
+  },
+  "with_sbert": {
+    "test_auroc_logistic": 0.9957,
+    "review": {
+      "recall": 0.9683,
+      "fpr": 0.0143
+    },
+    "block": {
+      "recall": 0.9288,
+      "fpr": 0.0036
+    }
+  }
+}

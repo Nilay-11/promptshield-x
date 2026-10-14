@@ -295,6 +295,29 @@ class PDFExtractor(BaseExtractor):
                 except Exception:
                     pass
 
+            # 3. Scanned pages: a page with images but (almost) no text layer is rendered and OCR'd
+            try:
+                from app.modules.extractors.image_extractor import HAS_RAPIDOCR, _rapid_ocr
+                if HAS_RAPIDOCR:
+                    from PIL import Image
+                    for page_num in range(min(len(doc), 20)):
+                        page = doc[page_num]
+                        if len(page.get_text().strip()) >= 30 or not page.get_images():
+                            continue
+                        pix = page.get_pixmap(dpi=150)
+                        img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
+                        text = _rapid_ocr(img).replace("\n", " ").strip()
+                        if text:
+                            result.segments.append(ExtractedSegment(
+                                content=text, source_type=SourceType.PDF,
+                                location={"page": page_num + 1, "element": "ocr"},
+                                is_hidden=False, segment_type="OCR_TEXT", cloaking_signal="NONE",
+                                threat_indicators=[ThreatCategory.VISUAL_PROMPT_INJECTION], confidence_penalty=0.0,
+                                metadata={"page": page_num + 1, "anomaly_codes": ["SCANNED_PAGE_OCR"]},
+                            ))
+            except Exception as e:
+                result.extraction_warnings.append(f"PDF OCR error: {str(e)}")
+
             result.raw_character_count = sum(len(s.content) for s in result.segments)
             result.anomalies_detected = sum(
                 1 for s in result.segments if s.is_hidden or s.cloaking_signal != "NONE"

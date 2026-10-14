@@ -1,0 +1,52 @@
+{
+  "by_method": {
+    "visible": {
+      "n": 200,
+      "detected": 194,
+      "span_ok": 17,
+      "layer_ok": 194,
+      "span_acc": 0.0876,
+      "layer_acc": 1.0
+    },
+    "microfont": {
+      "n": 200,
+      "detected": 194,
+      "span_ok": 168,
+      "layer_ok": 168,
+      "span_acc": 0.866,
+      "layer_acc": 0.866
+    },
+    "white_text": {
+      "n": 200,
+      "detected": 195,
+      "span_ok": 170,
+      "layer_ok": 170,
+      "span_acc": 0.8718,
+      "layer_acc": 0.8718
+    },
+    "off_canvas": {
+      "n": 200,
+      "detected": 194,
+      "span_ok": 173,
+      "layer_ok": 173,
+      "span_acc": 0.8918,
+      "layer_acc": 0.8918
+    },
+    "metadata": {
+      "n": 200,
+      "detected": 188,
+      "span_ok": 163,
+      "layer_ok": 163,
+      "span_acc": 0.867,
+      "layer_acc": 0.867
+    }
+  },
+  "overall": {
+    "n": 1000,
+    "detected": 965,
+    "span_ok": 691,
+    "layer_ok": 868,
+    "span_acc": 0.7161,
+    "layer_acc": 0.8995
+  }
+}
