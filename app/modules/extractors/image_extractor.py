@@ -15,11 +15,19 @@ try:
 except ImportError:
     HAS_TESSERACT = False
 
-try:  # preferred: pip-installable ONNX OCR with bundled models (no system binary needed)
-    from rapidocr_onnxruntime import RapidOCR
-    HAS_RAPIDOCR = True
+# preferred: RapidOCR 3 with the English PP-OCRv5 recognizer (keeps word spacing);
+# fallback: rapidocr_onnxruntime's default Chinese/English model (drops spaces, so merged words are re-split)
+try:
+    from rapidocr import RapidOCR as _RapidOCR3, LangRec, OCRVersion, ModelType
+    HAS_RAPIDOCR3 = True
 except ImportError:
-    HAS_RAPIDOCR = False
+    HAS_RAPIDOCR3 = False
+try:
+    from rapidocr_onnxruntime import RapidOCR
+    HAS_RAPIDOCR_LEGACY = True
+except ImportError:
+    HAS_RAPIDOCR_LEGACY = False
+HAS_RAPIDOCR = HAS_RAPIDOCR3 or HAS_RAPIDOCR_LEGACY
 
 _RAPID = None
 
@@ -40,17 +48,45 @@ def _split_merged_words(text: str, min_len: int = 14) -> str:
     return " ".join(out)
 
 
+def _reading_order(items):
+    """Group OCR boxes into lines (vertical centres closer than half a box height), then sort left-to-right."""
+    def geo(it):
+        ys = [float(p[1]) for p in it[0]]; xs = [float(p[0]) for p in it[0]]
+        return (min(ys) + max(ys)) / 2, max(max(ys) - min(ys), 1.0), min(xs)
+    lines = []
+    for it in sorted(items, key=lambda it: geo(it)[0]):
+        yc, h, _x = geo(it)
+        if lines and abs(yc - lines[-1]["yc"]) < 0.5 * max(h, lines[-1]["h"]):
+            lines[-1]["items"].append(it)
+        else:
+            lines.append({"yc": yc, "h": h, "items": [it]})
+    return [it for ln in lines for it in sorted(ln["items"], key=lambda it: geo(it)[2])]
+
+
 def _rapid_ocr(image) -> str:
     global _RAPID
     import numpy as np
     from PIL import ImageOps
     if _RAPID is None:
-        _RAPID = RapidOCR()
+        _RAPID = None
+        if HAS_RAPIDOCR3:
+            try:
+                eng = _RapidOCR3(params={"Det.ocr_version": OCRVersion.PPOCRV5, "Det.model_type": ModelType.MOBILE,
+                                         "Rec.ocr_version": OCRVersion.PPOCRV5, "Rec.lang_type": LangRec.EN,
+                                         "Rec.model_type": ModelType.MOBILE})
+                def _run3(arr, _e=eng):
+                    r = _e(arr)
+                    return _reading_order(list(zip(r.boxes, r.txts, r.scores)) if r.txts else [])
+                _RAPID = _run3
+            except Exception:
+                _RAPID = None
+        if _RAPID is None:
+            legacy = RapidOCR()
+            _RAPID = lambda arr, _e=legacy: (_e(arr)[0] or [])
     lines, seen = [], set()
     # second pass on an auto-contrasted copy recovers faint / low-contrast text often used to hide payloads
     for img in (image.convert("RGB"), ImageOps.autocontrast(image.convert("L"), cutoff=1).convert("RGB")):
-        out, _ = _RAPID(np.array(img))
-        for _box, text, conf in out or []:
+        for _box, text, conf in _RAPID(np.array(img)):
             key = "".join(text.lower().split())  # spacing differs between passes
             if float(conf) >= 0.5 and key and key not in seen:
                 seen.add(key); lines.append(_split_merged_words(text.strip()))

@@ -1,13 +1,60 @@
 {
-  "n_attacked": 50,
-  "n_clean": 50,
-  "block": {
-    "recall": 0.56,
-    "fpr": 0.02
+  "test_set": "100 image-only PDFs from unseen final_test_v40 RAG chunks (50 attacked / 50 clean)",
+  "history": {
+    "v1_rapidocr_default": {
+      "block": {
+        "recall": 0.62,
+        "fpr": 0.1
+      },
+      "review_or_block": {
+        "recall": 0.66,
+        "fpr": 0.1
+      }
+    },
+    "v2_merged_word_split": {
+      "block": {
+        "recall": 0.56,
+        "fpr": 0.02
+      },
+      "review_or_block": {
+        "recall": 0.58,
+        "fpr": 0.04
+      }
+    },
+    "v3_english_ppocrv5": {
+      "block": {
+        "recall": 0.68,
+        "fpr": 0.0
+      },
+      "review_or_block": {
+        "recall": 0.7,
+        "fpr": 0.02
+      },
+      "mean_seconds_per_pdf": 5.54
+    },
+    "v4_english_plus_50word_chunks (production)": {
+      "n_attacked": 50,
+      "n_clean": 50,
+      "block": {
+        "recall": 0.74,
+        "fpr": 0.02
+      },
+      "review_or_block": {
+        "recall": 0.76,
+        "fpr": 0.02
+      },
+      "mean_seconds_per_pdf": 4.74
+    }
   },
-  "review_or_block": {
-    "recall": 0.58,
-    "fpr": 0.04
+  "chunk_size_selection_on_validation_perfect_text_200_val_rag_chunks": {
+    "0": "0.93/0.00",
+    "30": "0.96/0.03",
+    "50": "0.96/0.00",
+    "80": "0.94/0.01",
+    "120": "0.94/0.00"
   },
-  "mean_seconds_per_pdf": 7.0
+  "upper_bound_perfect_text_on_test": {
+    "no_chunks": "0.74/0.00",
+    "50_word_chunks": "0.80/0.00"
+  }
 }

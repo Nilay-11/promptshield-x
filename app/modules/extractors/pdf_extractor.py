@@ -9,6 +9,7 @@ Detects cloaked indirect prompt injections:
 """
 
 import io
+import re
 import sys
 from pathlib import Path
 from typing import Optional, List
@@ -33,6 +34,26 @@ try:
 except ImportError:
     fitz = None
     HAS_PYMUPDF = False
+
+
+OCR_CHUNK_WORDS = 50  # chosen on validation RAG chunks (eval/results/scanned_pdf_ocr.json); 0 = one segment per page
+
+
+def _ocr_chunks(text: str) -> List[str]:
+    """Split a scanned page's OCR text into sentence-aligned chunks of about OCR_CHUNK_WORDS words,
+    like the paragraph blocks a text-layer PDF yields, so an injected sentence is not diluted by the whole page."""
+    if not text:
+        return []
+    if OCR_CHUNK_WORDS <= 0:
+        return [text]
+    chunks, cur = [], []
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        cur.append(sent)
+        if sum(len(x.split()) for x in cur) >= OCR_CHUNK_WORDS:
+            chunks.append(" ".join(cur)); cur = []
+    if cur:
+        chunks.append(" ".join(cur))
+    return chunks
 
 
 class PDFExtractor(BaseExtractor):
@@ -307,10 +328,10 @@ class PDFExtractor(BaseExtractor):
                         pix = page.get_pixmap(dpi=150)
                         img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
                         text = _rapid_ocr(img).replace("\n", " ").strip()
-                        if text:
+                        for ci, chunk in enumerate(_ocr_chunks(text)):
                             result.segments.append(ExtractedSegment(
-                                content=text, source_type=SourceType.PDF,
-                                location={"page": page_num + 1, "element": "ocr"},
+                                content=chunk, source_type=SourceType.PDF,
+                                location={"page": page_num + 1, "element": "ocr", "chunk": ci + 1},
                                 is_hidden=False, segment_type="OCR_TEXT", cloaking_signal="NONE",
                                 threat_indicators=[ThreatCategory.VISUAL_PROMPT_INJECTION], confidence_penalty=0.0,
                                 metadata={"page": page_num + 1, "anomaly_codes": ["SCANNED_PAGE_OCR"]},

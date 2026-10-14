@@ -31,3 +31,4 @@ streamlit
 openpyxl
 rapidocr_onnxruntime  # OCR for images (bundled ONNX models, no system binary)
 wordninja  # splits words merged by OCR
+rapidocr  # RapidOCR 3: English PP-OCRv5 recognizer
